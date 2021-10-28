@@ -1,0 +1,20 @@
+{
+  "name": "chessgame",
+  "version": "1.0.0",
+  "description": "Made using vanilla JS, HTML, and CSS. Chess engine for the browser. User vs. Computer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "C:/Desktop/Chess/.git/"
+  },
+  "author": "Chiahao Chou",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^27.3.1",
+    "jsdom": "^16.7.0",
+    "mongoose": "^6.0.12"
+  }
+}
