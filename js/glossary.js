@@ -37,5 +37,7 @@ document.addEventListener("readystatechange", () => {
     rank7: 6,
     rank8: 7,
     rankNone: 8,
-  };
+    };
+    const colours = { white: 0, black: 1, both: 2 };
+    const squares = {};
 });
