@@ -1,3 +1,7 @@
 document.addEventListener("readystatechange", () => {
-    console.log("DOM readystate is complete!");
+    if (document.readyState == "loading") {
+        console.log("DOM is still loading.");
+    } else {
+        console.log("main.js readyState:",document.readyState);
+    }
 });
