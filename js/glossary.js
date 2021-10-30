@@ -1,4 +1,4 @@
-  var pieces = {
+  var chessPieces = {
     empty: 0,
     wPwn: 1,
     wNight: 2,
@@ -37,7 +37,7 @@
     rankNone: 8,
   };
   var colours = { white: 0, black: 1, both: 2 };
-
+var castleBit = { wKingSide: 1, wQueenSide: 2, bKingSide: 4, bQueenSide: 8 };
   //squares numbered as per Number Board in google sheets;
   //these values represent the rank/file number at each square on the chess board;
   //extra rank/file rows factored in;
