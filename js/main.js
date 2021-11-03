@@ -6,7 +6,7 @@ function initFileRankBrd() {
   var index;
   var file = files.fileA;
   var rank = ranks.rank1;
-  var squ = squares.a1;
+    var squ;
 
   //set each square on the Chess Board to 100 aka..offboard;
   for (index = 0; index < boardSq; ++index) {
@@ -16,9 +16,10 @@ function initFileRankBrd() {
     
     //now...populate the File and Rank Boards with the number according to Number Board;
     //chess board visualizations are saved in my google sheets;
-  for (rank; rank <= ranks.rank8; ++rank) {
-    for (file; file <= files.fileH; ++file) {
-      squ = fileRankSqu(file, rank);
+  for (rank = ranks.rank1; rank <= ranks.rank8; ++rank) {
+    for (file = files.fileA; file <= files.fileH; ++file) {
+        squ = fileRankSqu(file, rank);
+        console.log(squ);
       fileBoard[squ] = file;
       rankBoard[squ] = rank;
     }
@@ -29,8 +30,8 @@ function initFileRankBrd() {
     `fileBoard[squares.a1]: ${fileBoard[squares.a1]}, rankBoard[squares.a1]: ${rankBoard[squares.a1]}`
   );
   console.log(
-    `fileBoard[square.e8]: ${fileBoard[squares.e8]}, rankBoard[square.e8]: ${
-      rankBoard[squares.e8]
+    `fileBoard[squares.h8]: ${fileBoard[squares.h8]}, rankBoard[squares.h8]: ${
+      rankBoard[squares.h8]
     }`
     );
 }

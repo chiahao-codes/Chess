@@ -1,6 +1,8 @@
+//Game board set up, with rules defined for the game;
+
 var gameBoard = {};
-gameBoard.position = new Array(boardSq); //represents all 120 squares on our board;
-gameBoard.side = colours.white;
+gameBoard.pieces = new Array(boardSq); //represents all 120 squares on our board; we can know if there is a piece on the square;
+gameBoard.sideToMove = colours.white;
 gameBoard.fiftyMove = 0;
 //accommodate "fifty-move rule" in chess; if both players have made fifty moves each and
 //no piece has been taken and pawns have not moved, then it is a draw. 
@@ -31,3 +33,5 @@ gameBoard.castlePerm = 0
  * 
  * 1101 = 13 = a + c + d; which means only those 3 moves are allowed;
  */
+gameBoard.material = new Array(2); //track "material" of pieces (i.e. black vs. white); not sure what video means to do with this;
+gameBoard.pieceNumb = new Array(13);//corresponds to chessPieces property values in glossary.js; tells us how many chess pieces of each type exist;

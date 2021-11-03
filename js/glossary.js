@@ -38,9 +38,10 @@
   };
   var colours = { white: 0, black: 1, both: 2 };
 var castleBit = { wKingSide: 1, wQueenSide: 2, bKingSide: 4, bQueenSide: 8 };
+
   //squares numbered as per Number Board in google sheets;
   //these values represent the rank/file number at each square on the chess board;
-  //extra rank/file rows factored in;
+  //extra rank/file rows are used to reflect off-board areas;
   var squares = {
     a1: 21,
     b1: 22,
@@ -69,7 +70,169 @@ var castleBit = { wKingSide: 1, wQueenSide: 2, bKingSide: 4, bQueenSide: 8 };
   //converts the file/rank position into the Numbered position on the chess board;
   function fileRankSqu(f, r) {
     return 21 + f + r * 10;
-  }
+};
+
+/**more definitions to help with evaluating pieces when generating moves; not sure how to use them yet */
+//big piece = non-pawn;
+var pieceBig = [
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.true,
+  bool.true,
+  bool.true,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.true,
+  bool.true,
+  bool.true,
+];
+//Major piece == Queen or Rook;
+var pieceMajor = [
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.true,
+];
+//Minor piece == Bishop or Knight;
+var pieceMinor = [
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+];
+var pieceVal = [
+  0, 100, 325, 325, 550, 1000, 50000, 100, 325, 325, 550, 1000, 50000,
+];
+//what color the piece is -- corresponds to chessPiece array index;
+var pieceColour = [
+  colours.both,
+  colours.white,
+  colours.white,
+  colours.white,
+  colours.white,
+  colours.white,
+  colours.white,
+  colours.black,
+  colours.black,
+  colours.black,
+  colours.black,
+  colours.black,
+  colours.black,
+];
+
+var piecePawn = [
+  bool.false,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+];
+var pieceKnight = [
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+];
+var pieceKing = [
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+];
+var pieceRookQueen = [
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.false,
+];
+var pieceBishopQueen = [
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.false,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.false,
+  bool.true,
+  bool.false,
+];
+//does the piece "slide"? whatever that means;
+var pieceSlides = [
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.true,
+  bool.false,
+  bool.false,
+  bool.false,
+  bool.true,
+  bool.true,
+  bool.true,
+  bool.false,
+];
+
 
 
 
