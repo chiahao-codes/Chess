@@ -1,20 +1,54 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <meta charset="utf-8">
-    <title>Play Chess!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        
     </head>
     <body>
-        <header>
-            <h3>CHESS GAME</h3>
-        </header>
-        <div id="FenInDiv">
-            Fen:<br/>
-            <input type="text" id="fenIn"/>
-            <button type="button" id="SetFen">Set Position</button>
+        <section class = "container_Rank_Squ">
+                <div id="rank_counter">
+                    <div id="rank8">8</div>
+                    <div id="rank7">7</div>
+                    <div id="rank6">6</div>
+                    <div id="rank5">5</div>
+                    <div id="rank4">4</div>
+                    <div id="rank3">3</div>
+                    <div id="rank2">2</div>
+                    <div id="rank1">1</div>
+                </div>
+                <div class="squares2">
+                    <div id=1></div>
+                    <div id=2></div>
+                    <div id=3></div>
+                    <div id=4></div>
+                    <div id=5></div>
+                    <div id=6></div>
+                    <div id=7></div>
+                    <div id=8></div>
+                </div>
+                <div class="squares1">
+                    <div id="1">1</div>
+                    <div id="2">2</div>
+                    <div id="3">3</div>
+                    <div id="4">4</div>
+                    <div id="5">5</div>
+                    <div id="6">6</div>
+                    <div id="7">7</div>
+                    <div id="8">8</div>
+                </div>
+        </section>
+        <div id = "file_counter">
+            <div id="fileA">a</div>
+            <div id="fileB">b</div>
+            <div id="fileC">c</div>
+            <div id="fileD">d</div>
+            <div id="fileE">e</div>
+            <div id="fileF">f</div>
+            <div id="fileG">g</div>
+            <div id="fileH">h</div>
         </div>
-    <script src="js/glossary.js" type="text/javascript"></script>
-    <script src="js/board.js" type="text/javascript"></script>    
-    <script src="js/main.js" type="text/javascript"></script>
+    <script type="text/javascript" src="./js2/game.js"></script>
     </body>
 </html>
