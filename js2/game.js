@@ -1,10 +1,5 @@
-const jsChessEngine = require("js-chess-engine");
-const game = new jsChessEngine.Game();
-game.printToConsole();
-
-
-
-
-
-
-
+const myDomBoard = document.querySelector(".chessboard");
+console.log(myDomBoard);
+const { Chess } = require("chess.js");
+const chessGame = new Chess();
+console.log(chessGame);
