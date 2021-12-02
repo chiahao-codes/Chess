@@ -28,13 +28,26 @@ margin:auto;
     width:fit-content;
     grid-template-columns: repeat(8, 5em);
     grid-template-rows: 5em;
+    font-weight: bold;
 }
 
 
-.square:nth-child(odd), .squ6:nth-child(odd), .squ4:nth-child(odd), .squ2:nth-child(odd){
-background-color: #100f0f;
+.squareB:nth-child(odd){
+background-color: #6c7482;
+color:white;
 }
 
-.squ7:nth-child(even), .squ5:nth-child(even), .squ3:nth-child(even), .squ1:nth-child(even){
-    background-color:#100f0f;
+.squareW:nth-child(even){
+    background-color:#6c7482;
+    color:white;
+}
+
+.rank > .r{
+    background-image:url("./assets/images/black/blkRook.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.rank>.r:hover{
+    cursor: pointer;
 }
