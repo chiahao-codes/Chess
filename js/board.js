@@ -1,5 +1,5 @@
 //Defined objects to be used for game play;
-class chessBoard{
+export class chessBoard{
     constructor() {
         this.turn = "white";
         this.piece = {
@@ -24,4 +24,4 @@ class chessBoard{
     }
 }
 
-module.exports = chessBoard;
+
