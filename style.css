@@ -23,7 +23,7 @@ max-height: fit-content;
 margin:auto;
 }
 
-.rank{
+.rankFile{
     display:grid;
     width:fit-content;
     grid-template-columns: repeat(8, 5em);
@@ -42,12 +42,18 @@ color:white;
     color:white;
 }
 
-.rank > .r{
+.rankFile >.r{
     background-image:url("./assets/images/black/blkRook.png");
     background-repeat: no-repeat;
     background-position: bottom;
 }
 
-.rank>.r:hover{
+.rankFile>.r:hover, .rankFile>.p:hover{
     cursor: pointer;
+}
+
+.rankFile >.p{
+    background-image:url("./assets/images/black/blkPawn.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
 }

@@ -1,17 +1,28 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-
 function myChessFile() {
-  const myDomBoard = document.querySelector(".chessboard");
-  console.log(myDomBoard);
   const { Chess } = require("chess.js");
   const chessGame = new Chess();
+  chessGame.clear();
   console.log(chessGame.ascii());
-  console.log("Hello");  
-}
-  
-  myChessFile();
 
-module.exports = myChessFile
+  const myDomBoard = document.getElementsByClassName("chessboard");
+  const rankFile = myDomBoard[0].children;
+  console.log(rankFile);
+
+  for (i = 0; i <= 7; i++){
+    const arr = new Array();
+    arr.push(rankFile[i]);
+    console.log(arr);
+    for (j = 0; j <= 7; i++){
+      //add event listener to each square;
+      
+    }
+  }
+}
+
+myChessFile();
+
+
 
 },{"chess.js":2}],2:[function(require,module,exports){
 /*
