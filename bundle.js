@@ -7,15 +7,13 @@ function myChessFile() {
 
   const myDomBoard = document.getElementsByClassName("chessboard");
   const rankFile = myDomBoard[0].children;
-  console.log(rankFile);
+  console.log(rankFile); //HtmlCollection of rankFile arrays, live;
 
   for (i = 0; i <= 7; i++){
-    const arr = new Array();
-    arr.push(rankFile[i]);
-    console.log(arr);
-    for (j = 0; j <= 7; i++){
-      //add event listener to each square;
-      
+    for (j = 0; j <= 7; j++){
+      rankFile[i].children[j].addEventListener("click", () => {
+        console.log("Hey...");
+      })
     }
   }
 }
