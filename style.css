@@ -11,16 +11,13 @@ body, html{
 
 .container{
     display:grid;
-    margin:auto;
-    border:1px solid black;
+    margin:auto; /*center the container*/
 }
 
 .chessboard{
 background-color:#eeeeee;
-z-index: 3px;
-border:4px solid black;
+border:.65vmin solid black;
 max-height: fit-content;
-margin:auto;
 }
 
 .rankFile{
@@ -79,7 +76,7 @@ color:white;
 }
 
 .rankFile > .validMove {
-    border: 3px solid crimson;
+    border: .125em solid crimson;
 }
 
 .rankFile>.r:hover, .rankFile>.p:hover, .rankFile>.b:hover, .rankFile>.k:hover, .rankFile>.q:hover,.rankFile>.n:hover{
