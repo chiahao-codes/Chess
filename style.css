@@ -18,7 +18,7 @@ body, html{
 .chessboard{
 background-color:#eeeeee;
 z-index: 3px;
-border:2px solid black;
+border:4px solid black;
 max-height: fit-content;
 margin:auto;
 }
@@ -48,12 +48,40 @@ color:white;
     background-position: bottom;
 }
 
-.rankFile>.r:hover, .rankFile>.p:hover{
-    cursor: pointer;
+.rankFile > .n{
+    background-image:url("./assets/images/black/blkKnight.png");
+    background-repeat: no-repeat;
+    background-position: bottom; 
+}
+
+.rankFile > .b{
+    background-image:url("./assets/images/black/blkBishop.png");
+    background-repeat: no-repeat;
+    background-position: bottom; 
+}
+
+.rankFile > .q{
+    background-image:url("./assets/images/black/blkQueen.png");
+    background-repeat: no-repeat;
+    background-position: bottom; 
+}
+
+.rankFile > .k{
+    background-image:url("./assets/images/black/blkKing.png");
+    background-repeat: no-repeat;
+    background-position: bottom; 
 }
 
 .rankFile >.p{
     background-image:url("./assets/images/black/blkPawn.png");
     background-repeat: no-repeat;
     background-position: bottom;
+}
+
+.rankFile > .validMove {
+    border: 3px solid crimson;
+}
+
+.rankFile>.r:hover, .rankFile>.p:hover, .rankFile>.b:hover, .rankFile>.k:hover, .rankFile>.q:hover,.rankFile>.n:hover{
+    cursor: pointer;
 }
