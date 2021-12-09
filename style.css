@@ -82,3 +82,43 @@ color:white;
 .rankFile>.r:hover, .rankFile>.p:hover, .rankFile>.b:hover, .rankFile>.k:hover, .rankFile>.q:hover,.rankFile>.n:hover{
     cursor: pointer;
 }
+
+.rankFile > .R{
+    background-image:url("./assets/images/white/whiteRook.png");
+    background-repeat: no-repeat;
+    background-position: bottom;  
+}
+
+.rankFile > .N{
+    background-image:url("./assets/images/white/whiteKnight.png");
+    background-repeat: no-repeat;
+    background-position: bottom;  
+}
+
+.rankFile > .B{
+    background-image:url("./assets/images/white/whiteBishop.png");
+    background-repeat: no-repeat;
+    background-position: bottom;  
+}
+
+.rankFile > .K{
+    background-image:url("./assets/images/white/whiteKing.png");
+    background-repeat: no-repeat;
+    background-position: bottom;  
+}
+
+.rankFile > .Q{
+    background-image:url("./assets/images/white/whiteQueen.png");
+    background-repeat: no-repeat;
+    background-position: bottom;  
+}
+
+.P{
+    background-image:url("./assets/images/white/whitePawn.png");
+    background-repeat: no-repeat;
+    background-position: bottom;    
+}
+
+.K:hover, .Q:hover, .N:hover, .R:hover, .B:hover, .P:hover{
+    cursor: pointer;
+}
