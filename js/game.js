@@ -55,14 +55,26 @@ function myChessFile() {
             }
             const validMoves = document.querySelectorAll(".validMove");
             const currentMove2 = document.querySelector(".currentMove");
-            const arrPieces = ["p", "b", "q", "n", "k", "r", "P", "R", "N", "B", "Q", "K"];
+            const arrPieces = [
+              "p",
+              "b",
+              "q",
+              "n",
+              "k",
+              "r",
+              "P",
+              "R",
+              "N",
+              "B",
+              "Q",
+              "K",
+            ];
             if (validMoves.length > 0) {
               validMoves.forEach((ele) => {
                 ele.addEventListener("click", () => {
                   //remove chess piece class name and add it to ele.classList;
                   currentMove2.classList.forEach((elem) => {
                     if (arrPieces.includes(elem)) {
-                      console.log(elem);
                       currentMove2.classList.remove(elem);
                       ele.classList.replace("currentMove", elem);
                       //update chess engine move();
@@ -70,7 +82,7 @@ function myChessFile() {
                         from: currentMove2.innerHTML,
                         to: ele.innerHTML,
                       });
-                      if (arrPieces.includes(chessMove.captured)) {
+                      if (chessMove.captured) {
                         if (arrPieces.includes(ele.classList[1])) {
                           ele.classList.remove(ele.classList[1]);
                         }
@@ -80,22 +92,43 @@ function myChessFile() {
                   });
                   const gameFen = chessGame.fen();
                   console.log(`Fen: ${gameFen}`);
+                  const validFen = chessGame.validate_fen(gameFen);
+                  if (!validFen) console.log("Invalid Fen", validFen);
                   console.log(chessGame.ascii());
                   let turn = chessGame.turn();
                   const inCheck = chessGame.in_check(gameFen);
+                  const checkMate = chessGame.in_checkmate(gameFen);
+                  const draw = chessGame.in_draw(gameFen);
+                  const staleMate = chessGame.in_stalemate(gameFen);
+                  const gameOver = chessGame.game_over(gameFen);
+                  if (gameOver) {
+                    console.log("Game has ended.");
+                  }
+
                   if (turn == "b") {
-                    console.log("Black side's turn.");
+                    console.log("Black's turn.");
                     if (inCheck) {
-                      console.log("Black side in check.");
-                    }
-                  } else {
-                    console.log("White side's turn.");
-                    if (inCheck) {
-                      console.log("Black side in check.");
+                      console.log("Black in check.");
+                    } else if (checkMate) {
+                      console.log("Black is checkmated.");
+                    } else if (draw) {
+                      console.log("It's a draw.");
+                    } else if (staleMate) {
+                      console.log("Black has been stalemated.");
                     }
                   }
-                  
-                  
+                   else {
+                    console.log("White's turn.");
+                    if (inCheck) {
+                      console.log("White in check.");
+                    } else if (checkMate) {
+                      console.log("White is checkmated.");
+                    } else if (draw) {
+                      console.log("It's a draw.");
+                    } else if (staleMate) {
+                      console.log("White has been stalemated.");
+                    }
+                  }
                 });
               });
             }
