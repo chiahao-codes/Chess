@@ -27,7 +27,7 @@ function myChessFile() {
 
         //add currentMove class to square being clicked;
         mySquares.classList.add("currentMove");
-        
+
         //calculate eligible moves;
         let moves;
         const allSquares = document.querySelectorAll(".rankFile > div");
@@ -40,41 +40,67 @@ function myChessFile() {
             // highlight the squares of the available moves;
             for (let h of allSquares) {
               for (let k of moves) {
-                if (h.innerHTML === k) {
+                if (
+                  h.innerHTML === k ||
+                  h.innerHTML === k.substring(1) ||
+                  h.innerHTML === k.substring(2) ||
+                  h.innerHTML === k.substring(1, 3) ||
+                  h.innerHTML === k.substring(1, 4) ||
+                  h.innerHTML === k.substring(2, 4) ||
+                  h.innerHTML === k.substring(2, 3)
+                ) {
                   console.log("Good Luck!");
                   h.classList.add("validMove");
-                } else if (h.innerHTML !== k) {
-                  if (h.innerHTML === k.substring(1)) {
-                    console.log("Good Luck!");
-                    h.classList.add("validMove");
-                  }
                 }
               }
             }
+            const validMoves = document.querySelectorAll(".validMove");
+            const currentMove2 = document.querySelector(".currentMove");
+            const arrPieces = ["p", "b", "q", "n", "k", "r", "P", "R", "N", "B", "Q", "K"];
+            if (validMoves.length > 0) {
+              validMoves.forEach((ele) => {
+                ele.addEventListener("click", () => {
+                  //remove chess piece class name and add it to ele.classList;
+                  currentMove2.classList.forEach((elem) => {
+                    if (arrPieces.includes(elem)) {
+                      console.log(elem);
+                      currentMove2.classList.remove(elem);
+                      ele.classList.replace("currentMove", elem);
+                      //update chess engine move();
+                      const chessMove = chessGame.move({
+                        from: currentMove2.innerHTML,
+                        to: ele.innerHTML,
+                      });
+                      if (arrPieces.includes(chessMove.captured)) {
+                        if (arrPieces.includes(ele.classList[1])) {
+                          ele.classList.remove(ele.classList[1]);
+                        }
+                      }
+                      console.log(chessMove);
+                    }
+                  });
+                  const gameFen = chessGame.fen();
+                  console.log(`Fen: ${gameFen}`);
+                  console.log(chessGame.ascii());
+                  let turn = chessGame.turn();
+                  const inCheck = chessGame.in_check(gameFen);
+                  if (turn == "b") {
+                    console.log("Black side's turn.");
+                    if (inCheck) {
+                      console.log("Black side in check.");
+                    }
+                  } else {
+                    console.log("White side's turn.");
+                    if (inCheck) {
+                      console.log("Black side in check.");
+                    }
+                  }
+                  
+                  
+                });
+              });
+            }
           }
-        }
-
-        //place piece on valid square;
-        const validMoves = document.querySelectorAll(".validMove");
-        if (validMoves.length > 0) {
-          console.log(validMoves);
-          validMoves.forEach((ele) => {
-            ele.addEventListener("click", () => {
-              //remove chess piece class name and add it to ele.classList;
-              const piece = mySquares.classList[1];
-              mySquares.classList.remove(piece);
-              ele.classList.replace("currentMove", piece);
-              if (ele.classList.contains(undefined)) {
-                ele.classList.remove(undefined);
-              }
-              //update chess engine move();
-              const chessMove = chessGame.move({ from: mySquares.innerHTML, to: ele.innerHTML });
-              console.log(chessMove);
-              console.log(chessGame.ascii());
-              let turn = chessGame.turn();
-              if (turn == "b") { console.log("Black side's turn.") } else { console.log("White side's turn.") };
-            });
-          });
         }
       });
     }
