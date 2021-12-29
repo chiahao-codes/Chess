@@ -60,8 +60,15 @@ function myChessFile() {
       x.classList.remove("validMove");
     }
   }
-}
-
+  }
+  
+  function removeP(ev) {
+    if (ev.classList.contains("P") && ev.classList.contains("Q")) {
+      ev.classList.remove("P");
+    } else if (ev.classList.contains("p") && ev.classList.contains("q")) {
+      ev.classList.remove("p");
+    }
+  }
 
 
   function makeMoves(e) {
@@ -91,13 +98,7 @@ function myChessFile() {
           }
 
           noMoreValid(existingValidMoves);
-
-          if (
-            e.target.classList.contains("P") &&
-            e.target.classList.contains("Q")
-          ) {
-            e.target.classList.remove("P");
-          }
+          removeP(e.target);
 
           for (const f of allSquares) {
             if (f.innerText === fromK) {
@@ -130,13 +131,7 @@ function myChessFile() {
           }
 
           noMoreValid(existingValidMoves);
-
-          if (
-            e.target.classList.contains("p") &&
-            e.target.classList.contains("q")
-          ) {
-            e.target.classList.remove("p");
-          }
+          removeP(e.target);
 
           for (const m of allSquares) {
             if (m.innerText === fromK) {
@@ -159,7 +154,6 @@ function myChessFile() {
           if (moveObj.color === "w") {
             const whiteMovePiece = moveObj.piece.toUpperCase();
 
-
             if (e.target.hasAttribute("captured")) {
               e.target.removeAttribute("captured");
               e.target.classList.remove(moveObj.captured);
@@ -179,13 +173,7 @@ function myChessFile() {
             }
 
             noMoreValid(existingValidMoves);
-
-            if (
-              e.target.classList.contains("P") &&
-              e.target.classList.contains("Q")
-            ) {
-              e.target.classList.remove("P");
-            }
+            removeP(e.target);
             
             for (const sq of allSquares) {
               if (sq.innerHTML === moveObj.from) {
@@ -217,13 +205,7 @@ function myChessFile() {
             }
 
             noMoreValid(existingValidMoves);
-
-            if (
-              e.target.classList.contains("p") &&
-              e.target.classList.contains("q")
-            ) {
-              e.target.classList.remove("p");
-            }
+            removeP(e.target);
 
             for (const sq of allSquares) {
               if (sq.innerHTML === moveObj.from) {
