@@ -3,9 +3,9 @@ function myChessFile() {
   const { Chess } = require("chess.js");
   const chessGame = new Chess();
   window.addEventListener("load", () => {
-    console.log("Game Board loaded. White player starts.");
+    console.log(" Sup. Game Board loaded. White player starts.");
   });
-  
+
   function getValidMoves(e) {
     console.log("1");
     const otherSquares = document.querySelectorAll(".rankFile > .currentMove");
@@ -22,31 +22,35 @@ function myChessFile() {
 
     //add currentMove class to square being clicked;
     const myTarget = e.target;
-    let piece = chessGame.get(myTarget.innerHTML); //piece object {type:"", color:""};
+    let piece = chessGame.get(myTarget.innerText); //piece object {type:"", color:""};
+    turn = chessGame.turn();
 
-    if (piece !== null) {
+    if (piece !== null && piece.color === turn) {
       myTarget.classList.add("currentMove");
     }
 
     if (myTarget.classList.contains("currentMove")) {
-      const squareInnerHtml = myTarget.innerHTML;
-      moves = chessGame.moves({ square: squareInnerHtml, verbose: true }); //array;
+      const squareInnertext = myTarget.innerText;
+      moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
 
-      //put capture move in this function scope somewhere;
       if (moves.length > 0) {
         for (let h of allSquares) {
           for (let k of moves) {
-            if (h.innerHTML === k.to) {
-              h.classList.add("validMove");
-              if (k.hasOwnProperty("captured") === true) {
-                h.classList.add("captured");
-                san = k.san;
-                fromK = k.from;
-                pieceK = k.piece; //piece that is going to be moved; lowercase for both colors;
-                captured = k.captured;
-                whitePieceCap = captured.toUpperCase();
-                console.log("K properties set!");
+            if (h.innerText === k.to) {
+              h.classList.toggle("validMove", true);
+
+              if (k.captured) {
+                h.setAttribute("captured", "");
               }
+              if (k.promotion) {
+                h.setAttribute("promotion", "");
+              }
+
+              fromK = k.from;
+              colorK = k.color;
+              pieceK = k.piece;
+              whiteMoveP = pieceK.toUpperCase();
+              console.log("K properties set!");
               h.addEventListener("click", makeMoves);
             }
           }
@@ -58,79 +62,171 @@ function myChessFile() {
   }
 
   function makeMoves(e) {
-    console.log("2");
-    console.log("make moves...", moves);
-    let turn = chessGame.turn();
+    const movedTo = e.target.innerText;
     if (moves.length == 0) {
-    
-      if (e.target.classList.contains("captured")) {
+      if (turn == colorK) {
+        console.log("2");
         if (turn === "w") {
-          for (const f of allSquares) {
-            if (f.innerHTML === fromK) {
-              const whiteMoveP = pieceK.toUpperCase();
-              console.log(`Piece to move:${whiteMoveP}, Captured:${captured}`);
-              f.classList.remove(whiteMoveP);
-              //e.target.classList.replace(captured, whiteMoveP);
-              e.target.classList.remove(captured);
-              e.target.classList.add(whiteMoveP);
-              chessGame.move(san);
-            }
-          }
-        } else if (turn === "b") {
-      
-          for (const f of allSquares) {
-            if (f.innerHTML === fromK) {
-              console.log(`Piece to move:${pieceK}, Captured:${whitePieceCap}`);
-              f.classList.remove(pieceK);
-              //e.target.classList.replace(whitePieceCap,pieceK);
-               e.target.classList.remove(whitePieceCap);
-               e.target.classList.add(pieceK);
-              chessGame.move(san);
-            }
-          }
-        }
-         for (const b of allSquares) {
-           if (b.classList.contains("captured")) {
-             b.classList.remove("captured");
-           }
-         }
-      }
-    } else if (moves.length > 0) {
-      for (const moveObj of moves) {
-        if (moveObj.to === e.target.innerHTML) {
-          //update DOM movement;
-          const piece2 = chessGame.get(moveObj.from);
-          if (moveObj.color === "w") {
-            const whitePiece = piece2.type.toUpperCase();
-            e.target.classList.add(whitePiece);
-            for (const sq of allSquares) {
-              if (sq.innerHTML === moveObj.from) {
-                sq.classList.remove(whitePiece);
-                console.log(`${whitePiece} removed.`);
-                break;
-              }
-            }
-          } else if (moveObj.color === "b") {
-            e.target.classList.add(piece2.type);
-            for (const sq of allSquares) {
-              if (sq.innerHTML === moveObj.from) {
-                sq.classList.remove(piece2.type);
-                console.log(`${piece2.type} removed.`);
-                break;
+
+          if (e.target.hasAttribute("captured")) {
+            e.target.removeAttribute("captured");
+            const blackCaptured = ["p", "b", "q", "k", "n", "r"];
+            for (const m of blackCaptured) {
+              if (e.target.classList.contains(m)) {
+                e.target.classList.remove(m);
               }
             }
           }
 
-          //update chess engine;
-          const chessMove = chessGame.move(moveObj.san);
-          console.log(chessMove);
+          if (e.target.hasAttribute("promotion")) {
+            e.target.removeAttribute("promotion");
+            e.target.classList.add("Q");
+            chessGame.move({ from: fromK, to: movedTo, promotion: "q" });
+          } else {
+            e.target.classList.add(whiteMoveP);
+            chessGame.move({ from: fromK, to: movedTo });
+          }
+
+           if (
+             e.target.classList.contains("P") &&
+             e.target.classList.contains("Q")
+           ) {
+             e.target.classList.remove("P");
+          } 
+          
+          for (const f of allSquares) {
+            if (f.innerText === fromK) {
+              f.classList.remove(whiteMoveP);
+            }
+            if (f.hasAttribute("captured")) {
+              f.removeAttribute("captured");
+            }
+            if (f.hasAttribute("promotion")) {
+              f.removeAttribute("promotion");
+            }
+          }
+        } else if (turn === "b") {
+          if (e.target.hasAttribute("captured")) {
+            e.target.removeAttribute("captured");
+            const whiteCaptured = ["P", "B", "R", "N", "Q", "K"];
+            for (const w of whiteCaptured) {
+              if (e.target.classList.contains(w)) {
+                e.target.classList.remove(w);
+              }
+            }
+          }
+          if (e.target.hasAttribute("promotion")) {
+            e.target.removeAttribute("promotion");
+            e.target.classList.add("q");
+            chessGame.move({ from: fromK, to: movedTo, promotion: "q" });
+          } else {
+            e.target.classList.add(pieceK);
+            chessGame.move({ from: fromK, to: movedTo });
+          }
+
+            if (e.target.classList.contains("p") && e.target.classList.contains("q")) {
+              e.target.classList.remove("p");
+            } 
+         
+          for (const m of allSquares) {
+            if (m.innerText === fromK) {
+              m.classList.remove(pieceK);
+            }
+            if (m.hasAttribute("captured")) {
+              m.removeAttribute("captured");
+            }
+            if (m.hasAttribute("promotion")) {
+              m.removeAttribute("promotion");
+            }
+          }
+        }
+      }
+    } else if (moves.length > 0) {
+      console.log("3");
+      console.log(moves);
+      for (const moveObj of moves) {
+        if (moveObj.to === e.target.innerText) {
+          if (moveObj.color === "w") {
+            const whiteMovePiece = moveObj.piece.toUpperCase();
+        
+            if (e.target.hasAttribute("captured")) {
+              e.target.removeAttribute("captured");
+              e.target.classList.remove(moveObj.captured);
+            }
+
+            if (e.target.hasAttribute("promotion")) {
+              e.target.removeAttribute("promotion");
+              e.target.classList.add("Q");
+             
+              chessGame.move({
+                from: moveObj.from,
+                to: movedTo,
+                promotion: "q",
+              });
+            } else {
+              e.target.classList.add(whiteMovePiece);
+              chessGame.move({ from: moveObj.from, to: movedTo });
+            }
+
+            if (e.target.classList.contains("P") && e.target.classList.contains("Q")) {
+              e.target.classList.remove("P");
+            }
+
+            for (const sq of allSquares) {
+              if (sq.innerHTML === moveObj.from) {
+                sq.classList.remove(whiteMovePiece);
+              }
+              if (sq.hasAttribute("captured")) {
+                sq.removeAttribute("captured");
+              }
+              if (sq.hasAttribute("promotion")) {
+                sq.removeAttribute("promotion");
+              }
+            }
+          } else if (moveObj.color === "b") {
+            const blackMovePiece = moveObj.piece;
+
+            if (e.target.hasAttribute("captured")) {
+              e.target.removeAttribute("captured");
+              const whitePieceCaptured = moveObj.captured.toUpperCase();
+              e.target.classList.remove(whitePieceCaptured);
+            }
+
+            if (e.target.hasAttribute("promotion")) {
+              e.target.removeAttribute("promotion");
+              e.target.classList.add("q");
+              
+              chessGame.move({
+                from: moveObj.from,
+                to: movedTo,
+                promotion: "q",
+              });
+            } else {
+              e.target.classList.add(blackMovePiece);
+              chessGame.move({ from: moveObj.from, to: movedTo });
+            }
+
+            if (e.target.classList.contains("p") && e.target.classList.contains("q")) {
+              e.target.classList.remove("p");
+            }
+
+            for (const sq of allSquares) {
+              if (sq.innerHTML === moveObj.from) {
+                sq.classList.remove(blackMovePiece);
+              }
+              if (sq.hasAttribute("captured")) {
+                sq.removeAttribute("captured");
+              }
+              if (sq.hasAttribute("promotion")) {
+                sq.removeAttribute("promotion");
+              }
+            }
+          }
         }
       }
     }
-    
-    
+
     const gameFen = chessGame.fen();
-    console.log(`Fen: ${gameFen}`);
     const validFen = chessGame.validate_fen(gameFen);
     if (!validFen) console.log("Invalid Fen", validFen);
 
@@ -169,187 +265,20 @@ function myChessFile() {
     }
   }
 
+  let turn;
   let moves;
-  let san;
   let fromK;
   let pieceK;
-  let captured;
+  let whiteMoveP;
   let whitePieceCap;
-
   const allSquares = document.querySelectorAll(".rankFile > div");
-  const rankFile = document.getElementsByClassName("chessboard")[0].children;
 
-  //Run event listeners;
   for (const a of allSquares) {
     a.addEventListener("click", getValidMoves);
   }
 }
 
 myChessFile();
-
-/**
- * for (const moveObj of moves) {
-      if (moveObj.to === e.target.innerHTML) {
-        //update DOM movement;
-        const piece2 = chessGame.get(moveObj.from);
-        if (moveObj.color === "w") {
-          const whitePiece = piece2.type.toUpperCase();
-          e.target.classList.add(whitePiece);
-          for (const sq of allSquares) {
-            if (sq.innerHTML === moveObj.from) {
-              sq.classList.remove(whitePiece);
-              console.log(`${whitePiece} removed.`);
-              break;
-            }
-          }
-        } else if (moveObj.color === "b") {
-          e.target.classList.add(piece2.type);
-          for (const sq of allSquares) {
-            if (sq.innerHTML === moveObj.from) {
-              sq.classList.remove(piece2.type);
-              console.log(`${piece2.type} removed.`);
-              break;
-            }
-          }
-        }
-
-        //update chess engine;
-        const chessMove = chessGame.move(moveObj.san);
-        console.log(chessMove);
-
-  
-      }
-    }
- * 
- * for (i = 0; i <= 7; i++) {
-    for (j = 0; j <= 7; j++) {
-      const mySquares = rankFile[i].children[j];
-      mySquares.addEventListener("click", getValidMoves, true);
-    }
-  }
-   *     for (const validEle of validMoves) {
-      for (const movesObj of moves) {
-
-          if (movesObj.color === "w") {
-            const whitePiece = movesObj.piece.toUpperCase();
-            console.log(
-              `Chess piece is ${whitePiece}, color is ${movesObj.color}`
-            );
-
-            validEle.classList.add(whitePiece);
-            console.log(validEle);
-
-            for (const sq of allSquares) {
-              if (sq.innerHTML === movesObj.from) {
-                sq.classList.remove(whitePiece);
-                console.log(`${whitePiece} removed.`);
-                break;
-              }
-            }
-
-            //update chess.move();
-            if (validEle.innerHTML === movesObj.to) {
-              console.log(movesObj.from, movesObj.to);
-              chessMove = chessGame.move(
-                { from: movesObj.from, to: movesObj.to },
-                {
-                  sloppy: true,
-                }
-              );
-
-              if (Object.keys(chessMove).includes("captured") === true) {
-                validEle.classList.remove(chessMove.captured);
-                console.log(`${chessMove.captured} has been captured!`);
-              }
-            }
-          } else if (movesObj.color === "b") {
-            console.log(
-              `Chess piece is ${movesObj.piece}, color is ${movesObj.color}`
-            );
-
-            validEle.classList.add(movesObj.piece);
-            console.log(validEle);
-
-            for (const sq of allSquares) {
-              if (sq.innerHTML === movesObj.from) {
-                sq.classList.remove(movesObj.piece);
-                break;
-              }
-            }
-
-            if (validEle.innerHTML === movesObj.to) {
-              console.log(movesObj.from, movesObj.to);
-              chessMove = chessGame.move(
-                { from: movesObj.from, to: movesObj.to },
-                {
-                  sloppy: true,
-                }
-              );
-              console.log(chessMove);
-
-              if (Object.keys(chessMove).includes("captured") === true) {
-                const capturedWhite = chessMove.captured.toUpperCase();
-                validEle.classList.remove(capturedWhite);
-                console.log(`${capturedWhite} has been captured!`);
-              }
-            }
-          }
-         
-
-
-        
-      }
-    }
-   *   for (i = 0; i <= 7; i++) {
-      for (j = 0; j <= 7; j++) {
-      const mySquares = rankFile[i].children[j];
-
-      mySquares.addEventListener("click", () => {
-        //clear out all other class names first;
-        const otherSquares = document.querySelectorAll(
-          ".rankFile > .currentMove"
-        );
-        otherSquares.forEach((ele) => {
-          ele.classList.remove("currentMove");
-        });
-        const existingValidMoves = document.querySelectorAll(
-          ".rankFile > .validMove"
-        );
-        existingValidMoves.forEach((ele) => ele.classList.remove("validMove"));
-
-        //add currentMove class to square being clicked;
-        mySquares.classList.add("currentMove");
-
-        if (mySquares.classList.contains("currentMove")) {
-          let moves;
-          const allSquares = document.querySelectorAll(".rankFile > div");
-          const squareInnerHtml = mySquares.innerHTML;
-          moves = chessGame.moves({ square: squareInnerHtml, verbose: true }); //array;
-
-          if (moves.length > 0) {
-            for (let h of allSquares) {
-              for (let k of moves) {
-                if (h.innerHTML === k.to) {
-                  h.classList.add("validMove");
-                }
-              }
-            }
-
-            const validMoves = document.querySelectorAll(".validMove"); //elements in a static node list;
-            console.log(validMoves);
-            let chessMove;
-
-            //NOTE: Update chess engine first, then update DOM;
-            //Make the DOM copy the results of chess.ascii;
-            //Try separate functions: 1 for valid moves, 1 for a chess move;
-
-            
-          }
-        }
-      });
-    }
-  }
-   */
 
 },{"chess.js":2}],2:[function(require,module,exports){
 /*
