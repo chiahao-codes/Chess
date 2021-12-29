@@ -12,13 +12,6 @@ function myChessFile() {
       s.classList.remove("currentMove");
     }
 
-    const existingValidMoves = document.querySelectorAll(
-      ".rankFile > .validMove"
-    );
-    for (const x of existingValidMoves) {
-      x.classList.remove("validMove");
-    }
-
     //add currentMove class to square being clicked;
     const myTarget = e.target;
     let piece = chessGame.get(myTarget.innerText); //piece object {type:"", color:""};
@@ -60,8 +53,19 @@ function myChessFile() {
     }
   }
 
+  function noMoreValid(v) {
+  for (const x of v) {
+    if (x.classList.contains("validMove")) {
+      x.classList.remove("validMove");
+    }
+  }
+}
+
+
+
   function makeMoves(e) {
     const movedTo = e.target.innerText;
+    existingValidMoves = document.querySelectorAll(".rankFile > .validMove");
     if (moves.length == 0) {
       if (turn == colorK) {
         console.log("2");
@@ -84,6 +88,8 @@ function myChessFile() {
             e.target.classList.add(whiteMoveP);
             chessGame.move({ from: fromK, to: movedTo });
           }
+
+          noMoreValid(existingValidMoves);
 
           if (
             e.target.classList.contains("P") &&
@@ -122,6 +128,8 @@ function myChessFile() {
             chessGame.move({ from: fromK, to: movedTo });
           }
 
+          noMoreValid(existingValidMoves);
+
           if (
             e.target.classList.contains("p") &&
             e.target.classList.contains("q")
@@ -150,6 +158,7 @@ function myChessFile() {
           if (moveObj.color === "w") {
             const whiteMovePiece = moveObj.piece.toUpperCase();
 
+
             if (e.target.hasAttribute("captured")) {
               e.target.removeAttribute("captured");
               e.target.classList.remove(moveObj.captured);
@@ -158,7 +167,6 @@ function myChessFile() {
             if (e.target.hasAttribute("promotion")) {
               e.target.removeAttribute("promotion");
               e.target.classList.add("Q");
-
               chessGame.move({
                 from: moveObj.from,
                 to: movedTo,
@@ -169,13 +177,15 @@ function myChessFile() {
               chessGame.move({ from: moveObj.from, to: movedTo });
             }
 
+            noMoreValid(existingValidMoves);
+
             if (
               e.target.classList.contains("P") &&
               e.target.classList.contains("Q")
             ) {
               e.target.classList.remove("P");
             }
-
+            
             for (const sq of allSquares) {
               if (sq.innerHTML === moveObj.from) {
                 sq.classList.remove(whiteMovePiece);
@@ -199,16 +209,13 @@ function myChessFile() {
             if (e.target.hasAttribute("promotion")) {
               e.target.removeAttribute("promotion");
               e.target.classList.add("q");
-
-              chessGame.move({
-                from: moveObj.from,
-                to: movedTo,
-                promotion: "q",
-              });
+              chessGame.move({from: moveObj.from, to: movedTo, promotion: "q",});
             } else if(e.target.classList.contains("validMove")) {
               e.target.classList.add(blackMovePiece);
               chessGame.move({ from: moveObj.from, to: movedTo });
             }
+
+            noMoreValid(existingValidMoves);
 
             if (
               e.target.classList.contains("p") &&
@@ -281,12 +288,14 @@ function myChessFile() {
     }
   }
 
+  
   let turn;
   let moves;
   let fromK;
   let pieceK;
   let whiteMoveP;
   let whitePieceCap;
+  let existingValidMoves;
   const allSquares = document.querySelectorAll(".rankFile > div");
 
   for (const a of allSquares) {
