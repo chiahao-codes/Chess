@@ -7,29 +7,41 @@ function myChessFile() {
 
   function getValidMoves(e) {
     console.log("1");
-    const otherSquares = document.querySelectorAll(".rankFile > .currentMove");
-    for (const s of otherSquares) {
-      s.classList.remove("currentMove");
-    }
-
     //add currentMove class to square being clicked;
     const myTarget = e.target;
     let piece = chessGame.get(myTarget.innerText); //piece object {type:"", color:""};
+    console.log(piece);
     turn = chessGame.turn();
+    const otherSquares = document.querySelectorAll(".rankFile > .currentMove");
+    existingValidMoves = document.querySelectorAll(".rankFile > .validMove");
+
+     for (const s of otherSquares) {
+       s.classList.remove("currentMove");
+     }
 
     if (piece !== null && piece.color === turn) {
       myTarget.classList.add("currentMove");
+    } else if (piece == null) {
+      //blank;
+    } else if (piece.color !== turn && e.target.classList.contains("validMove")) {
+      //empty;
+    } else if (piece.color !== turn && !e.target.classList.contains("validMove")) {
+      noMoreValid(existingValidMoves);
+      removeCP(allSquares, null);
     }
 
     if (myTarget.classList.contains("currentMove")) {
       const squareInnertext = myTarget.innerText;
       moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
-
+      removeCP(allSquares, null);
+      noMoreValid(existingValidMoves);
+      
       if (moves.length > 0) {
         for (let h of allSquares) {
           for (let k of moves) {
             if (h.innerText === k.to) {
-              h.classList.toggle("validMove", true);
+              
+              h.classList.add("validMove");
 
               if (k.captured) {
                 h.setAttribute("captured", "");
@@ -47,18 +59,16 @@ function myChessFile() {
             }
           }
         }
-      } else {
-        e.target.addEventListener("click", makeMoves);
-      }
+      } 
     }
   }
 
   function noMoreValid(v) {
-  for (const x of v) {
-    if (x.classList.contains("validMove")) {
-      x.classList.remove("validMove");
+    for (const x of v) {
+      if (x.classList.contains("validMove")) {
+        x.classList.remove("validMove");
+      }
     }
-  }
   }
   
   function removeP(ev) {
@@ -69,83 +79,25 @@ function myChessFile() {
     }
   }
 
+  function removeCP(all, pie) {
+    for (const f of all) {
+      if (f.innerText === fromK && pie !== null) {
+        console.log("pie:", pie);
+        f.classList.remove(pie);
+      }
+      if (f.hasAttribute("captured")) {
+        f.removeAttribute("captured");
+      }
+      if (f.hasAttribute("promotion")) {
+        f.removeAttribute("promotion");
+      }
+    }
+  }
 
   function makeMoves(e) {
     const movedTo = e.target.innerText;
     existingValidMoves = document.querySelectorAll(".rankFile > .validMove");
-    if (moves.length == 0) {
-      if (turn == colorK) {
-        console.log("2");
-        if (turn === "w") {
-          if (e.target.hasAttribute("captured")) {
-            e.target.removeAttribute("captured");
-            const blackCaptured = ["p", "b", "q", "k", "n", "r"];
-            for (const m of blackCaptured) {
-              if (e.target.classList.contains(m)) {
-                e.target.classList.remove(m);
-              }
-            }
-          }
-
-          if (e.target.hasAttribute("promotion")) {
-            e.target.removeAttribute("promotion");
-            e.target.classList.add("Q");
-            chessGame.move({ from: fromK, to: movedTo, promotion: "q" });
-          } else if(e.target.classList.contains("validMove")) {
-            e.target.classList.add(whiteMoveP);
-            chessGame.move({ from: fromK, to: movedTo });
-          }
-
-          noMoreValid(existingValidMoves);
-          removeP(e.target);
-
-          for (const f of allSquares) {
-            if (f.innerText === fromK) {
-              f.classList.remove(whiteMoveP);
-            }
-            if (f.hasAttribute("captured")) {
-              f.removeAttribute("captured");
-            }
-            if (f.hasAttribute("promotion")) {
-              f.removeAttribute("promotion");
-            }
-          }
-        } else if (turn === "b") {
-          if (e.target.hasAttribute("captured")) {
-            e.target.removeAttribute("captured");
-            const whiteCaptured = ["P", "B", "R", "N", "Q", "K"];
-            for (const w of whiteCaptured) {
-              if (e.target.classList.contains(w)) {
-                e.target.classList.remove(w);
-              }
-            }
-          }
-          if (e.target.hasAttribute("promotion")) {
-            e.target.removeAttribute("promotion");
-            e.target.classList.add("q");
-            chessGame.move({ from: fromK, to: movedTo, promotion: "q" });
-          } else if(e.target.classList.contains("validMove")) {
-            e.target.classList.add(pieceK);
-            chessGame.move({ from: fromK, to: movedTo });
-          }
-
-          noMoreValid(existingValidMoves);
-          removeP(e.target);
-
-          for (const m of allSquares) {
-            if (m.innerText === fromK) {
-              m.classList.remove(pieceK);
-            }
-            if (m.hasAttribute("captured")) {
-              m.removeAttribute("captured");
-            }
-            if (m.hasAttribute("promotion")) {
-              m.removeAttribute("promotion");
-            }
-          }
-        }
-      }
-    } else if (moves.length > 0) {
+    if (moves.length > 0) {
       console.log("3");
       console.log(moves);
       for (const moveObj of moves) {
@@ -166,28 +118,16 @@ function myChessFile() {
                 to: movedTo,
                 promotion: "q",
               });
-            } else if(e.target.classList.contains("validMove")) {
+            } else if (e.target.classList.contains("validMove")) {
               e.target.classList.add(whiteMovePiece);
               chessGame.move({ from: moveObj.from, to: movedTo });
             }
-
             noMoreValid(existingValidMoves);
             removeP(e.target);
-            
-            for (const sq of allSquares) {
-              if (sq.innerHTML === moveObj.from) {
-                sq.classList.remove(whiteMovePiece);
-              }
-              if (sq.hasAttribute("captured")) {
-                sq.removeAttribute("captured");
-              }
-              if (sq.hasAttribute("promotion")) {
-                sq.removeAttribute("promotion");
-              }
-            }
+            removeCP(allSquares, whiteMovePiece);
+
           } else if (moveObj.color === "b") {
             const blackMovePiece = moveObj.piece;
-
             if (e.target.hasAttribute("captured")) {
               e.target.removeAttribute("captured");
               const whitePieceCaptured = moveObj.captured.toUpperCase();
@@ -197,26 +137,19 @@ function myChessFile() {
             if (e.target.hasAttribute("promotion")) {
               e.target.removeAttribute("promotion");
               e.target.classList.add("q");
-              chessGame.move({from: moveObj.from, to: movedTo, promotion: "q",});
-            } else if(e.target.classList.contains("validMove")) {
+              chessGame.move({
+                from: moveObj.from,
+                to: movedTo,
+                promotion: "q",
+              });
+            } else if (e.target.classList.contains("validMove")) {
               e.target.classList.add(blackMovePiece);
               chessGame.move({ from: moveObj.from, to: movedTo });
             }
 
             noMoreValid(existingValidMoves);
             removeP(e.target);
-
-            for (const sq of allSquares) {
-              if (sq.innerHTML === moveObj.from) {
-                sq.classList.remove(blackMovePiece);
-              }
-              if (sq.hasAttribute("captured")) {
-                sq.removeAttribute("captured");
-              }
-              if (sq.hasAttribute("promotion")) {
-                sq.removeAttribute("promotion");
-              }
-            }
+            removeCP(allSquares, blackMovePiece);
           }
         }
       }
@@ -270,7 +203,6 @@ function myChessFile() {
     }
   }
 
-  
   let turn;
   let moves;
   let fromK;
@@ -286,3 +218,61 @@ function myChessFile() {
 }
 
 myChessFile();
+
+
+/**else {
+        console.log("1.5");
+        //e.target.addEventListener("click", makeMoves);
+      }
+ * if (moves.length == 0) {
+      if (turn == colorK) {
+        console.log("2");
+        if (turn === "w") {
+          if (e.target.hasAttribute("captured")) {
+            e.target.removeAttribute("captured");
+            const blackCaptured = ["p", "b", "q", "k", "n", "r"];
+            for (const m of blackCaptured) {
+              if (e.target.classList.contains(m)) {
+                e.target.classList.remove(m);
+              }
+            }
+          }
+
+          if (e.target.hasAttribute("promotion")) {
+            e.target.removeAttribute("promotion");
+            e.target.classList.add("Q");
+            chessGame.move({ from: fromK, to: movedTo, promotion: "q" });
+          } else if(e.target.classList.contains("validMove")) {
+            e.target.classList.add(whiteMoveP);
+            chessGame.move({ from: fromK, to: movedTo });
+          }
+
+          noMoreValid(existingValidMoves);
+          removeP(e.target);
+          removeCP(allSquares, whiteMoveP);
+
+        } else if (turn === "b") {
+          if (e.target.hasAttribute("captured")) {
+            e.target.removeAttribute("captured");
+            const whiteCaptured = ["P", "B", "R", "N", "Q", "K"];
+            for (const w of whiteCaptured) {
+              if (e.target.classList.contains(w)) {
+                e.target.classList.remove(w);
+              }
+            }
+          }
+          if (e.target.hasAttribute("promotion")) {
+            e.target.removeAttribute("promotion");
+            e.target.classList.add("q");
+            chessGame.move({ from: fromK, to: movedTo, promotion: "q" });
+          } else if(e.target.classList.contains("validMove")) {
+            e.target.classList.add(pieceK);
+            chessGame.move({ from: fromK, to: movedTo });
+          }
+
+          noMoreValid(existingValidMoves);
+          removeP(e.target);
+          removeCP(allSquares, pieceK);
+        }
+      }
+    } */
