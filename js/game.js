@@ -158,7 +158,7 @@ function myChessFile() {
     const gameFen = chessGame.fen();
     const validFen = chessGame.validate_fen(gameFen);
     if (!validFen) console.log("Invalid Fen", validFen);
-
+    const insufficient = chessGame.insufficient_material(gameFen);
     const inCheck = chessGame.in_check(gameFen);
     const checkMate = chessGame.in_checkmate(gameFen);
     const draw = chessGame.in_draw(gameFen);
@@ -181,8 +181,12 @@ function myChessFile() {
       } else if (staleMate) {
         console.log("Black has been stalemated.");
       }
+      if (insufficient) {
+        console.log("Insufficient material.");
+      }
+      
       if (gameOver) {
-        console.log("Game has ended.");
+        console.log("Game has ended. Black loses.");
       }
     } else {
       console.log("White's turn.");
@@ -197,8 +201,11 @@ function myChessFile() {
       } else if (staleMate) {
         console.log("White has been stalemated.");
       }
+      if (insufficient) {
+        console.log("Insufficient material.")
+      }
       if (gameOver) {
-        console.log("Game has ended.");
+        console.log("Game has ended. White loses.");
       }
     }
   }
