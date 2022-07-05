@@ -3,11 +3,11 @@ function myChessFile() {
   const { Chess } = require("chess.js");
   const chessGame = new Chess();
   window.addEventListener("load", () => {
-    console.log(" Sup. Game Board loaded. White player starts.");
+    //loads local storage...
+    console.log(" Sup...");
   });
 
   function getValidMoves(e) {
-    console.log("1");
     //add currentMove class to square being clicked;
     const myTarget = e.target;
     let piece = chessGame.get(myTarget.innerText); //piece object {type:"", color:""};
@@ -227,63 +227,6 @@ function myChessFile() {
 
 myChessFile();
 
-
-/**else {
-        console.log("1.5");
-        //e.target.addEventListener("click", makeMoves);
-      }
- * if (moves.length == 0) {
-      if (turn == colorK) {
-        console.log("2");
-        if (turn === "w") {
-          if (e.target.hasAttribute("captured")) {
-            e.target.removeAttribute("captured");
-            const blackCaptured = ["p", "b", "q", "k", "n", "r"];
-            for (const m of blackCaptured) {
-              if (e.target.classList.contains(m)) {
-                e.target.classList.remove(m);
-              }
-            }
-          }
-
-          if (e.target.hasAttribute("promotion")) {
-            e.target.removeAttribute("promotion");
-            e.target.classList.add("Q");
-            chessGame.move({ from: fromK, to: movedTo, promotion: "q" });
-          } else if(e.target.classList.contains("validMove")) {
-            e.target.classList.add(whiteMoveP);
-            chessGame.move({ from: fromK, to: movedTo });
-          }
-
-          noMoreValid(existingValidMoves);
-          removeP(e.target);
-          removeCP(allSquares, whiteMoveP);
-
-        } else if (turn === "b") {
-          if (e.target.hasAttribute("captured")) {
-            e.target.removeAttribute("captured");
-            const whiteCaptured = ["P", "B", "R", "N", "Q", "K"];
-            for (const w of whiteCaptured) {
-              if (e.target.classList.contains(w)) {
-                e.target.classList.remove(w);
-              }
-            }
-          }
-          if (e.target.hasAttribute("promotion")) {
-            e.target.removeAttribute("promotion");
-            e.target.classList.add("q");
-            chessGame.move({ from: fromK, to: movedTo, promotion: "q" });
-          } else if(e.target.classList.contains("validMove")) {
-            e.target.classList.add(pieceK);
-            chessGame.move({ from: fromK, to: movedTo });
-          }
-
-          noMoreValid(existingValidMoves);
-          removeP(e.target);
-          removeCP(allSquares, pieceK);
-        }
-      }
-    } */
 },{"chess.js":2}],2:[function(require,module,exports){
 /*
  * Copyright (c) 2021, Jeff Hlywa (jhlywa@gmail.com)
