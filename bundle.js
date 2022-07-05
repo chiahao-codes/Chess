@@ -23,11 +23,11 @@ function myChessFile() {
       s.classList.remove("currentMove");
     }
     /**piece.color === turn */
-    if (piece !== null && storedPieceColor === storedTurn) {
+    if (piece !== null && piece.color === turn) {
       myTarget.classList.add("currentMove");
-    } else if (storedPieceColor !== storedTurn && !e.target.classList.contains("validMove")) {
-      noMoreValid(existingValidMoves);
-      removeCapturedPiece(allSquares, null);
+    } else if (piece.color !== turn && !e.target.classList.contains("validMove")) {
+      noMoreValid(existingValidMoves); //removes "validMove" class name
+      removeCapturedPiece(allSquares, null); //removes "captured" class name
     }
     /**else if (piece == null) {
       //blank;
