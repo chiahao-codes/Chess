@@ -7,7 +7,7 @@ function myChessFile() {
     console.log(" Sup...");
   });
 
-  turn = chessGame.turn();
+  let turn = chessGame.turn();
   let storedTurn = localStorage.setItem("turn", turn);
 
   console.log(`Player ${turn} moves starts the game.`);
@@ -208,7 +208,7 @@ function myChessFile() {
     }
   }
 
-  let turn;
+  //let turn;
   let moves;
   let fromK;
   let pieceK;
@@ -223,6 +223,7 @@ function myChessFile() {
 }
 
 myChessFile();
+localStorage.clear();
 
 },{"chess.js":2}],2:[function(require,module,exports){
 /*
