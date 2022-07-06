@@ -222,7 +222,7 @@ function myChessFile() {
 }
 
 myChessFile();
-localStorage.clear();
+
 
 },{"chess.js":2}],2:[function(require,module,exports){
 /*
