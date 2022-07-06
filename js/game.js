@@ -8,7 +8,6 @@ function myChessFile() {
 
   let turn = chessGame.turn();
   let storedTurn = localStorage.setItem("turn", turn);
-
   console.log(`Player ${turn} moves starts the game.`);
 
   function getValidMoves(e) {
