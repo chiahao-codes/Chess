@@ -168,6 +168,7 @@ function myChessFile() {
     const gameOver = chessGame.game_over(gameFen);
 
     console.log(chessGame.ascii());
+    localStorage.setItem("ascii", chessGame.ascii());
     turn = chessGame.turn();
 
     if (turn === "b") {
