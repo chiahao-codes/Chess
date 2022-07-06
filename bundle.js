@@ -7,33 +7,29 @@ function myChessFile() {
     console.log(" Sup...");
   });
 
+  turn = chessGame.turn();
+  let storedTurn = localStorage.setItem("turn", turn);
+
+  console.log(`Player ${turn} moves starts the game.`);
+
   function getValidMoves(e) {
     //add currentMove class to square being clicked;
     const myTarget = e.target;
     let piece = chessGame.get(myTarget.innerText); //piece object {type:"", color:""};
-    let storedPieceType = localStorage.setItem("pieceType", piece.type);
-    let storedPieceColor = localStorage.setItem("pieceColor", piece.color);
-
-    turn = chessGame.turn();
-    let storedTurn = localStorage.setItem("turn", turn);
     const otherSquares = document.querySelectorAll(".rankFile > .currentMove");
     existingValidMoves = document.querySelectorAll(".rankFile > .validMove");
 
     for (const s of otherSquares) {
       s.classList.remove("currentMove");
     }
-    /**piece.color === turn */
+    
     if (piece !== null && piece.color === turn) {
       myTarget.classList.add("currentMove");
     } else if (piece.color !== turn && !e.target.classList.contains("validMove")) {
-      noMoreValid(existingValidMoves); //removes "validMove" class name
+      //in case wrong player selects a chess piece/square;
+      noMoreValid(existingValidMoves); //removes "valid" from squares.
       removeCapturedPiece(allSquares, null); //removes "captured" class name
     }
-    /**else if (piece == null) {
-      //blank;
-    } else if (piece.color !== turn && e.target.classList.contains("validMove")) {
-      //empty;
-    }  */
 
     if (myTarget.classList.contains("currentMove")) {
       const squareInnertext = myTarget.innerText;
@@ -168,7 +164,6 @@ function myChessFile() {
     const gameOver = chessGame.game_over(gameFen);
 
     console.log(chessGame.ascii());
-    localStorage.setItem("ascii", chessGame.ascii());
     turn = chessGame.turn();
 
     if (turn === "b") {
