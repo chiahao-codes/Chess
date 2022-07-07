@@ -7,8 +7,37 @@ function myChessFile() {
   });
 
   let turn = chessGame.turn();
-  let storedTurn = localStorage.setItem("turn", turn);
-  console.log(`Player ${turn} moves starts the game.`);
+  let storedTurn = localStorage.setItem("playerTurn", turn);
+  let chessBoard, gameStatus = localStorage.getItem("inProgress");
+
+  if (!gameStatus) {
+    //populate localStorage and DOM;
+    chessBoard = populateBoardAndLocalStorage(chessBoard);
+    console.log(chessBoard);
+  } else {
+    //draw from local storage to populate the DOM.
+  }
+
+  function populateBoardAndLocalStorage(cb) {
+    cb = chessGame.board();
+    //populate local storage;
+    for (let i = 0; i < cb.length; i++){
+      let squaresPerRow = cb[i]; //array;
+      for (let j = 0; j < squaresPerRow.length; j++){
+        if (squaresPerRow[j] !== null) {
+          let square = squaresPerRow[j]["square"];
+          let type = squaresPerRow[j]["type"];
+          let color = squaresPerRow[j]["color"];
+          if (color === 'w') {
+            type = type.toUpperCase();
+            }
+          let stc = `${square}${type}${color}`;
+          localStorage.setItem("squareTypeColor", stc);
+        }
+      }
+    }
+    return cb
+  }
 
   function getValidMoves(e) {
     //add currentMove class to square being clicked;
