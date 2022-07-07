@@ -15,18 +15,31 @@ function myChessFile() {
 
   if (!gameStatus) {
     //populate localStorage via getSquare();
-    populateBoardAndLocalStorage(allSquares);
+    //update the DOM via localStorage;
+    populateLocalStorage(allSquares);
+    updateDOM(allSquares);
   } else {
     //draw from local storage to populate the DOM.
   }
 
-  function populateBoardAndLocalStorage(allsquares) {
+  function updateDOM(allsquares) {
+    //add class name to DOM element based on local storage;
+    for (let i = 0; i < allsquares.length; i++){
+      let domSquare = allsquares[i].innerText, domElement = allsquares[i];
+      let storagePieceValue = localStorage.getItem(domSquare);
+      if (storagePieceValue) {
+        let domPiece = storagePieceValue.slice(0, 1);
+        domElement.setAttribute("id", domPiece);
+      }
+    }
+  }
+
+  function populateLocalStorage(allsquares) {
     //populate local storage;
     for (let i = 0; i < allsquares.length; i++) {
       let square = allsquares[i].innerText;
       let chessPiece = chessGame.get(square);
       if (chessPiece) {
-        console.log(chessPiece);
         let pieceType = chessPiece.type;
         let pieceColor = chessPiece.color;
         if (pieceColor == "w") {
