@@ -10,8 +10,7 @@ function myChessFile() {
   const allSquares = document.querySelectorAll(".rankFile > div");
   let turn = chessGame.turn();
   localStorage.setItem("playerTurn", turn);
-  localStorage.removeItem("turn");
-  localStorage.removeItem("squareTypeColor");
+  localStorage.removeItem("squarePieceTypeColor");
   let gameStatus = localStorage.getItem("inProgress");
 
   if (!gameStatus) {
