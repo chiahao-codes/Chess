@@ -38,37 +38,37 @@ color:white;
     color:white;
 }
 
-.rankFile >.r{
+.rankFile >#r{
     background-image:url("./assets/images/black/blkRook.png");
     background-repeat: no-repeat;
     background-position: bottom;
 }
 
-.rankFile > .n{
+.rankFile > #n{
     background-image:url("./assets/images/black/blkKnight.png");
     background-repeat: no-repeat;
     background-position: bottom; 
 }
 
-.rankFile > .b{
+.rankFile > #b{
     background-image:url("./assets/images/black/blkBishop.png");
     background-repeat: no-repeat;
     background-position: bottom; 
 }
 
-.rankFile > .q{
+.rankFile > #q{
     background-image:url("./assets/images/black/blkQueen.png");
     background-repeat: no-repeat;
     background-position: bottom; 
 }
 
-.rankFile > .k{
+.rankFile > #k{
     background-image:url("./assets/images/black/blkKing.png");
     background-repeat: no-repeat;
     background-position: bottom; 
 }
 
-.rankFile >.p{
+.rankFile >#p{
     background-image:url("./assets/images/black/blkPawn.png");
     background-repeat: no-repeat;
     background-position: bottom;
@@ -78,46 +78,46 @@ color:white;
     border: .125em solid crimson;
 }
 
-.rankFile>.r:hover, .rankFile>.p:hover, .rankFile>.b:hover, .rankFile>.k:hover, .rankFile>.q:hover,.rankFile>.n:hover{
+.rankFile>#r:hover, .rankFile>#p:hover, .rankFile>#b:hover, .rankFile>#k:hover, .rankFile>#q:hover,.rankFile>#n:hover{
     cursor: pointer;
 }
 
-.rankFile > .R{
+.rankFile > #R{
     background-image:url("./assets/images/white/whiteRook.png");
     background-repeat: no-repeat;
     background-position: bottom;  
 }
 
-.rankFile > .N{
+.rankFile > #N{
     background-image:url("./assets/images/white/whiteKnight.png");
     background-repeat: no-repeat;
     background-position: bottom;  
 }
 
-.rankFile > .B{
+.rankFile > #B{
     background-image:url("./assets/images/white/whiteBishop.png");
     background-repeat: no-repeat;
     background-position: bottom;  
 }
 
-.rankFile > .K{
+.rankFile > #K{
     background-image:url("./assets/images/white/whiteKing.png");
     background-repeat: no-repeat;
     background-position: bottom;  
 }
 
-.rankFile > .Q{
+.rankFile > #Q{
     background-image:url("./assets/images/white/whiteQueen.png");
     background-repeat: no-repeat;
     background-position: bottom;  
 }
 
-.P{
+#P{
     background-image:url("./assets/images/white/whitePawn.png");
     background-repeat: no-repeat;
     background-position: bottom;    
 }
 
-.K:hover, .Q:hover, .N:hover, .R:hover, .B:hover, .P:hover{
+#K:hover, #Q:hover, #N:hover, #R:hover, #B:hover, #P:hover{
     cursor: pointer;
 }
