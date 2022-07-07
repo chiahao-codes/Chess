@@ -22,13 +22,12 @@ function myChessFile() {
     //populate local storage;
     for (let i = 0; i < allsquares.length; i++) {
       let square = allsquares[i].innerText;
-      let chessPiece = chessGame.get(square), pieceType = chessPiece[type],
-      pieceColor = chessPiece[color]
+      let chessPiece = chessGame.get(square);
       console.log(chessPiece);
       if (chessPiece) {
-        let squarePieceTypeColor = `${square}${pieceType}${pieceColor}`
+       // let squarePieceTypeColor = `${square}${pieceType}${pieceColor}`
         console.log("squarePieceTypeColor:", squarePiece);
-        localStorage.setItem("squarePieceTypeColor", squarePieceTypeColor);
+       // localStorage.setItem("squarePieceTypeColor", squarePieceTypeColor);
       }
     }
   }
