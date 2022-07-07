@@ -9,6 +9,7 @@ function myChessFile() {
 
   let turn = chessGame.turn();
   let storedTurn = localStorage.setItem("playerTurn", turn);
+  localStorage.removeItem("turn");
   let chessBoard, gameStatus = localStorage.getItem("inProgress");
 
   if (!gameStatus) {
@@ -82,7 +83,7 @@ function myChessFile() {
               colorK = k.color;
               pieceK = k.piece;
               whiteMoveP = pieceK.toUpperCase();
-              console.log("K properties set!");
+              
               h.addEventListener("click", makeMoves);
             }
           }
