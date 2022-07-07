@@ -223,7 +223,6 @@ function myChessFile() {
 
 myChessFile();
 
-
 },{"chess.js":2}],2:[function(require,module,exports){
 /*
  * Copyright (c) 2021, Jeff Hlywa (jhlywa@gmail.com)
