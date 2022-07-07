@@ -7,6 +7,7 @@ function myChessFile() {
     console.log(" Sup...");
   });
 
+  const allSquares = document.querySelectorAll(".rankFile > div");
   let turn = chessGame.turn();
   localStorage.setItem("playerTurn", turn);
   let gameStatus = localStorage.getItem("inProgress");
@@ -237,7 +238,7 @@ function myChessFile() {
   let whiteMoveP;
   let whitePieceCap;
   let existingValidMoves;
-  const allSquares = document.querySelectorAll(".rankFile > div");
+  
 
   for (const a of allSquares) {
     a.addEventListener("click", getValidMoves);
