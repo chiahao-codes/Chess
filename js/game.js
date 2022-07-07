@@ -24,10 +24,15 @@ function myChessFile() {
       let square = allsquares[i].innerText;
       let chessPiece = chessGame.get(square);
       console.log(chessPiece);
+      let pieceType = chessPiece.type;
+      let pieceColor = chessPiece.color;
       if (chessPiece) {
-       // let squarePieceTypeColor = `${square}${pieceType}${pieceColor}`
-        console.log("squarePieceTypeColor:", squarePiece);
-       // localStorage.setItem("squarePieceTypeColor", squarePieceTypeColor);
+        if (pieceColor == "w") {
+          pieceType = pieceType.toUpperCase();
+        }
+       let squarePieceTypeColor = `${square}${pieceType}${pieceColor}`
+        console.log("squarePieceTypeColor:", squarePieceTypeColor);
+       localStorage.setItem("squarePieceTypeColor", squarePieceTypeColor);
       }
     }
   }
