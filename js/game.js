@@ -221,4 +221,4 @@ function myChessFile() {
 }
 
 myChessFile();
-localStorage.clear();
+
