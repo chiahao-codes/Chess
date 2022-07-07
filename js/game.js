@@ -136,11 +136,9 @@ function myChessFile() {
 
   //remove captured piece
   function removeCapturedPiece(all, pie) {
-
     localStorage.removeItem("captured");
     localStorage.removeItem("promotion");
-
-    for (const f of all) {
+    /** for (const f of all) {
       if (f.innerText === legalFromMove && pie !== null) {
         f.classList.remove(pie);
       }
@@ -150,7 +148,7 @@ function myChessFile() {
       if (f.hasAttribute("promotion")) {
         f.removeAttribute("promotion");
       }
-    }
+    } */
   }
 
   function makeMoves(e) {
