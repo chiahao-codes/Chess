@@ -2,28 +2,33 @@
 function myChessFile() {
   const { Chess } = require("chess.js");
   const chessGame = new Chess();
+
   window.addEventListener("load", () => {
     //loads local storage...
     console.log(" Sup...");
   });
 
   const allSquares = document.querySelectorAll(".rankFile > div");
-  let turn = chessGame.turn();
+  let turn = chessGame.turn(), moves, existingValidMoves;
   localStorage.setItem("playerTurn", turn);
-  localStorage.removeItem("squarePieceTypeColor");
-  let gameStatus = localStorage.getItem("inProgress");
-
+  let gameStatus = localStorage.getItem("gameStatus");
+  
   if (!gameStatus) {
     //populate localStorage via getSquare();
     //update the DOM via localStorage;
-    populateLocalStorage(allSquares);
-    updateDOM(allSquares);
+    populateLocalStoragePieces(allSquares);
+    updateDomId(allSquares);
   } else {
+    //run preserveDom function;
     //draw from local storage to populate the DOM.
+    for (const a of allSquares) {
+      a.addEventListener("click", getValidMoves);
+    }
+    localStorage.setItem("gameStatus", "inProgress")
   }
 
-  function updateDOM(allsquares) {
-    //add class name to DOM element based on local storage;
+  function updateDomId(allsquares) {
+    //add id to DOM element based on local storage;
     for (let i = 0; i < allsquares.length; i++){
       let domSquare = allsquares[i].innerText, domElement = allsquares[i];
       let storagePieceValue = localStorage.getItem(domSquare);
@@ -34,7 +39,7 @@ function myChessFile() {
     }
   }
 
-  function populateLocalStorage(allsquares) {
+  function populateLocalStoragePieces(allsquares) {
     //populate local storage;
     for (let i = 0; i < allsquares.length; i++) {
       let square = allsquares[i].innerText;
@@ -53,59 +58,66 @@ function myChessFile() {
     }
   }
 
+  function preserveDomCurrentValidCapPromo() {
+    //updates dom with saved info: current move, valid moves, captured, promotion;
+  }
+
+
   function getValidMoves(e) {
     //add currentMove class to square being clicked;
     const myTarget = e.target;
-    let piece = chessGame.get(myTarget.innerText); //piece object {type:"", color:""};
+    const squareInnertext = myTarget.innerText;
+
     const otherSquares = document.querySelectorAll(".rankFile > .currentMove");
     existingValidMoves = document.querySelectorAll(".rankFile > .validMove");
 
     for (const s of otherSquares) {
       s.classList.remove("currentMove");
     }
-    
-    if (piece !== null && piece.color === turn) {
-      myTarget.classList.add("currentMove");
-    } else if (piece.color !== turn && !e.target.classList.contains("validMove")) {
-      //in case wrong player selects a chess piece/square;
-      noMoreValid(existingValidMoves); //removes "valid" from squares.
-      removeCapturedPiece(allSquares, null); //removes "captured" class name
-    }
 
-    if (myTarget.classList.contains("currentMove")) {
-      const squareInnertext = myTarget.innerText;
-      moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
+    moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
+    console.log(`Valid moves: ${moves}`);
+
+    if (moves.length > 0 && moves[0].color === localStorage.getItem("playerTurn")) {
       removeCapturedPiece(allSquares, null);
       noMoreValid(existingValidMoves);
-
-      if (moves.length > 0) {
-        for (let h of allSquares) {
-          for (let k of moves) {
-            if (h.innerText === k.to) {
-              h.classList.add("validMove");
-
-              if (k.captured) {
-                h.setAttribute("captured", "");
-              }
-              if (k.promotion) {
-                h.setAttribute("promotion", "");
-              }
-
-              fromK = k.from;
-              colorK = k.color;
-              pieceK = k.piece;
-              whiteMoveP = pieceK.toUpperCase();
-              
-              h.addEventListener("click", makeMoves);
+      localStorage.setItem("currentMove", moves[0].from);
+      myTarget.classList.add("currentMove");
+      
+      //add valid moves, capture, promotion to localStorage and DOM;
+      let validMoves = "", captured = "", promotion = "";
+      for (let moveTo of moves) {
+        for (let squares of allSquares) {
+          validMoves += moveTo.to;
+          if (squares.innerText === moveTo.to) {
+            squares.classList.add("validMove");
+            if (moveTo.captured) {
+              captured += moveTo.to;
+              squares.setAttribute("captured", "");
             }
+            if (moveTo.promotion) {
+              promotion += "";
+              squares.setAttribute("promotion", "");
+            }
+            squares.addEventListener("click", makeMoves);
           }
         }
       }
+      localStorage.setItem("validMoves", validMoves);
+      localStorage.setItem("captured", captured);
+      localStorage.setItem("promotion", promotion);
+          
+    } else {
+      noMoreValid(existingValidMoves); //removes "valid" from squares.
+      removeCapturedPiece(allSquares, null); //removes "captured" class name
     }
   }
 
-  function noMoreValid(v) {
-    for (const x of v) {
+  function noMoreValid(preExistingValids) {
+    localStorage.removeItem("currentMove");
+    localStorage.removeItem("validMoves");
+
+    for (const x of preExistingValids) {
       if (x.classList.contains("validMove")) {
         x.classList.remove("validMove");
       }
@@ -122,8 +134,12 @@ function myChessFile() {
 
   //remove captured piece
   function removeCapturedPiece(all, pie) {
+
+    localStorage.removeItem("captured");
+    localStorage.removeItem("promotion");
+
     for (const f of all) {
-      if (f.innerText === fromK && pie !== null) {
+      if (f.innerText === legalFromMove && pie !== null) {
         f.classList.remove(pie);
       }
       if (f.hasAttribute("captured")) {
@@ -249,19 +265,7 @@ function myChessFile() {
       }
     }
   }
-
   
-  let moves;
-  let fromK;
-  let pieceK;
-  let whiteMoveP;
-  let whitePieceCap;
-  let existingValidMoves;
-  
-
-  for (const a of allSquares) {
-    a.addEventListener("click", getValidMoves);
-  }
 }
 
 myChessFile();
