@@ -10,6 +10,8 @@ function myChessFile() {
   const allSquares = document.querySelectorAll(".rankFile > div");
   let turn = chessGame.turn();
   localStorage.setItem("playerTurn", turn);
+  localStorage.removeItem("turn");
+  localStorage.removeItem("squareTypeColor");
   let gameStatus = localStorage.getItem("inProgress");
 
   if (!gameStatus) {
@@ -31,9 +33,10 @@ function myChessFile() {
         if (pieceColor == "w") {
           pieceType = pieceType.toUpperCase();
         }
-       let squarePieceTypeColor = `${square}${pieceType}${pieceColor}`
-        console.log("squarePieceTypeColor:", squarePieceTypeColor);
-       localStorage.setItem("squarePieceTypeColor", squarePieceTypeColor);
+        let squarePieceTypeColor = `${pieceType}${pieceColor}`;
+        let storagePieceKey = "";
+        storagePieceKey += square;
+       localStorage.setItem(storagePieceKey, squarePieceTypeColor);
       }
     }
   }
