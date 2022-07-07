@@ -17,13 +17,15 @@ function myChessFile() {
     //update the DOM via localStorage;
     populateLocalStoragePieces(allSquares);
     updateDomId(allSquares);
+    for (let squares of allSquares) {
+      squares.addEventListener("click", getValidMoves);
+    }
   } else {
     //run preserveDom function;
     //draw from local storage to populate the DOM.
-    for (const a of allSquares) {
-      a.addEventListener("click", getValidMoves);
+    for (let squares of allSquares) {
+      squares.addEventListener("click", getValidMoves);
     }
-    localStorage.setItem("gameStatus", "inProgress")
   }
 
   function updateDomId(allsquares) {
@@ -64,6 +66,7 @@ function myChessFile() {
 
   function getValidMoves(e) {
     //add currentMove class to square being clicked;
+    localStorage.setItem("gameStatus", "inProgress");
     const myTarget = e.target;
     const squareInnertext = myTarget.innerText;
 
