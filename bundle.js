@@ -24,10 +24,10 @@ function myChessFile() {
     for (let i = 0; i < allsquares.length; i++) {
       let square = allsquares[i].innerText;
       let chessPiece = chessGame.get(square);
-      console.log(chessPiece);
-      let pieceType = chessPiece.type;
-      let pieceColor = chessPiece.color;
       if (chessPiece) {
+        console.log(chessPiece);
+        let pieceType = chessPiece.type;
+        let pieceColor = chessPiece.color;
         if (pieceColor == "w") {
           pieceType = pieceType.toUpperCase();
         }
