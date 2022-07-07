@@ -11,6 +11,7 @@ function myChessFile() {
   const allSquares = document.querySelectorAll(".rankFile > div");
   let turn = chessGame.turn(), moves, existingValidMoves;
   localStorage.setItem("playerTurn", turn);
+  localStorage.removeItem("gameStatus");
   let gameStatus = localStorage.getItem("gameStatus");
   
   if (!gameStatus) {
