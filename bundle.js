@@ -8,37 +8,29 @@ function myChessFile() {
   });
 
   let turn = chessGame.turn();
-  let storedTurn = localStorage.setItem("playerTurn", turn);
-  localStorage.removeItem("turn");
-  let chessBoard, gameStatus = localStorage.getItem("inProgress");
+  localStorage.setItem("playerTurn", turn);
+  let gameStatus = localStorage.getItem("inProgress");
 
   if (!gameStatus) {
-    //populate localStorage and DOM;
-    chessBoard = populateBoardAndLocalStorage(chessBoard);
-    console.log(chessBoard);
+    //populate localStorage via getSquare();
+    populateBoardAndLocalStorage(allSquares);
   } else {
     //draw from local storage to populate the DOM.
   }
 
-  function populateBoardAndLocalStorage(cb) {
-    cb = chessGame.board();
+  function populateBoardAndLocalStorage(allsquares) {
     //populate local storage;
-    for (let i = 0; i < cb.length; i++){
-      let squaresPerRow = cb[i]; //array;
-      for (let j = 0; j < squaresPerRow.length; j++){
-        if (squaresPerRow[j] !== null) {
-          let square = squaresPerRow[j]["square"];
-          let type = squaresPerRow[j]["type"];
-          let color = squaresPerRow[j]["color"];
-          if (color === 'w') {
-            type = type.toUpperCase();
-            }
-          let stc = `${square}${type}${color}`;
-          localStorage.setItem("squareTypeColor", stc);
-        }
+    for (let i = 0; i < allsquares.length; i++) {
+      let square = allsquares[i].innerText;
+      let chessPiece = chessGame.get(square), pieceType = chessPiece[type],
+      pieceColor = chessPiece[color]
+      console.log(chessPiece);
+      if (chessPiece) {
+        let squarePieceTypeColor = `${square}${pieceType}${pieceColor}`
+        console.log("squarePieceTypeColor:", squarePiece);
+        localStorage.setItem("squarePieceTypeColor", squarePieceTypeColor);
       }
     }
-    return cb
   }
 
   function getValidMoves(e) {
@@ -194,6 +186,7 @@ function myChessFile() {
 
     console.log(chessGame.ascii());
     turn = chessGame.turn();
+    localStorage.setItem("playerTurn", turn);
 
     if (turn === "b") {
       console.log("Black's turn.");
@@ -237,7 +230,7 @@ function myChessFile() {
     }
   }
 
-  //let turn;
+  
   let moves;
   let fromK;
   let pieceK;
