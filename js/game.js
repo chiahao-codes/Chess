@@ -66,7 +66,6 @@ function myChessFile() {
 
   function getValidMoves(e) {
     //add currentMove class to square being clicked;
-    localStorage.setItem("gameStatus", "inProgress");
     const myTarget = e.target;
     const squareInnertext = myTarget.innerText;
 
@@ -143,6 +142,7 @@ function myChessFile() {
   }
 
   function makeMoves(e) {
+    localStorage.setItem("gameStatus", "inProgress");
     const movedTo = e.target.innerText;
     existingValidMoves = document.querySelectorAll(".rankFile > .validMove");
     if (moves.length > 0) {
