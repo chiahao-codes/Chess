@@ -7,11 +7,10 @@ function myChessFile() {
     //loads local storage...
     console.log(" Sup...");
   });
-
+  
   const allSquares = document.querySelectorAll(".rankFile > div");
   let turn = chessGame.turn(), moves, existingValidMoves;
   localStorage.setItem("playerTurn", turn);
-  localStorage.removeItem("gameStatus");
   let gameStatus = localStorage.getItem("gameStatus");
   
   if (!gameStatus) {
@@ -80,10 +79,9 @@ function myChessFile() {
     }
 
     moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
-    console.log(`Valid moves: ${moves}`);
 
     if (moves.length > 0 && moves[0].color === localStorage.getItem("playerTurn")) {
-      removeCapturedPiece(allSquares, null);
+      removeCurrentPiece(allSquares, null);
       noMoreValid(existingValidMoves);
       localStorage.setItem("currentMove", moves[0].from);
       myTarget.classList.add("currentMove");
@@ -92,28 +90,27 @@ function myChessFile() {
       let validMoves = "", captured = "", promotion = "";
       for (let moveTo of moves) {
         for (let squares of allSquares) {
-          validMoves += moveTo.to;
           if (squares.innerText === moveTo.to) {
+            validMoves += moveTo.to;
             squares.classList.add("validMove");
+            localStorage.setItem("validMoves", validMoves);
             if (moveTo.captured) {
               captured += moveTo.to;
               squares.setAttribute("captured", "");
+              localStorage.setItem("captured", captured);
             }
             if (moveTo.promotion) {
               promotion += "";
               squares.setAttribute("promotion", "");
+              localStorage.setItem("promotion", promotion);
             }
             squares.addEventListener("click", makeMoves);
           }
         }
-      }
-      localStorage.setItem("validMoves", validMoves);
-      localStorage.setItem("captured", captured);
-      localStorage.setItem("promotion", promotion);
-          
+      }      
     } else {
       noMoreValid(existingValidMoves); //removes "valid" from squares.
-      removeCapturedPiece(allSquares, null); //removes "captured" class name
+      localStorage.removeItem("currentMove");
     }
   }
 
@@ -136,21 +133,14 @@ function myChessFile() {
     }
   }
 
-  //remove captured piece
-  function removeCapturedPiece(all, pie) {
-    localStorage.removeItem("captured");
-    localStorage.removeItem("promotion");
-    /** for (const f of all) {
-      if (f.innerText === legalFromMove && pie !== null) {
-        f.classList.remove(pie);
+  //remove current piece
+  function removeCurrentPiece(all, pie) {
+    let localStorageCurrentMoveSquare = localStorage.getItem("currentMove");
+     for (const square of all) {
+      if (square.innerText === localStorageCurrentMoveSquare && pie !== null) {
+        square.classList.remove(pie);
       }
-      if (f.hasAttribute("captured")) {
-        f.removeAttribute("captured");
-      }
-      if (f.hasAttribute("promotion")) {
-        f.removeAttribute("promotion");
-      }
-    } */
+    } 
   }
 
   function makeMoves(e) {
@@ -181,7 +171,7 @@ function myChessFile() {
             }
             noMoreValid(existingValidMoves);
             removePawn(e.target);
-            removeCapturedPiece(allSquares, whiteMovePiece);
+            removeCurrentPiece(allSquares, whiteMovePiece);
 
           } else if (moveObj.color === "b") {
             const blackMovePiece = moveObj.piece;
@@ -206,7 +196,7 @@ function myChessFile() {
 
             noMoreValid(existingValidMoves);
             removePawn(e.target);
-            removeCapturedPiece(allSquares, blackMovePiece);
+            removeCurrentPiece(allSquares, blackMovePiece);
           }
         }
       }
