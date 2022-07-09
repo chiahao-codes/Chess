@@ -107,15 +107,10 @@ function myChessFile() {
               squares.setAttribute("promotion", "");
               localStorage.setItem("promotion", promotion);
             }
+            squares.addEventListener("click", makeMoves);
           }
-          
         }
       }
-    }
-  
-    let validMoveSquares = document.querySelectorAll(".rankFile > .validMove");
-    for (let valid of validMoveSquares) {
-      valid.addEventListener("click", makeMoves);
     }
   }
 

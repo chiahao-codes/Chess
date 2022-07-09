@@ -78,7 +78,7 @@ color:white;
     border: .125em solid crimson;
 }
 
-.rankFile>#r:hover, .rankFile>#p:hover, .rankFile>#b:hover, .rankFile>#k:hover, .rankFile>#q:hover,.rankFile>#n:hover{
+.rankFile>#r:hover, .rankFile>.validMove, .rankFile>#p:hover, .rankFile>#b:hover, .rankFile>#k:hover, .rankFile>#q:hover,.rankFile>#n:hover{
     cursor: pointer;
 }
 
