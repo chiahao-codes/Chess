@@ -9,7 +9,10 @@ function myChessFile() {
   });
 
   const allSquares = document.querySelectorAll(".rankFile > div");
-  let turn = chessGame.turn(), moves, storedValidMoves ;
+  let turn = chessGame.turn(),
+    moves,
+    storedValidMoves,
+    storedCurrentMoveSquare;
   localStorage.setItem("playerTurn", turn);
   let gameStatus = localStorage.getItem("gameStatus");
 
@@ -135,7 +138,7 @@ function myChessFile() {
     localStorage.setItem("gameStatus", "inProgress");
     let currentMoveObj,
       storedValidSquare;
-     let storedCurrentMoveSquare = localStorage.getItem("currentMove");
+     storedCurrentMoveSquare = localStorage.getItem("currentMove");
      console.log(storedCurrentMoveSquare);
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i += 2) {
