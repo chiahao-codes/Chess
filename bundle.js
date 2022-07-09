@@ -84,7 +84,7 @@ function myChessFile() {
         currentMovePiece = currentMovePiece.toUpperCase();
       }
       let currentMoveSquareAndPiece = moves[0].from + currentMovePiece;
-      
+
       localStorage.setItem("currentMove", currentMoveSquareAndPiece);
       myTarget.classList.add("currentMove");
 
@@ -94,7 +94,6 @@ function myChessFile() {
         promotion = "";
       for (let moveTo of moves) {
         for (let squares of allSquares) {
-
           if (squares.innerText === moveTo.to) {
             validMoves += moveTo.to;
             squares.classList.add("validMove");
@@ -109,17 +108,17 @@ function myChessFile() {
               squares.setAttribute("promotion", "");
               localStorage.setItem("promotion", promotion);
             }
-            
           }
           squares.addEventListener("click", makeMoves);
         }
       }
     }
-    let validMoveSquares = document.querySelectorAll(".rankFile > .validMove");
+    /**
+     *  let validMoveSquares = document.querySelectorAll(".rankFile > .validMove");
     for (let valid of validMoveSquares){
       valid.addEventListener("click", makeMoves);
     }
-    
+     */
   }
 
   function removeValidAndCurrentMoves(allsquares) {
@@ -140,6 +139,7 @@ function myChessFile() {
   function makeMoves(e) {
     localStorage.setItem("gameStatus", "inProgress");
     let storedValidMoves = localStorage.getItem("validMoves"),
+      currentMoveObj,
       storedValidSquare;
     console.log(storedValidMoves);
     if (storedValidMoves) {
@@ -148,8 +148,8 @@ function myChessFile() {
         console.log(`Stored Valid Squares: ${storedValidSquare}`)
         //move chess piece on DOM event target and engine;
         if (e.target.innerText === storedValidSquare) {
-          let storedCurrentMoveSquare = localStorage.getItem("currentMove"),
-          currentMoveObj = chessGame.move({
+          let storedCurrentMoveSquare = localStorage.getItem("currentMove");
+            currentMoveObj = chessGame.move({
             to: e.target.innerText,
             from: storedCurrentMoveSquare,
           });
@@ -172,18 +172,17 @@ function myChessFile() {
             }
             localStorage.removeItem("promotion");
           }
-
-          populateLocalStoragePieces(allSquares);
-          updateDomId(allSquares);
-
-          if (localStorage.getItem("playerTurn") === "w" && currentMoveObj.promotion) {
-            let whiteQueenPromo = currentMoveObj.promotion.toUpperCase();
-            e.target.classList.replace(
-              currentMoveObj.promotion,
-              whiteQueenPromo
-            );
-          }
         }
+      }
+      populateLocalStoragePieces(allSquares);
+      updateDomId(allSquares);
+
+      if (
+        localStorage.getItem("playerTurn") === "w" &&
+        currentMoveObj.promotion
+      ) {
+        let whiteQueenPromo = currentMoveObj.promotion.toUpperCase();
+        e.target.classList.replace(currentMoveObj.promotion, whiteQueenPromo);
       }
     }
 
