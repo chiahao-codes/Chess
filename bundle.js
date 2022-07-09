@@ -168,8 +168,8 @@ function myChessFile() {
           }
         }
       }
-      populateLocalStoragePieces(allSquares);
-      updateDomId(allSquares);
+     // populateLocalStoragePieces(allSquares);
+      //updateDomId(allSquares);
 
       if (
         localStorage.getItem("playerTurn") === "w" &&
