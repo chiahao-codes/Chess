@@ -128,8 +128,6 @@ function myChessFile() {
 
     }
   }
-  /**
-   */
 
   function makeMoves(e) {
     localStorage.setItem("gameStatus", "inProgress");
@@ -141,17 +139,16 @@ function myChessFile() {
         //move chess piece on DOM event target and engine;
         if (e.target.innerText === storedValidSquare) {
           let storedCurrentMoveSquare = localStorage.getItem("currentMove"),
-            currentMoveObj;
+          currentMoveObj = chessGame.move({
+            to: e.target.innerText,
+            from: storedCurrentMoveSquare,
+          });
+
           if (localStorage.getItem("captured")) {
-            //promote to queen in the engine;
-            currentMoveObj = chessGame.move({
-              to: e.target.innerText,
-              from: storedCurrentMoveSquare,
-            });
+            localStorage.removeItem("captured");
             if (e.target.classList.hasAttribute("captured")) {
               e.target.classList.removeAttribute("captured");
             }
-            localStorage.removeItem("captured");
           }
           
           if (localStorage.getItem("promotion")) {
@@ -165,6 +162,7 @@ function myChessFile() {
             }
             localStorage.removeItem("promotion");
           }
+
           populateLocalStoragePieces(allSquares);
           updateDomId(allSquares);
 
@@ -178,8 +176,6 @@ function myChessFile() {
         }
       }
     }
-
-            
 
     const gameFen = chessGame.fen();
     const validFen = chessGame.validate_fen(gameFen);
