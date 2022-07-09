@@ -137,7 +137,7 @@ function myChessFile() {
       storedValidSquare;
     console.log(storedValidMoves);
     if (storedValidMoves) {
-      for (let i = 1; i < storedValidMoves.length; i + 2) {
+      for (let i = 1; i < storedValidMoves.length; i+=2) {
         storedValidSquare = storedValidMoves[i - 1] + storedValidMoves[i];
         console.log(`Stored Valid Squares: ${storedValidSquare}`)
         //move chess piece on DOM event target and engine;
@@ -168,8 +168,8 @@ function myChessFile() {
           }
         }
       }
-     // populateLocalStoragePieces(allSquares);
-      //updateDomId(allSquares);
+     populateLocalStoragePieces(allSquares);
+      updateDomId(allSquares);
 
       if (
         localStorage.getItem("playerTurn") === "w" &&
