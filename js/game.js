@@ -15,6 +15,7 @@ function myChessFile() {
   if (!gameStatus) {
     //populate localStorage via getSquare();
     //update the DOM via localStorage;
+    removeValidAndCurrentMoves(allSquares);
     populateLocalStoragePieces(allSquares);
     updateDomId(allSquares);
     for (let squares of allSquares) {
