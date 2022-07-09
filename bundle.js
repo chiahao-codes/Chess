@@ -134,6 +134,7 @@ function myChessFile() {
     localStorage.setItem("gameStatus", "inProgress");
     let storedValidMoves = localStorage.getItem("validMoves"),
       storedValidSquare;
+    console.log(storedValidMoves);
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i + 2) {
         storedValidSquare = storedValidMoves[i - 1] + storedValidMoves[i];
