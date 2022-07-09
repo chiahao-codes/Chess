@@ -135,6 +135,7 @@ function myChessFile() {
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i + 2) {
         storedValidSquare = storedValidMoves[i - 1] + storedValidMoves[i];
+        console.log(`Stored Valid Squares: ${storedValidSquare}`)
         //move chess piece on DOM event target and engine;
         if (e.target.innerText === storedValidSquare) {
           let storedCurrentMoveSquare = localStorage.getItem("currentMove"),
