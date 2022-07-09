@@ -9,7 +9,7 @@ function myChessFile() {
   });
 
   const allSquares = document.querySelectorAll(".rankFile > div");
-  let turn = chessGame.turn(),moves;
+  let turn = chessGame.turn(), moves, storedValidMoves ;
   localStorage.setItem("playerTurn", turn);
   let gameStatus = localStorage.getItem("gameStatus");
 
@@ -108,6 +108,7 @@ function myChessFile() {
               squares.setAttribute("promotion", "");
               localStorage.setItem("promotion", promotion);
             }
+            storedValidMoves = localStorage.getItem("validMoves");
             squares.addEventListener("click", makeMoves);
           }
         }
@@ -132,8 +133,7 @@ function myChessFile() {
 
   function makeMoves(e) {
     localStorage.setItem("gameStatus", "inProgress");
-    let storedValidMoves = localStorage.getItem("validMoves"),
-      currentMoveObj,
+    let currentMoveObj,
       storedValidSquare;
     console.log(storedValidMoves);
     if (storedValidMoves) {
