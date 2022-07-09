@@ -94,6 +94,7 @@ function myChessFile() {
         promotion = "";
       for (let moveTo of moves) {
         for (let squares of allSquares) {
+
           if (squares.innerText === moveTo.to) {
             validMoves += moveTo.to;
             squares.classList.add("validMove");
@@ -108,11 +109,17 @@ function myChessFile() {
               squares.setAttribute("promotion", "");
               localStorage.setItem("promotion", promotion);
             }
-            squares.addEventListener("click", makeMoves);
+            
           }
+          squares.addEventListener("click", makeMoves);
         }
       }
-    } 
+    }
+    let validMoveSquares = document.querySelectorAll(".rankFile > .validMove");
+    for (let valid of validMoveSquares){
+      valid.addEventListener("click", makeMoves);
+    }
+    
   }
 
   function removeValidAndCurrentMoves(allsquares) {
