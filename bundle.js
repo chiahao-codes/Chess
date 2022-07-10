@@ -14,24 +14,16 @@ function myChessFile() {
     storedValidMoves,
     storedCurrentMoveSquare;
   localStorage.setItem("playerTurn", turn);
-  let gameStatus = localStorage.getItem("gameStatus");
 
-  if (!gameStatus) {
     //populate localStorage via getSquare();
     //update the DOM via localStorage;
-    removeValidAndCurrentMoves(allSquares);
+    
     populateLocalStoragePieces(allSquares);
     updateDomId(allSquares);
     for (let squares of allSquares) {
       squares.addEventListener("click", getValidMoves);
     }
-  } else {
-    //run preserveDom function;
-    //draw from local storage to populate the DOM.
-    for (let squares of allSquares) {
-      squares.addEventListener("click", getValidMoves);
-    }
-  }
+  
 
   function updateDomId(allsquares) {
     //add id to DOM element based on local storage;
@@ -68,9 +60,6 @@ function myChessFile() {
     }
   }
 
-  function preserveDomCurrentValidCapPromo() {
-    //updates dom with saved info: current move, valid moves, captured, promotion;
-  }
 
   function getValidMoves(e) {
     //add currentMove class to square being clicked;
@@ -139,7 +128,6 @@ function myChessFile() {
   }
 
   function makeMoves(e) {
-    localStorage.setItem("gameStatus", "inProgress");
     let currentMoveObj,
       storedValidSquare;
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
