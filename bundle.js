@@ -8,7 +8,7 @@ function myChessFile() {
     console.log(" Sup...");
   });
 
-  const allSquares = document.querySelectorAll(".rankFile > div");
+  let allSquares = document.querySelectorAll(".rankFile > div");
   let turn = chessGame.turn(),
     moves,
     storedValidMoves,
@@ -152,7 +152,7 @@ function myChessFile() {
             to: e.target.innerText,
             from: storedCurrentMoveSquare,
           });
-          console.log(`Chess move: ${currentMoveObj}`);
+          console.log(`Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from}`);
           
           if (localStorage.getItem("captured")) {
             localStorage.removeItem("captured");
@@ -172,8 +172,11 @@ function myChessFile() {
             }
             localStorage.removeItem("promotion");
           }
+          //chessGame.remove(storedCurrentMoveSquare);
         }
       }
+
+      allSquares = document.querySelectorAll(".rankFile > div");
       populateLocalStoragePieces(allSquares);
       updateDomId(allSquares);
 
