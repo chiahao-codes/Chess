@@ -142,7 +142,7 @@ function myChessFile() {
     let currentMoveObj,
       storedValidSquare;
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
-     console.log(storedCurrentMoveSquare);
+    
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i += 2) {
         storedValidSquare = storedValidMoves[i - 1] + storedValidMoves[i];
@@ -157,9 +157,13 @@ function myChessFile() {
           
           if (localStorage.getItem("captured")) {
             localStorage.removeItem("captured");
-            if (e.target.classList.hasAttribute("captured")) {
-              e.target.classList.removeAttribute("captured");
+            localStorage.removeItem(storedValidSquare);
+            if (e.target.hasAttribute("captured")) {
+              e.target.removeAttribute("captured");
             }
+             console.log(
+               `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from} captured:${currentMoveObj.captured}`
+             );
           }
 
           if (localStorage.getItem("promotion")) {
@@ -168,9 +172,20 @@ function myChessFile() {
               from: storedCurrentMoveSquare,
               promotion: "q",
             });
-            if (e.target.classList.hasAttribute("promotion")) {
-              e.target.classList.removeAttribute("promotion");
+
+            if (localStorage.getItem("playerTurn") === "w") {
+              currentMoveObj = currentMoveObj.promotion.toUpperCase();
             }
+
+            let setPromoPieceColor = currentMoveObj.promotion + currentMoveObj.color;
+            localStorage.setItem(storedValidSquare, setPromoPieceColor);
+
+            if (e.target.hasAttribute("promotion")) {
+              e.target.removeAttribute("promotion");
+            }
+             console.log(
+               `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from} promotion:${currentMoveObj.promotion}`
+             );
             localStorage.removeItem("promotion");
           }
           chessGame.remove(storedCurrentMoveSquare);
@@ -180,13 +195,7 @@ function myChessFile() {
       populateLocalStoragePieces(allSquares);
       updateDomId(allSquares);
 
-      /**  if (
-        localStorage.getItem("playerTurn") === "w" &&
-        currentMoveObj.promotion
-      ) {
-        let whiteQueenPromo = currentMoveObj.promotion.toUpperCase();
-        e.target.classList.replace(currentMoveObj.promotion, whiteQueenPromo);
-      }*/
+      /**  */
     }
 
     const gameFen = chessGame.fen();
