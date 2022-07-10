@@ -172,11 +172,11 @@ function myChessFile() {
             }
             localStorage.removeItem("promotion");
           }
-          //chessGame.remove(storedCurrentMoveSquare);
+          chessGame.remove(storedCurrentMoveSquare);
         }
       }
 
-      allSquares = document.querySelectorAll(".rankFile > div");
+     
       populateLocalStoragePieces(allSquares);
       updateDomId(allSquares);
 
