@@ -112,6 +112,7 @@ function myChessFile() {
               localStorage.setItem("promotion", promotion);
             }
             storedValidMoves = localStorage.getItem("validMoves");
+            storedCurrentMoveSquare = localStorage.getItem("currentMove");
             squares.addEventListener("click", makeMoves);
           }
         }
@@ -138,7 +139,7 @@ function myChessFile() {
     localStorage.setItem("gameStatus", "inProgress");
     let currentMoveObj,
       storedValidSquare;
-     storedCurrentMoveSquare = localStorage.getItem("currentMove");
+     
      console.log(storedCurrentMoveSquare);
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i += 2) {
