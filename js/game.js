@@ -139,7 +139,7 @@ function myChessFile() {
     localStorage.setItem("gameStatus", "inProgress");
     let currentMoveObj,
       storedValidSquare;
-     
+    storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
      console.log(storedCurrentMoveSquare);
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i += 2) {
