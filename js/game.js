@@ -41,6 +41,9 @@ function myChessFile() {
       if (storagePieceValue) {
         let domPiece = storagePieceValue.slice(0, 1);
         domElement.setAttribute("id", domPiece);
+      } else {
+        //remove id from square;
+        domElement.setAttribute("id", "");
       }
     }
   }
@@ -112,7 +115,6 @@ function myChessFile() {
               localStorage.setItem("promotion", promotion);
             }
             storedValidMoves = localStorage.getItem("validMoves");
-            
             squares.addEventListener("click", makeMoves);
           }
         }
@@ -171,7 +173,6 @@ function myChessFile() {
             }
             localStorage.removeItem("promotion");
           }
-          
           chessGame.remove(storedCurrentMoveSquare);
           localStorage.removeItem(storedCurrentMoveSquare);
         }
