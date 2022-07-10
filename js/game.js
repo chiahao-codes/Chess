@@ -171,11 +171,11 @@ function myChessFile() {
             }
             localStorage.removeItem("promotion");
           }
+          
           chessGame.remove(storedCurrentMoveSquare);
+          localStorage.removeItem(storedCurrentMoveSquare);
         }
       }
-
-     
       populateLocalStoragePieces(allSquares);
       updateDomId(allSquares);
 
