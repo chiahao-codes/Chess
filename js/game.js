@@ -88,6 +88,7 @@ function myChessFile() {
       let currentMoveSquareAndPiece = moves[0].from + currentMovePiece;
 
       localStorage.setItem("currentMove", currentMoveSquareAndPiece);
+      storedCurrentMoveSquare = localStorage.getItem("currentMove");
       myTarget.classList.add("currentMove");
 
       //add valid moves, capture, promotion to localStorage and DOM;
@@ -111,7 +112,7 @@ function myChessFile() {
               localStorage.setItem("promotion", promotion);
             }
             storedValidMoves = localStorage.getItem("validMoves");
-            storedCurrentMoveSquare = localStorage.getItem("currentMove");
+            
             squares.addEventListener("click", makeMoves);
           }
         }
