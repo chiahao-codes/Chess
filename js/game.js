@@ -27,21 +27,26 @@ function myChessFile() {
     for (let i = 0; i < allsquares.length; i++) {
       let domSquare = allsquares[i].innerText,
         domElement = allsquares[i];
-      let storagePieceValue = localStorage.getItem(domSquare);
-      let currentMoveSquare = localStorage.getItem("currentMove").slice(0, 2);
-      if (currentMoveSquare === domSquare) {
-        domElement.classList.add("currentMove");
+      let storagePieceValue;
+
+      if (localStorage.getItem("currentMove")) {
+        let currentMoveSquare = localStorage.getItem("currentMove").slice(0, 2);
+        if (currentMoveSquare === domSquare) {
+          domElement.classList.add("currentMove");
+        }
       }
-      if (storedValidMoves) {
-        for (let i = 1; i < storedValidMoves.length; i += 2){
+
+      if (localStorage.getItem("validMoves")) {
+        let validMovesInLocalStorage = localStorage.getItem("validMoves");
+        for (let i = 1; i < validMovesInLocalStorage.length; i += 2) {
           let validMoveSquare = storedValidMoves[i - 1] + storedValidMoves[i];
           if (validMoveSquare === domSquare) {
             domElement.classList.add("validMove");
           }
         }
-        
       }
-      if (storagePieceValue) {
+      if (localStorage.getItem(domSquare)) {
+        storagePieceValue = localStorage.getItem(domSquare);
         let domPiece = storagePieceValue.slice(0, 1);
         domElement.setAttribute("id", domPiece);
       } else {
@@ -153,7 +158,7 @@ function myChessFile() {
         console.log(`Stored Valid Squares: ${storedValidSquare}`);
         //move chess piece on DOM event target and engine;
         if (e.target.innerText === storedValidSquare) {
-          currentMoveObj = chessGame.move({
+            currentMoveObj = chessGame.move({
             to: e.target.innerText,
             from: storedCurrentMoveSquare,
           });
