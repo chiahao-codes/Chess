@@ -9,16 +9,14 @@ function myChessFile() {
 
   let allSquares = document.querySelectorAll(".rankFile > div");
   let turn = chessGame.turn(),
-    moves,
+    moves, gameStatus,
     storedValidMoves,
     storedCurrentMoveSquare;
-  localStorage.setItem("playerTurn", turn);
+    localStorage.setItem("playerTurn", turn);
 
     //populate localStorage via getSquare();
     //update the DOM via localStorage;
-    
-    populateLocalStoragePieces(allSquares);
-    updateDomId(allSquares);
+    populateLocalStoragePieces(allSquares); 
     for (let squares of allSquares) {
       squares.addEventListener("click", getValidMoves);
     }
@@ -30,6 +28,19 @@ function myChessFile() {
       let domSquare = allsquares[i].innerText,
         domElement = allsquares[i];
       let storagePieceValue = localStorage.getItem(domSquare);
+      let currentMoveSquare = localStorage.getItem("currentMove").slice(0, 2);
+      if (currentMoveSquare === domSquare) {
+        domElement.classList.add("currentMove");
+      }
+      if (storedValidMoves) {
+        for (let i = 1; i < storedValidMoves.length; i += 2){
+          let validMoveSquare = storedValidMoves[i - 1] + storedValidMoves[i];
+          if (validMoveSquare === domSquare) {
+            domElement.classList.add("validMove");
+          }
+        }
+        
+      }
       if (storagePieceValue) {
         let domPiece = storagePieceValue.slice(0, 1);
         domElement.setAttribute("id", domPiece);
@@ -41,6 +52,9 @@ function myChessFile() {
   }
 
   function populateLocalStoragePieces(allsquares) {
+    if (localStorage.getItem("gameStatus")) {
+      allsquares = document.querySelectorAll(".rank>div");
+    }
     //populate local storage;
     for (let i = 0; i < allsquares.length; i++) {
       let square = allsquares[i].innerText;
@@ -57,6 +71,7 @@ function myChessFile() {
         localStorage.setItem(storagePieceKey, squarePieceTypeColor);
       }
     }
+    updateDomId(allsquares);
   }
 
 
@@ -127,6 +142,7 @@ function myChessFile() {
   }
 
   function makeMoves(e) {
+    gameStatus = localStorage.setItem("gameStatus", "inProgress");
     let currentMoveObj,
       storedValidSquare;
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
