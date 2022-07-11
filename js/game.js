@@ -27,7 +27,7 @@ function myChessFile() {
     for (let i = 0; i < allsquares.length; i++) {
       let domSquare = allsquares[i].innerText,
         domElement = allsquares[i];
-      let storagePieceValue;
+      let storagePieceValue = localStorage.getItem(domSquare);
 
       if (localStorage.getItem("currentMove")) {
         let currentMoveSquare = localStorage.getItem("currentMove").slice(0, 2);
@@ -45,8 +45,7 @@ function myChessFile() {
           }
         }
       }
-      if (localStorage.getItem(domSquare)) {
-        storagePieceValue = localStorage.getItem(domSquare);
+      if (storagePieceValue) {
         let domPiece = storagePieceValue.slice(0, 1);
         domElement.setAttribute("id", domPiece);
       } else {
