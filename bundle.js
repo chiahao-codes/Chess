@@ -57,9 +57,6 @@ function myChessFile() {
   }
 
   function populateLocalStoragePieces(allsquares) {
-    if (localStorage.getItem("gameStatus")) {
-      allsquares = document.querySelectorAll(".rank>div");
-    }
     //populate local storage;
     for (let i = 0; i < allsquares.length; i++) {
       let square = allsquares[i].innerText;
@@ -202,7 +199,7 @@ function myChessFile() {
         }
       }
       populateLocalStoragePieces(allSquares);
-      updateDomId(allSquares);
+      
 
       /**  */
     }
