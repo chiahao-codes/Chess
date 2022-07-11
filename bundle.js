@@ -10,7 +10,7 @@ function myChessFile() {
 
   let allSquares = document.querySelectorAll(".rankFile > div");
   let turn = chessGame.turn(),
-    moves, gameStatus,
+    moves, 
     storedValidMoves,
     storedCurrentMoveSquare;
     localStorage.setItem("playerTurn", turn);
@@ -73,7 +73,7 @@ function myChessFile() {
         localStorage.setItem(storagePieceKey, squarePieceTypeColor);
       }
     }
-    updateDomId(allsquares);
+    updateDomId(allSquares);
   }
 
 
@@ -144,7 +144,7 @@ function myChessFile() {
   }
 
   function makeMoves(e) {
-    gameStatus = localStorage.setItem("gameStatus", "inProgress");
+   
     let currentMoveObj,
       storedValidSquare;
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
