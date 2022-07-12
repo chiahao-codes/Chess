@@ -9,11 +9,12 @@ function myChessFile() {
   });
 
   let allSquares = document.querySelectorAll(".rankFile > div");
-  let turn = chessGame.turn(),
-    moves, 
+  let moves,
     storedValidMoves,
-    storedCurrentMoveSquare;
+    storedCurrentMoveSquare,
+    turn = chessGame.turn();
     localStorage.setItem("playerTurn", turn);
+    
 
     //populate localStorage via getSquare();
     //update the DOM via localStorage;
@@ -32,6 +33,7 @@ function myChessFile() {
       }
     }
   }
+
   function updateDomId(allsquares) {
     //add id to DOM element based on local storage;
     for (let i = 0; i < allsquares.length; i++) {
@@ -94,6 +96,7 @@ function myChessFile() {
     //add currentMove class to square being clicked;
     const myTarget = e.target;
     const squareInnertext = myTarget.innerText;
+    let squares;
 
     removeValidAndCurrentMoves(allSquares);
 
@@ -110,7 +113,7 @@ function myChessFile() {
       let currentMoveSquareAndPiece = moves[0].from + currentMovePiece;
 
       localStorage.setItem("currentMove", currentMoveSquareAndPiece);
-      
+      storedCurrentMoveSquare = localStorage.getItem("currentMove");
       myTarget.classList.add("currentMove");
 
       //add valid moves, capture, promotion to localStorage and DOM;
@@ -118,7 +121,7 @@ function myChessFile() {
         captured = "",
         promotion = "";
       for (let moveTo of moves) {
-        for (let squares of allSquares) {
+        for (squares of allSquares) {
           if (squares.innerText === moveTo.to) {
             validMoves += moveTo.to;
             squares.classList.add("validMove");
@@ -133,19 +136,19 @@ function myChessFile() {
               squares.setAttribute("promotion", "");
               localStorage.setItem("promotion", promotion);
             }
-            
             squares.addEventListener("click", makeMoves);
           }
         }
       }
     }
+    
   }
 
   function makeMoves(e) {
    
     let currentMoveObj,
       storedValidSquare;
-    storedCurrentMoveSquare = localStorage.getItem("currentMove");
+    
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
     storedValidMoves = localStorage.getItem("validMoves");
     
