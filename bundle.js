@@ -40,7 +40,7 @@ function myChessFile() {
       if (localStorage.getItem("validMoves")) {
         let validMovesInLocalStorage = localStorage.getItem("validMoves");
         for (let i = 1; i < validMovesInLocalStorage.length; i += 2) {
-          let validMoveSquare = storedValidMoves[i - 1] + storedValidMoves[i];
+          let validMoveSquare = validMovesInLocalStorage[i - 1] + validMovesInLocalStorage[i];
           if (validMoveSquare === domSquare) {
             domElement.classList.add("validMove");
           }
