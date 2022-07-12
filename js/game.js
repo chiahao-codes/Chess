@@ -17,11 +17,20 @@ function myChessFile() {
     //populate localStorage via getSquare();
     //update the DOM via localStorage;
     populateLocalStoragePieces(allSquares); 
-    for (let squares of allSquares) {
-      squares.addEventListener("click", getValidMoves);
-    }
   
+  function removeValidAndCurrentMoves(allsquares) {
+    localStorage.removeItem("currentMove");
+    localStorage.removeItem("validMoves");
 
+    for (const x of allsquares) {
+      if (x.classList.contains("validMove")) {
+        x.classList.remove("validMove");
+      }
+      if (x.classList.contains("currentMove")) {
+        x.classList.remove("currentMove");
+      }
+    }
+  }
   function updateDomId(allsquares) {
     //add id to DOM element based on local storage;
     for (let i = 0; i < allsquares.length; i++) {
@@ -44,6 +53,7 @@ function myChessFile() {
             domElement.classList.add("validMove");
           }
         }
+        domElement.addEventListener("click", makeMoves);
       }
       if (storagePieceValue) {
         let domPiece = storagePieceValue.slice(0, 1);
@@ -56,6 +66,9 @@ function myChessFile() {
   }
 
   function populateLocalStoragePieces(allsquares) {
+    for (let squares of allsquares) {
+      squares.addEventListener("click", getValidMoves);
+    }
     //populate local storage;
     for (let i = 0; i < allsquares.length; i++) {
       let square = allsquares[i].innerText;
@@ -72,7 +85,7 @@ function myChessFile() {
         localStorage.setItem(storagePieceKey, squarePieceTypeColor);
       }
     }
-    updateDomId(allSquares);
+    updateDomId(allsquares);
   }
 
 
@@ -96,7 +109,7 @@ function myChessFile() {
       let currentMoveSquareAndPiece = moves[0].from + currentMovePiece;
 
       localStorage.setItem("currentMove", currentMoveSquareAndPiece);
-      storedCurrentMoveSquare = localStorage.getItem("currentMove");
+      
       myTarget.classList.add("currentMove");
 
       //add valid moves, capture, promotion to localStorage and DOM;
@@ -119,7 +132,7 @@ function myChessFile() {
               squares.setAttribute("promotion", "");
               localStorage.setItem("promotion", promotion);
             }
-            storedValidMoves = localStorage.getItem("validMoves");
+            
             squares.addEventListener("click", makeMoves);
           }
         }
@@ -127,26 +140,13 @@ function myChessFile() {
     }
   }
 
-  function removeValidAndCurrentMoves(allsquares) {
-    localStorage.removeItem("currentMove");
-    localStorage.removeItem("validMoves");
-
-    for (const x of allsquares) {
-      if (x.classList.contains("validMove")) {
-        x.classList.remove("validMove");
-      }
-       if (x.classList.contains("currentMove")) {
-         x.classList.remove("currentMove");
-       }
-
-    }
-  }
-
   function makeMoves(e) {
    
     let currentMoveObj,
       storedValidSquare;
+    storedCurrentMoveSquare = localStorage.getItem("currentMove");
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
+    storedValidMoves = localStorage.getItem("validMoves");
     
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i += 2) {
