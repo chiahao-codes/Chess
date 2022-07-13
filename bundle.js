@@ -148,6 +148,7 @@ function myChessFile() {
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
     console.log(`Current Move square: ${storedCurrentMoveSquare}`);
     storedValidMoves = localStorage.getItem("validMoves");
+    console.log(`storedValidMoves: ${storedValidMoves}`);
     
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i += 2) {
@@ -198,10 +199,7 @@ function myChessFile() {
           localStorage.removeItem(storedCurrentMoveSquare);
         }
       }
-      populateLocalStoragePieces(allSquares);
-      
-
-      /**  */
+      populateLocalStoragePieces(allSquares); 
     }
 
     const gameFen = chessGame.fen();
