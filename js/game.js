@@ -71,10 +71,11 @@ function myChessFile() {
     for (let squares of allsquares) {
       squares.addEventListener("click", getValidMoves);
     }
+    
     //populate local storage;
     for (let i = 0; i < allsquares.length; i++) {
       let square = allsquares[i].innerText;
-      let chessPiece = chessGame.get(square);
+      let chessPiece = chessGame.get(square); //game is reset each load;
       if (chessPiece) {
         let pieceType = chessPiece.type;
         let pieceColor = chessPiece.color;
@@ -96,15 +97,11 @@ function myChessFile() {
     const myTarget = e.target;
     const squareInnertext = myTarget.innerText;
     let squares;
-
     removeValidAndCurrentMoves(allSquares);
 
     moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
 
-    if (
-      moves.length > 0 &&
-      moves[0].color === localStorage.getItem("playerTurn")
-    ) {
+    if ( moves.length > 0 && moves[0].color === localStorage.getItem("playerTurn")) {
       let currentMovePiece = moves[0].piece;
       if (moves[0].color === "w") {
         currentMovePiece = currentMovePiece.toUpperCase();
@@ -145,10 +142,10 @@ function myChessFile() {
 
   function makeMoves(e) {
    
-    let currentMoveObj,
-      storedValidSquare;
+    let currentMoveObj,storedValidSquare;
     
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
+    console.log(`Current Move square: ${storedCurrentMoveSquare}`);
     storedValidMoves = localStorage.getItem("validMoves");
     
     if (storedValidMoves) {
