@@ -133,6 +133,7 @@ function myChessFile() {
               squares.setAttribute("promotion", "");
               localStorage.setItem("promotion", promotion);
             }
+            storedValidMoves = localStorage.getItem("validMoves");
             squares.addEventListener("click", makeMoves);
           }
         }
@@ -147,7 +148,7 @@ function myChessFile() {
     
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
     console.log(`Current Move square: ${storedCurrentMoveSquare}`);
-    storedValidMoves = localStorage.getItem("validMoves");
+    
     console.log(`storedValidMoves: ${storedValidMoves}`);
     
     if (storedValidMoves) {
