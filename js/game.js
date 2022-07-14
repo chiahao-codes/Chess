@@ -38,6 +38,7 @@ function myChessFile() {
   
   function updateChessEngine() {
     let historicMoveCount = 1;
+    historicMoveCount = historicMoveCount.toString();
     let storedMoveHistory = localStorage.getItem(
       `historicMove${historicMoveCount}`
     );
@@ -54,8 +55,9 @@ function myChessFile() {
           promotion: promotionPiece,
         });
       }
-
+      historicMoveCount = parseInt(historicMoveCount);
       historicMoveCount++;
+      historicMoveCount = historicMoveCount.toString();
       storedMoveHistory = localStorage.getItem(
         `historicMove${historicMoveCount}`
       );
