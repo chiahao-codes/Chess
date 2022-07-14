@@ -29,7 +29,25 @@ function myChessFile() {
     updateDomId(allSquares);
 
     //update the chess engine;
-   
+    let historicMoveCount = 1;
+    let storedMoveHistory = localStorage.getItem(`historicMove${historicMoveCount}`);
+    while (storedMoveHistory) {
+      let moveFrom = storedMoveHistory.slice(1, 3);
+      let moveTo = storedMoveHistory.slice(3, 5);
+      chessGame.move({ from: moveFrom, to: moveTo });
+      if (storedMoveHistory.length === 8) {
+        let promotionPiece = storedMoveHistory.slice(-1);
+        chessGame.move({ from: moveFrom, to: moveTo, promotion: promotionPiece });
+      }
+      
+      historicMoveCount++;
+      storedMoveHistory = localStorage.getItem(
+        `historicMove${historicMoveCount}`
+      );
+    }
+    for (let squares of allSquares) {
+     squares.addEventListener("click", getValidMoves);
+   }
   }
    
   
