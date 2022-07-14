@@ -30,27 +30,39 @@ function myChessFile() {
     updateDomId(allSquares);
 
     //update the chess engine;
+    updateChessEngine();
+    console.log(chessGame.ascii());
+    for (let squares of allSquares) {
+     squares.addEventListener("click", getValidMoves);
+   }
+  }
+  
+  function updateChessEngine() {
     let historicMoveCount = 1;
-    let storedMoveHistory = localStorage.getItem(`historicMove${historicMoveCount}`);
+    let storedMoveHistory = localStorage.getItem(
+      `historicMove${historicMoveCount}`
+    );
+
     while (storedMoveHistory) {
       let moveFrom = storedMoveHistory.slice(1, 3);
       let moveTo = storedMoveHistory.slice(3, 5);
       chessGame.move({ from: moveFrom, to: moveTo });
       if (storedMoveHistory.length === 8) {
         let promotionPiece = storedMoveHistory.slice(-1);
-        chessGame.move({ from: moveFrom, to: moveTo, promotion: promotionPiece });
+        chessGame.move({
+          from: moveFrom,
+          to: moveTo,
+          promotion: promotionPiece,
+        });
       }
-      
+
       historicMoveCount++;
       storedMoveHistory = localStorage.getItem(
         `historicMove${historicMoveCount}`
       );
+      console.log(storedMoveHistory);
     }
-    for (let squares of allSquares) {
-     squares.addEventListener("click", getValidMoves);
-   }
   }
-   
   
   function removeValidAndCurrentMoves(allsquares) {
     localStorage.removeItem("currentMove");
