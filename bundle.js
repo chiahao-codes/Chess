@@ -32,9 +32,7 @@ function myChessFile() {
     //update the chess engine;
     updateChessEngine();
     console.log(chessGame.ascii());
-    for (let squares of allSquares) {
-     squares.addEventListener("click", getValidMoves);
-   }
+   
   }
   
   function updateChessEngine() {
@@ -62,7 +60,9 @@ function myChessFile() {
       storedMoveHistory = localStorage.getItem(
         `historicMove${historicMoveCount}`
       );
-      console.log(storedMoveHistory);
+    }
+    for (let squares of allSquares) {
+      squares.addEventListener("click", getValidMoves);
     }
   }
   
