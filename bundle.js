@@ -3,18 +3,11 @@ function myChessFile() {
   const { Chess } = require("chess.js");
   const chessGame = new Chess();
 
-  window.addEventListener("load", () => {
-    //loads local storage...
-    console.log(" Sup...");
-  });
-
   let allSquares = document.querySelectorAll(".rankFile > div");
   let moves,
     storedValidMoves,
-    storedCurrentMoveSquare, 
-  gameStatus = localStorage.getItem("gameStatus");
-    
-    
+    storedCurrentMoveSquare,
+    gameStatus = localStorage.getItem("gameStatus");
 
   if (!gameStatus) {
     //populate local storage
@@ -36,9 +29,8 @@ function myChessFile() {
     for (let squares of allSquares) {
       squares.addEventListener("click", getValidMoves);
     }
-   
   }
-  
+
   function updateChessEngine() {
     let historicMoveCount = 1;
     historicMoveCount = historicMoveCount.toString();
@@ -65,9 +57,8 @@ function myChessFile() {
         `historicMove${historicMoveCount}`
       );
     }
-    
   }
-  
+
   function removeValidAndCurrentMoves(allsquares) {
     localStorage.removeItem("currentMove");
     localStorage.removeItem("validMoves");
@@ -99,12 +90,12 @@ function myChessFile() {
       if (localStorage.getItem("validMoves")) {
         let validMovesInLocalStorage = localStorage.getItem("validMoves");
         for (let i = 1; i < validMovesInLocalStorage.length; i += 2) {
-          let validMoveSquare = validMovesInLocalStorage[i - 1] + validMovesInLocalStorage[i];
+          let validMoveSquare =
+            validMovesInLocalStorage[i - 1] + validMovesInLocalStorage[i];
           if (validMoveSquare === domSquare) {
             domElement.classList.add("validMove");
           }
         }
-       
       }
       if (storagePieceValue) {
         let domPiece = storagePieceValue.slice(0, 1);
@@ -117,24 +108,22 @@ function myChessFile() {
   }
 
   function populateLocalStoragePieces(allsquares) {
-    
-      for (let i = 0; i < allsquares.length; i++) {
-        let square = allsquares[i].innerText;
-        let chessPiece = chessGame.get(square); 
-        if (chessPiece) {
-          let pieceType = chessPiece.type;
-          let pieceColor = chessPiece.color;
-          if (pieceColor == "w") {
-            pieceType = pieceType.toUpperCase();
-          }
-          let squarePieceTypeColor = `${pieceType}${pieceColor}`;
-          let storagePieceKey = "";
-          storagePieceKey += square;
-          localStorage.setItem(storagePieceKey, squarePieceTypeColor);
+    for (let i = 0; i < allsquares.length; i++) {
+      let square = allsquares[i].innerText;
+      let chessPiece = chessGame.get(square);
+      if (chessPiece) {
+        let pieceType = chessPiece.type;
+        let pieceColor = chessPiece.color;
+        if (pieceColor == "w") {
+          pieceType = pieceType.toUpperCase();
         }
+        let squarePieceTypeColor = `${pieceType}${pieceColor}`;
+        let storagePieceKey = "";
+        storagePieceKey += square;
+        localStorage.setItem(storagePieceKey, squarePieceTypeColor);
       }
+    }
   }
-
 
   function getValidMoves(e) {
     localStorage.setItem("gameStatus", "inProgress");
@@ -146,7 +135,10 @@ function myChessFile() {
 
     moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
 
-    if ( moves.length > 0 && moves[0].color === localStorage.getItem("playerTurn")) {
+    if (
+      moves.length > 0 &&
+      moves[0].color === localStorage.getItem("playerTurn")
+    ) {
       let currentMovePiece = moves[0].piece;
       if (moves[0].color === "w") {
         currentMovePiece = currentMovePiece.toUpperCase();
@@ -183,37 +175,36 @@ function myChessFile() {
         }
       }
     }
-    
   }
 
   function makeMoves(e) {
-   
-    let currentMoveObj,storedValidSquare;
-    
+    let currentMoveObj, storedValidSquare;
+
     storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
-    
-    
+
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i += 2) {
         storedValidSquare = storedValidMoves[i - 1] + storedValidMoves[i];
-        
+
         //move chess piece on DOM event target and engine;
         if (e.target.innerText === storedValidSquare) {
-            currentMoveObj = chessGame.move({
+          currentMoveObj = chessGame.move({
             to: e.target.innerText,
             from: storedCurrentMoveSquare,
           });
-          console.log(`Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from}`);
-          
+          console.log(
+            `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from}`
+          );
+
           if (localStorage.getItem("captured")) {
             localStorage.removeItem("captured");
             localStorage.removeItem(storedValidSquare);
             if (e.target.hasAttribute("captured")) {
               e.target.removeAttribute("captured");
             }
-             console.log(
-               `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from} captured:${currentMoveObj.captured}`
-             );
+            console.log(
+              `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from} captured:${currentMoveObj.captured}`
+            );
           }
 
           if (localStorage.getItem("promotion")) {
@@ -227,15 +218,16 @@ function myChessFile() {
               currentMoveObj.promotion = currentMoveObj.promotion.toUpperCase();
             }
 
-            let setPromoPieceColor = currentMoveObj.promotion + currentMoveObj.color;
+            let setPromoPieceColor =
+              currentMoveObj.promotion + currentMoveObj.color;
             localStorage.setItem(storedValidSquare, setPromoPieceColor);
 
             if (e.target.hasAttribute("promotion")) {
               e.target.removeAttribute("promotion");
             }
-             console.log(
-               `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from} promotion:${currentMoveObj.promotion}`
-             );
+            console.log(
+              `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from} promotion:${currentMoveObj.promotion}`
+            );
             localStorage.removeItem("promotion");
           }
           chessGame.remove(storedCurrentMoveSquare);
@@ -243,7 +235,7 @@ function myChessFile() {
         }
       }
       //update local storage;
-      populateLocalStoragePieces(allSquares); 
+      populateLocalStoragePieces(allSquares);
       updateDomId(allSquares);
     }
 
@@ -261,22 +253,28 @@ function myChessFile() {
     turn = chessGame.turn();
     localStorage.setItem("playerTurn", turn);
 
-    let gameHistory = chessGame.history({ verbose:true }); //array of objects;
+    let gameHistory = chessGame.history({ verbose: true }); //array of objects;
     console.log(gameHistory);
     if (gameHistory.length > 0) {
       for (let i = 0; i < gameHistory.length; i++) {
         let historicMoveCount = i + 1;
-        let historicMove = gameHistory[i].color + gameHistory[i].from + gameHistory[i].to + gameHistory[i].piece;
+        let historicMove =
+          gameHistory[i].color +
+          gameHistory[i].from +
+          gameHistory[i].to +
+          gameHistory[i].piece;
         if (gameHistory[i].captured) {
           historicMove += gameHistory[i].captured;
         }
         if (gameHistory[i].promotion) {
           historicMove += gameHistory[i].promotion;
         }
-        localStorage.setItem(`historicMove${historicMoveCount}`, `${historicMove}`);
-       }
+        localStorage.setItem(
+          `historicMove${historicMoveCount}`,
+          `${historicMove}`
+        );
+      }
     }
-   
 
     if (turn === "b") {
       console.log("Black's turn.");
@@ -321,7 +319,7 @@ function myChessFile() {
   }
 }
 
-myChessFile();
+window.addEventListener("load", myChessFile);
 
 },{"chess.js":2}],2:[function(require,module,exports){
 /*
