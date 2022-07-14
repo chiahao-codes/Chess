@@ -27,9 +27,9 @@ function myChessFile() {
   } else {
     //update dom via local storage;
     updateDomId(allSquares);
-    for (let squares of allSquares) {
-      squares.addEventListener("click", getValidMoves);
-    }
+
+    //update the chess engine;
+   
   }
    
   
@@ -69,7 +69,7 @@ function myChessFile() {
             domElement.classList.add("validMove");
           }
         }
-        domElement.addEventListener("click", makeMoves);
+       
       }
       if (storagePieceValue) {
         let domPiece = storagePieceValue.slice(0, 1);
@@ -189,7 +189,7 @@ function myChessFile() {
             });
 
             if (localStorage.getItem("playerTurn") === "w") {
-              currentMoveObj = currentMoveObj.promotion.toUpperCase();
+              currentMoveObj.promotion = currentMoveObj.promotion.toUpperCase();
             }
 
             let setPromoPieceColor = currentMoveObj.promotion + currentMoveObj.color;
@@ -225,6 +225,23 @@ function myChessFile() {
     console.log(chessGame.ascii());
     turn = chessGame.turn();
     localStorage.setItem("playerTurn", turn);
+
+    let gameHistory = chessGame.history({ verbose:true }); //array of objects;
+    console.log(gameHistory);
+    if (gameHistory.length > 0) {
+      for (let i = 0; i < gameHistory.length; i++) {
+        let historicMoveCount = i + 1;
+        let historicMove = gameHistory[i].color + gameHistory[i].from + gameHistory[i].to + gameHistory[i].piece;
+        if (gameHistory[i].captured) {
+          historicMove += gameHistory[i].captured;
+        }
+        if (gameHistory[i].promotion) {
+          historicMove += gameHistory[i].promotion;
+        }
+        localStorage.setItem(`historicMove${historicMoveCount}`, `${historicMove}`);
+       }
+    }
+   
 
     if (turn === "b") {
       console.log("Black's turn.");
