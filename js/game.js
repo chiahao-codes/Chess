@@ -11,14 +11,15 @@ function myChessFile() {
   let moves,
     storedValidMoves,
     storedCurrentMoveSquare, 
-    turn = chessGame.turn();
-    gameStatus = localStorage.getItem("gameStatus"),
-    localStorage.setItem("playerTurn", turn);
+  gameStatus = localStorage.getItem("gameStatus");
+    
     
 
   if (!gameStatus) {
     //populate local storage
     //update dom;
+    let turn = chessGame.turn();
+    localStorage.setItem("playerTurn", turn);
     populateLocalStoragePieces(allSquares);
     updateDomId(allSquares);
     for (let squares of allSquares) {
@@ -31,6 +32,9 @@ function myChessFile() {
     //update the chess engine;
     updateChessEngine();
     console.log(chessGame.ascii());
+    for (let squares of allSquares) {
+      squares.addEventListener("click", getValidMoves);
+    }
    
   }
   
@@ -60,9 +64,7 @@ function myChessFile() {
         `historicMove${historicMoveCount}`
       );
     }
-    for (let squares of allSquares) {
-      squares.addEventListener("click", getValidMoves);
-    }
+    
   }
   
   function removeValidAndCurrentMoves(allsquares) {
