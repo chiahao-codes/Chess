@@ -177,7 +177,7 @@ function myChessFile() {
               localStorage.setItem("captured", captured);
             }
             if (moveTo.promotion) {
-              promotion += "";
+              promotion += " ";
               squares.setAttribute("promotion", "");
               localStorage.setItem("promotion", promotion);
             }
@@ -199,7 +199,6 @@ function myChessFile() {
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i += 2) {
         storedValidSquare = storedValidMoves[i - 1] + storedValidMoves[i];
-
         //move chess piece on DOM event target and engine;
         if (e.target.innerText === storedValidSquare) {
           currentMoveObj = chessGame.move({
