@@ -176,7 +176,7 @@ function myChessFile() {
               localStorage.setItem("captured", captured);
             }
             if (moveTo.promotion) {
-              promotion += " ";
+              promotion += "q";
               squares.setAttribute("promotion", "");
               localStorage.setItem("promotion", promotion);
             }
