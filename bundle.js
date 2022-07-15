@@ -23,7 +23,6 @@ function myChessFile() {
     //update dom via local storage, chessengine;
     updateDomId(allSquares);
     updateChessEngine();
-   
     for (let squares of allSquares) {
       squares.addEventListener("click", getValidMoves);
     }
@@ -60,6 +59,7 @@ function myChessFile() {
       storedCurrentMoveSquare = localStorage.getItem("currentMove").slice(0, 2);
       chessGame.moves({ square: storedCurrentMoveSquare, verbose: true });
       storedValidMoves = localStorage.getItem("validMoves");
+      let e = Event();
       makeMoves(e);
     }
   }
