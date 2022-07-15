@@ -148,10 +148,7 @@ function myChessFile() {
 
     moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
 
-    if (
-      moves.length > 0 &&
-      moves[0].color === localStorage.getItem("playerTurn")
-    ) {
+    if (moves.length > 0 && moves[0].color === localStorage.getItem("playerTurn")) {
       let currentMovePiece = moves[0].piece;
       if (moves[0].color === "w") {
         currentMovePiece = currentMovePiece.toUpperCase();
@@ -166,8 +163,10 @@ function myChessFile() {
       let validMoves = "",
         captured = "",
         promotion = "";
-      for (let moveTo of moves) {
-        for (squares of allSquares) {
+      
+      
+      for (squares of allSquares) {
+        for (let moveTo of moves) {
           if (squares.innerText === moveTo.to) {
             validMoves += moveTo.to;
             squares.classList.add("validMove");
