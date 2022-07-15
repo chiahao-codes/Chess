@@ -37,7 +37,7 @@ function myChessFile() {
     while (storedMoveHistory) {
       let moveFrom = storedMoveHistory.slice(1, 3);
       let moveTo = storedMoveHistory.slice(3, 5);
-      chessGame.move({ from: moveFrom, to: moveTo });
+      
       if (storedMoveHistory.length === 8) {
         let promotionPiece = storedMoveHistory.slice(-1);
         chessGame.move({
@@ -45,6 +45,8 @@ function myChessFile() {
           to: moveTo,
           promotion: promotionPiece,
         });
+      } else {
+        chessGame.move({ from: moveFrom, to: moveTo });
       }
       historicMoveCount = parseInt(historicMoveCount);
       historicMoveCount++;
@@ -225,9 +227,6 @@ function myChessFile() {
               to: e.target.innerText,
               from: storedCurrentMoveSquare,
             });
-            console.log(
-              `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from}`
-            );
           }
 
           if (localStorage.getItem("captured")) {
@@ -236,9 +235,7 @@ function myChessFile() {
             if (e.target.hasAttribute("captured")) {
               e.target.removeAttribute("captured");
             }
-            console.log(
-              `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from} captured:${currentMoveObj.captured}`
-            );
+           
           }
           chessGame.remove(storedCurrentMoveSquare);
           localStorage.removeItem(storedCurrentMoveSquare);
