@@ -19,12 +19,10 @@ function myChessFile() {
       squares.addEventListener("click", getValidMoves);
     }
   } else {
-    //update dom via local storage;
+    //update dom via local storage, chessengine;
     updateDomId(allSquares);
-
-    //update the chess engine;
     updateChessEngine();
-    console.log(chessGame.ascii());
+   
     for (let squares of allSquares) {
       squares.addEventListener("click", getValidMoves);
     }
@@ -55,6 +53,13 @@ function myChessFile() {
       storedMoveHistory = localStorage.getItem(
         `historicMove${historicMoveCount}`
       );
+    }
+
+    if (localStorage.getItem("validMoves")) {
+      storedCurrentMoveSquare = localStorage.getItem("currentMove").slice(0, 2);
+      chessGame.moves({ square: storedCurrentMoveSquare, verbose: true });
+      storedValidMoves = localStorage.getItem("validMoves");
+      makeMoves(e);
     }
   }
 
@@ -179,8 +184,10 @@ function myChessFile() {
   function makeMoves(e) {
     let currentMoveObj, storedValidSquare;
 
-    storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
-
+    if (storedCurrentMoveSquare.length > 2) {
+      storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
+    }
+    
     if (storedValidMoves) {
       for (let i = 1; i < storedValidMoves.length; i += 2) {
         storedValidSquare = storedValidMoves[i - 1] + storedValidMoves[i];
