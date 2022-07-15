@@ -59,8 +59,7 @@ function myChessFile() {
       storedCurrentMoveSquare = localStorage.getItem("currentMove").slice(0, 2);
       chessGame.moves({ square: storedCurrentMoveSquare, verbose: true });
       storedValidMoves = localStorage.getItem("validMoves");
-      let e = new Event();
-      makeMoves(e);
+      makeMoves(EventTarget);
     }
   }
 
