@@ -22,6 +22,7 @@ body, html{
 background-color:#ffffff;
 border:.65vmin solid black;
 max-height: fit-content;
+width: 100%;
 }
 
 .rankFile{
