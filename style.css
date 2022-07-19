@@ -10,10 +10,10 @@ body, html{
 }
 @media screen and (min-width:320px){
     .container {
-            margin: 0,auto;
+            margin: auto;
             width: fit-content;
         }
-}
+
 
 .chessboard{
 background-color:#ffffff;
@@ -135,4 +135,6 @@ color:white;
 
 #K:hover, #Q:hover, #N:hover, #R:hover, #B:hover, #P:hover{
     cursor: pointer;
+}
+
 }
