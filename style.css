@@ -11,7 +11,7 @@ body, html{
 @media screen and (min-width:320px){
     .container {
             margin: auto;
-            width: 48vw;
+            width: fit-content;
             /*center the container*/
         }
 }
