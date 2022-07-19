@@ -6,11 +6,11 @@ body, html{
     background-color: #F9FCFF;
     height:100%;
     margin:0%;
-    display:grid;
 }
-@media screen and (min-width:300px){
+@media screen and (min-width:320px){
     .container {
-            margin: auto;
+            margin: 0, auto;
+            width: 40vw;
             /*center the container*/
         }
 }
