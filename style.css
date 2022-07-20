@@ -14,6 +14,11 @@ body, html{
    
 }
 @media screen and (max-width:767px){
+    .container {
+            width: fit-content;
+            margin: auto, 10vw;
+          
+        }
 
     .rankFile {
             display: grid;
