@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body, html{
+body{
     background-color: #F9FCFF;
         height: 100%;
         width: 100vw;
@@ -16,8 +16,7 @@ body, html{
     
     @media (max-width:767px) {
     
-        body,
-        html {
+        body {
             background-color: #F9FCFF;
             height: 100%;
             width: 100vw;
@@ -29,7 +28,7 @@ body, html{
         }
     
         .container {
-            width:45%;
+            width:fit-content;
         }
     
         .chessboard {
