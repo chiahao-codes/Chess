@@ -15,20 +15,20 @@ body, html{
 }
 @media screen and (min-width:320px){
     .container {
-            width: 80vw;
+            width: fit-content;
         }
 
 
 .chessboard{
 background-color:#ffffff;
 border:.65vmin solid black;
-max-height: 100%;
-width: 100%;
+max-height: fit-content;
+width: fit-content;
 }
 
 .rankFile{
     display:grid;
-    width:auto;
+    width:fit-content;
     grid-template-columns: repeat(8, 5em);
     grid-template-rows: 5em;
     font-weight: bold;
