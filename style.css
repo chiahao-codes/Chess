@@ -29,11 +29,10 @@ body, html{
 
     .rankFile {
             display: grid;
+            width: fit-content;
             font-weight: bold;
             grid-template-columns: repeat(2, 5em);
             grid-template-rows: 5em;
-            overflow: hidden;
-            overflow:-moz-hidden-unscrollable;
             grid-column-start: 1;
             grid-column-end: 2;
         }
