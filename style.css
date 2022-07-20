@@ -30,10 +30,11 @@ body, html{
     
         .container {
             position: absolute;
-            width: 45vw;
+            width: 35vw;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 25%;
+            right: 25%;
+            transform: translate(-25%, -50%);
         }
     
         .chessboard {
