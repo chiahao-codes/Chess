@@ -17,11 +17,12 @@ body, html{
     .rankFile {
             display: grid;
             font-weight: bold;
-            grid-template-columns: repeat(5, 5em);
+            grid-template-columns: repeat(3, 5em);
             grid-template-rows: 5em;
-            overflow: scroll;
+            overflow: hidden;
+            overflow:-moz-hidden-unscrollable;
             grid-column-start: 1;
-            grid-column-end: 5;
+            grid-column-end: 3;
         }
     
 }
