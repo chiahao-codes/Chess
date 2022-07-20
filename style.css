@@ -13,11 +13,21 @@ body, html{
     align-content: center;
    
 }
-@media screen and (min-width:320px){
-    .container {
+@media screen and (max-width:767px){
+    .rankFile {
+            display: grid;
             width: fit-content;
+            grid-template-columns: repeat(8, 5em);
+            grid-template-rows: 5em;
+            font-weight: bold;
+            grid-column-start: 1;
+            grid-column-end: 5;
         }
-
+    
+}
+.container {
+    width: fit-content;
+}
 
 .chessboard{
 background-color:#ffffff;
@@ -141,4 +151,3 @@ color:white;
     cursor: pointer;
 }
 
-}
