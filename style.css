@@ -13,22 +13,8 @@ body, html{
     align-content: center;
    
 }
-@media screen and (max-width:767px){
-    .container {
-            width: fit-content;
-            margin: auto, 10vw;
-          
-        }
+@media (max-width:767px){
 
-    .rankFile {
-            display: grid;
-            width: fit-content;
-            font-weight: bold;
-            grid-template-columns: repeat(2, 5em);
-            grid-template-rows: 5em;
-            grid-column-start: 1;
-            grid-column-end: 2;
-        }
     
 }
 .container {
