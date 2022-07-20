@@ -34,12 +34,12 @@ body{
         .chessboard {
             background-color: #ffffff;
             border: .65vmin solid black;
-            width: 100%;
+            width: fit-content;
         }
     
         .rankFile {
             display: grid;
-            width: 100%;
+            width: fit-content;
             grid-template-columns: repeat(8, 3em);
             grid-template-rows: 3em;
             font-weight: bold;
