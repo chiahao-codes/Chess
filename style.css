@@ -30,8 +30,8 @@ width: fit-content;
 .rankFile{
     display:grid;
     width:fit-content;
-    grid-template-columns: repeat(8, 5em);
-    grid-template-rows: 5em;
+    grid-template-columns: repeat(8, calc(2em + 5vw));
+    grid-template-rows: calc(2em + 5vw);
     font-weight: bold;
 }
 
