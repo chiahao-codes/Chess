@@ -14,7 +14,7 @@ body{
     
     }
     
-    @media (max-width:767px) {
+    @media screen and (max-width:767px) {
     
         body {
             background-color: #F9FCFF;
@@ -29,7 +29,7 @@ body{
     
         .container {
             width:fit-content;
-            margin: 50vw;
+            margin: auto;
         }
     
         .chessboard {
