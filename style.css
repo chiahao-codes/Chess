@@ -14,15 +14,28 @@ body, html{
    
 }
 @media screen and (max-width:767px){
+    body,
+        html {
+            background-color: #F9FCFF;
+            height: 100%;
+            width: 100vw;
+            margin: 0%;
+            display: grid;
+            grid-template-columns: auto;
+            justify-content: center;
+            align-content: center;
+    
+        }
+
     .rankFile {
             display: grid;
             font-weight: bold;
-            grid-template-columns: repeat(3, 5em);
+            grid-template-columns: repeat(2, 5em);
             grid-template-rows: 5em;
             overflow: hidden;
             overflow:-moz-hidden-unscrollable;
             grid-column-start: 1;
-            grid-column-end: 3;
+            grid-column-end: 2;
         }
     
 }
