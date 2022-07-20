@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-body{
+body, html{
     background-color: #F9FCFF;
         height: 100%;
         width: 100vw;
@@ -16,13 +16,14 @@ body{
     
     @media screen and (max-width:767px) {
     
-        body {
+        body, html {
             background-color: #F9FCFF;
             height: 100%;
             width: 100vw;
             margin: 0%;
             display: grid;
-            
+            justify-content: center;
+            align-content: center;
         }
     
         .container {
