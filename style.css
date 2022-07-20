@@ -4,35 +4,51 @@
 
 body, html{
     background-color: #F9FCFF;
-    height:100%;
-    width: 100vw;
-    margin:0%;
-    display: grid;
-    grid-template-columns: auto;
-    justify-content: center;
-    align-content: center;
-   
-}
-@media (max-width:767px){
-body,
-    html {
-        background-color: #F9FCFF;
         height: 100%;
         width: 100vw;
         margin: 0%;
         display: grid;
         grid-template-columns: auto;
-        position: relative;
-
+        justify-content: center;
+        align-content: center;
+    
     }
-
+    
+    @media (max-width:767px) {
+    
+        body,
+        html {
+            background-color: #F9FCFF;
+            height: 100%;
+            width: 100vw;
+            margin: 0%;
+            display: grid;
+            grid-template-columns: auto;
+            position: relative;
+    
+        }
+    
         .container {
             position: absolute;
-            top:50%;
-            left:50%;
+            width: 45vw;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
         }
     
+        .chessboard {
+            background-color: #ffffff;
+            border: .65vmin solid black;
+            width: 100%;
+        }
+    
+        .rankFile {
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(8, 5em);
+            grid-template-rows: 5em;
+            font-weight: bold;
+        }
 }
 
 
