@@ -77,42 +77,42 @@ color:white;
     background-image:url("./assets/images/black/blkRook.png");
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 .rankFile > #n{
     background-image:url("./assets/images/black/blkKnight.png");
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 .rankFile > #b{
     background-image:url("./assets/images/black/blkBishop.png");
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 2vw; 
+    background-size: 10vw; 
 }
 
 .rankFile > #q{
     background-image:url("./assets/images/black/blkQueen.png");
     background-repeat: no-repeat;
     background-position: bottom; 
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 .rankFile > #k{
     background-image:url("./assets/images/black/blkKing.png");
     background-repeat: no-repeat;
     background-position: bottom; 
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 .rankFile >#p{
     background-image:url("./assets/images/black/blkPawn.png");
     background-repeat: no-repeat;
     background-position: bottom;
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 .rankFile > .validMove {
@@ -127,42 +127,42 @@ color:white;
     background-image:url("./assets/images/white/whiteRook.png");
     background-repeat: no-repeat;
     background-position: bottom;  
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 .rankFile > #N{
     background-image:url("./assets/images/white/whiteKnight.png");
     background-repeat: no-repeat;
     background-position: bottom;  
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 .rankFile > #B{
     background-image:url("./assets/images/white/whiteBishop.png");
     background-repeat: no-repeat;
     background-position: bottom;  
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 .rankFile > #K{
     background-image:url("./assets/images/white/whiteKing.png");
     background-repeat: no-repeat;
     background-position: bottom;  
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 .rankFile > #Q{
     background-image:url("./assets/images/white/whiteQueen.png");
     background-repeat: no-repeat;
     background-position: bottom;  
-    background-size: 2vw;
+    background-size: 10vw;
 }
 
 #P{
     background-image:url("./assets/images/white/whitePawn.png");
     background-repeat: no-repeat;
     background-position: bottom;  
-    background-size: 2vw;  
+    background-size: 10vw;  
 }
 
 #K:hover, #Q:hover, #N:hover, #R:hover, #B:hover, #P:hover{
