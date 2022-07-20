@@ -24,16 +24,12 @@ body, html{
             margin: 0%;
             display: grid;
             grid-template-columns: 25vmin;
-            position: relative;
         }
     
         .container {
-            position: absolute;
+            place-self: center;
             width: 50%;
-            top: 50%;
-            left: 25%;
-            right: 25%;
-            transform: translate(-50%, -50%);
+            
         }
     
         .chessboard {
