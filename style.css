@@ -16,9 +16,6 @@ body, html{
 @media screen and (max-width:767px){
     .rankFile {
             display: grid;
-            width: fit-content;
-            grid-template-columns: repeat(8, 5em);
-            grid-template-rows: 5em;
             font-weight: bold;
             grid-column-start: 1;
             grid-column-end: 5;
