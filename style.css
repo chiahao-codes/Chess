@@ -23,14 +23,13 @@ body, html{
             width: 100vw;
             margin: 0%;
             display: grid;
-            grid-template-columns: auto;
+            grid-template-columns: 25vmin;
             position: relative;
-    
         }
     
         .container {
             position: absolute;
-            width: 35vw;
+            width: 50%;
             top: 50%;
             left: 25%;
             right: 25%;
@@ -46,8 +45,8 @@ body, html{
         .rankFile {
             display: grid;
             width: 100%;
-            grid-template-columns: repeat(8, 5em);
-            grid-template-rows: 5em;
+            grid-template-columns: repeat(8, 3em);
+            grid-template-rows: 3em;
             font-weight: bold;
         }
 }
