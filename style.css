@@ -177,7 +177,7 @@ color:white;
     background-color: #F9FCFF;
     width: fit-content;
     background-image: url("./assets/images/resetBtn100px.png");
-    background-size: 80%;
+    background-size: 20vmax;
     background-repeat: no-repeat;
 }
 
