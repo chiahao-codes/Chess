@@ -26,12 +26,6 @@ padding:5vmax;
         font-size: 0.27em;
     }
 
-        button>img {
-            background-image: url("./assets/images/resetBtn100px.png");
-            background-size: calc(10% + 5vw);
-            background-repeat: no-repeat;
-        }
-
 }
 
 @media screen and (max-width:1600px) {
@@ -44,11 +38,6 @@ padding:5vmax;
             font-size:.80em;
     
         }
-                button>img {
-                    background-image: url("./assets/images/resetBtn100px.png");
-                    background-size: calc(35% + 10vw);
-                    background-repeat: no-repeat;
-                }
 }
 
 .container {
@@ -185,6 +174,12 @@ button {
     background-color: #F9FCFF;
     width: fit-content;
 }
+
+  button {
+      background-image: url("./assets/images/resetBtn100px.png");
+      background-repeat: no-repeat;
+  }
+
 
 button :hover{
     cursor: pointer;
