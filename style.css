@@ -167,12 +167,9 @@ color:white;
     cursor: pointer;
 }
 
-.container > .reset {
-    margin-top: 8%;
-    margin-bottom: 10%;
-    margin-left: auto;
-    margin-right:auto;
-    border: none;
+.reset {
+    margin:auto;
+    border: 1px black solid;
     background-color: #F9FCFF;
     width: fit-content;
     background-image: url("./resetBtn100px.png");
