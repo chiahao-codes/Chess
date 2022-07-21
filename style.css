@@ -168,7 +168,7 @@ color:white;
     cursor: pointer;
 }
 
-button {
+.container > .reset {
     margin-top: 8%;
     margin-bottom: 10%;
     margin-left: auto;
@@ -177,8 +177,7 @@ button {
     background-color: #F9FCFF;
     width: fit-content;
     background-image: url("./assets/images/black/blkBishop.png");
-            background-size: auto;
-        
+    background-size: auto;
     background-repeat: no-repeat;
 }
 
