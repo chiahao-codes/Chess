@@ -171,4 +171,7 @@ button {
     background-image: url("./assets/images/kisspng-reset-button-icon-restart-png-free-download-5a75888d8ebb29.6889129515176521095846.png");
     background-repeat: no-repeat;
     margin-top: 8%;
+    width: fit-content;
+    background-size:calc(8em + 20%);
+    border: none;
 }
