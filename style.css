@@ -175,6 +175,6 @@ color:white;
     border: 1px black solid;
 }
 
-button:hover{
+#reset:hover{
     cursor: pointer;
 }
