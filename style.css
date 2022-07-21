@@ -29,8 +29,8 @@ html {
     .rankFile {
             display: grid;
             width: fit-content;
-            grid-template-columns: repeat(8, calc(4em + 5vw));
-            grid-template-rows: calc(4em + 5vw);
+            grid-template-columns: repeat(8, calc(4em + 4vw));
+            grid-template-rows: calc(4em + 4vw);
             font-weight: bold;
             font-size:.80em;
     
@@ -166,7 +166,7 @@ color:white;
     cursor: pointer;
 }
 
-.reset {
+button {
     background-image: url("./assets/images/resetBtn100px.png");
     background-repeat: no-repeat;
     background-size: calc(2em + 5vw) calc(2em + 5vw);
