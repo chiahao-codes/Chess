@@ -15,8 +15,8 @@ html {
     .rankFile {
         display: grid;
         width: fit-content;
-        grid-template-columns: repeat(8, calc(3.3em + 4vw));
-        grid-template-rows: calc(3.3em + 4vw);
+        grid-template-columns: repeat(8, calc(3.8em + 4.3vw));
+        grid-template-rows: calc(3.8em + 4.3vw);
         font-weight: bold;
         font-size: 0.27em;
     }
@@ -44,12 +44,11 @@ width: fit-content;
 .rankFile{
     display:grid;
     width:fit-content;
-    grid-template-columns: repeat(8, calc(2em + 5vw));
-    grid-template-rows: calc(2em + 5vw);
+    grid-template-columns: repeat(8, calc(3em));
+    grid-template-rows: calc(3em);
     font-weight: bold;
     
 }
-
 
 .squareB:nth-child(odd){
 background-color: #6c7482;
