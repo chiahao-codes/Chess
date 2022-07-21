@@ -37,6 +37,8 @@ padding:5vmax;
             font-weight: bold;
             font-size:.80em;
         }
+
+        
 }
 
 .container {
@@ -175,7 +177,8 @@ button {
     background-color: #F9FCFF;
     width: fit-content;
     background-image: url("./assets/images/resetBtn100px.png");
-    background-size: auto;
+            background-size: auto;
+        
     background-repeat: no-repeat;
 }
 
