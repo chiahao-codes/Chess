@@ -186,3 +186,7 @@ color:white;
 .container > button:hover{
     cursor: pointer;
 }
+
+.resetClick {
+    transform: rotate(180deg) rotate(-180deg);
+}
