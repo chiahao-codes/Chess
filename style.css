@@ -189,6 +189,6 @@ button {
 
 
 
-button > img :hover{
+button :hover{
     cursor: pointer;
 }
