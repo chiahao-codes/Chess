@@ -171,7 +171,6 @@ button {
     background-image: url("./assets/images/resetBtn1600px.png");
     background-repeat: no-repeat;
     margin-top: 8%;
-    width: fit-content;
     background-size:calc(100px + 5vw);
     border: none;
 }
