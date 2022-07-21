@@ -11,8 +11,7 @@ html {
 }
 
 body{
-    padding-top: 5vh;
-    padding-bottom: 5vh;
+padding:5vmax;
 }
 
 
@@ -28,7 +27,7 @@ body{
     }
 
         button>img {
-            background-size: calc(2% + .5vw);
+            background-size: calc(.80% + .5vw);
             background-repeat: no-repeat;
         }
 
@@ -45,7 +44,7 @@ body{
     
         }
                 button>img {
-                    background-size: calc(10% + .75vw);
+                    background-size: calc(7% + .70vw);
                     background-repeat: no-repeat;
                 }
 }
