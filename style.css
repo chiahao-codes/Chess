@@ -1,39 +1,39 @@
-*{
+* {
     box-sizing: border-box;
 }
 
-body, html{
+body,
+html {
     background-color: #F9FCFF;
-        height: 100%;
-        width: 100vw;
-        margin: 0%;
-        font-family: "Varela Round", sans-serif;
-        position: relative;
-    }
+    height: 100%;
+    width: 100vw;
+    margin: 0%;
+    font-family: "Varela Round", sans-serif;
+    position: relative;
+}
 
-    @media screen and (max-width:727px){
-        .rankFile {
-                display: grid;
-                width: fit-content;
-                grid-template-columns: repeat(8, calc(2em + 4vw));
-                grid-template-rows: calc(2em + 4vw);
-                font-weight: bold;
-                font-size: 0.25em;
-            }
-
-    }
-    
-    .container {
-        width: 100%;
-        position: absolute;
-        top:50%;
-        transform: translateY(-50%);
+@media screen and (max-width:727px) {
+    .rankFile {
         display: grid;
-            grid-template-columns: auto;
-            justify-content: center;
-            align-content: center; 
+        width: fit-content;
+        grid-template-columns: repeat(8, calc(2em + 4vw));
+        grid-template-rows: calc(2em + 4vw);
+        font-weight: bold;
+        font-size: 0.25em;
     }
 
+}
+
+.container {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    align-content: center;
+}
 
 .chessboard{
 background-color:#ffffff;
@@ -48,17 +48,27 @@ width: fit-content;
     grid-template-columns: repeat(8, calc(2em + 5vw));
     grid-template-rows: calc(2em + 5vw);
     font-weight: bold;
+    
 }
 
 
 .squareB:nth-child(odd){
 background-color: #6c7482;
 color:white;
+text-shadow: calc(.5em + 2vw) calc(.5em + 2vw) calc(.5em + 2vw) #f5f5f5,
+        calc(.5em + 2vw) calc(.6em + 2vw) calc(.5em + 2vw) #f5f5f5,
+        calc(.5em + 2vw) calc(.7em + 2vw) calc(.5em + 2vw) #f5f5f5,
+        calc(.5em + 2vw) calc(.8em + 2vw) calc(.5em + 2vw) #f5f5f5;
 }
+
 
 .squareW:nth-child(even){
     background-color:#6c7482;
     color:white;
+    text-shadow: calc(.5em + 2vw) calc(.5em + 2vw) calc(.5em + 2vw) #f5f5f5,
+            calc(.5em + 2vw) calc(.6em + 2vw) calc(.5em + 2vw) #f5f5f5,
+            calc(.5em + 2vw) calc(.7em + 2vw) calc(.5em + 2vw) #f5f5f5,
+            calc(.5em + 2vw) calc(.8em + 2vw) calc(.5em + 2vw) #f5f5f5;
 }
 
 .rankFile >#r{
