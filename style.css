@@ -32,11 +32,10 @@ padding:5vmax;
     .rankFile {
             display: grid;
             width: fit-content;
-            grid-template-columns: repeat(8, calc(3.5em + 1.8vw));
-            grid-template-rows: calc(3.5em + 1.8vw);
+            grid-template-columns: repeat(8, calc(3.5em + 4.8vw));
+            grid-template-rows: calc(3.5em + 4.8vw);
             font-weight: bold;
             font-size:.80em;
-    
         }
 }
 
@@ -170,15 +169,16 @@ color:white;
 button {
     margin-top: 8%;
     margin-bottom: 10%;
+    margin-left: auto;
+    margin-right:auto;
     border: none;
     background-color: #F9FCFF;
     width: fit-content;
+    background-image: url("./assets/images/resetBtn100px.png");
+    background-size: auto;
+    background-repeat: no-repeat;
 }
 
-  button {
-      background-image: url("./assets/images/resetBtn100px.png");
-      background-repeat: no-repeat;
-  }
 
 
 button :hover{
