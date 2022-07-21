@@ -25,6 +25,10 @@ padding:5vmax;
         font-weight: bold;
         font-size: 0.27em;
     }
+        .container>button>img {
+            width: calc(1em + .5vw);
+            border: none;
+        }
 
 }
 
