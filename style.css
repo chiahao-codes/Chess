@@ -28,19 +28,6 @@ padding:5vmax;
 
 }
 
-@media screen and (max-width:1600px) {
-    .rankFile {
-            display: grid;
-            width: fit-content;
-            grid-template-columns: repeat(8, calc(3.5em + 1.8vw));
-            grid-template-rows: calc(3.5em + 1.8vw);
-            font-weight: bold;
-            font-size:.80em;
-        }
-
-        
-}
-
 .container {
     width: fit-content;
     margin:auto;
@@ -57,6 +44,15 @@ border:.65vmin solid black;
 max-height: fit-content;
 width: fit-content;
 }
+
+ .rankFile {
+     display: grid;
+     width: fit-content;
+     grid-template-columns: repeat(8, calc(3.5em + 1.8vw));
+     grid-template-rows: calc(3.5em + 1.8vw);
+     font-weight: bold;
+     font-size: .80em;
+ }
 
 .squareB:nth-child(odd){
 background-color: #6c7482;
@@ -170,10 +166,11 @@ color:white;
 
 .container > button{
     width:fit-content;
-    margin-top: 10%;
+    margin-top: 7%;
     margin-left: auto;
     margin-right:auto;
     background-color: #F9FCFF;
+    border:none;
 }
 
 .container > button > img{
