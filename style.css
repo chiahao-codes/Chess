@@ -7,17 +7,29 @@ body, html{
         height: 100%;
         width: 100vw;
         margin: 0%;
-        display: grid;
-        grid-template-columns: auto;
-        justify-content: center;
-        align-content: center;
-        overflow: scroll;
+        font-family: "Varela Round", sans-serif;
     
+    }
+
+    @media screen and (max-width:727px){
+        .rankFile {
+                display: grid;
+                width: fit-content;
+                grid-template-columns: repeat(8, calc(2em + 4vw));
+                grid-template-rows: calc(2em + 4vw);
+                font-weight: bold;
+                font-size: 0.25em;
+            }
+
     }
     
     .container {
-        width: fit-content;
-        margin: auto;
+        width: 100%;
+        margin:0%;
+        display: grid;
+            grid-template-columns: auto;
+            justify-content: center;
+            align-content: center; 
     }
 
 
@@ -31,8 +43,8 @@ width: fit-content;
 .rankFile{
     display:grid;
     width:fit-content;
-    grid-template-columns: repeat(8, calc(2em + 2vw));
-    grid-template-rows: calc(2em + 2vw);
+    grid-template-columns: repeat(8, calc(2em + 5vw));
+    grid-template-rows: calc(2em + 5vw);
     font-weight: bold;
 }
 
