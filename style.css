@@ -44,8 +44,8 @@ width: fit-content;
 .rankFile{
     display:grid;
     width:fit-content;
-    grid-template-columns: repeat(8, calc(3em));
-    grid-template-rows: calc(3em);
+    grid-template-columns: repeat(8, calc(5em + .5vmin));
+    grid-template-rows: calc(5em + .5vmin);
     font-weight: bold;
     
 }
