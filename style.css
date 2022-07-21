@@ -8,7 +8,11 @@ html {
     height: 100%;
     width: 100vw;
     margin: 0%;
-    position: relative;
+}
+
+body{
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 }
 
 
@@ -24,18 +28,18 @@ html {
     }
 
         button>img {
-            background-size: calc(20% + 1vw);
+            background-size: calc(10% + .5vw);
             background-repeat: no-repeat;
         }
 
 }
 
-@media screen and (min-width:728px) {
+@media screen and (max-width:1600px) {
     .rankFile {
             display: grid;
             width: fit-content;
-            grid-template-columns: repeat(8, calc(3.9em + 2vw));
-            grid-template-rows: calc(3.9em + 2vw);
+            grid-template-columns: repeat(8, calc(3.5em + 1.8vw));
+            grid-template-rows: calc(3.5em + 1.8vw);
             font-weight: bold;
             font-size:.80em;
     
@@ -43,10 +47,8 @@ html {
 }
 
 .container {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    width: fit-content;
+    margin:auto;
     display: grid;
     grid-template-columns: fit-content;
     grid-template-rows: fit-content;
