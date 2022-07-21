@@ -172,6 +172,6 @@ button {
     background-repeat: no-repeat;
     margin-top: 8%;
     width: fit-content;
-    background-size:calc(8em + 20%);
+    background-size:calc(100px + 5vw);
     border: none;
 }
