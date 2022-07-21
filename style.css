@@ -23,6 +23,18 @@ html {
 
 }
 
+@media screen and (max-width:1600px) {
+    .rankFile {
+            display: grid;
+            width: fit-content;
+            grid-template-columns: repeat(8, calc(5em + .5vmin));
+            grid-template-rows: calc(5em + .5vmin);
+            font-weight: bold;
+            font-size:.987em;
+    
+        }
+}
+
 .container {
     width: 100%;
     position: absolute;
@@ -41,14 +53,7 @@ max-height: fit-content;
 width: fit-content;
 }
 
-.rankFile{
-    display:grid;
-    width:fit-content;
-    grid-template-columns: repeat(8, calc(5em + .5vmin));
-    grid-template-rows: calc(5em + .5vmin);
-    font-weight: bold;
-    
-}
+
 
 .squareB:nth-child(odd){
 background-color: #6c7482;
