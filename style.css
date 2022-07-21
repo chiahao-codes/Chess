@@ -11,6 +11,8 @@ html {
     position: relative;
 }
 
+
+
 @media screen and (max-width:727px) {
     .rankFile {
         display: grid;
@@ -164,3 +166,10 @@ color:white;
     cursor: pointer;
 }
 
+.reset {
+    background-image: url("./assets/images/resetBtn100px.png");
+    background-repeat: no-repeat;
+    background-size: calc(100px + .5vw) calc(100px + .5vw);
+    background-color: #F9FCFF;
+    margin-top: 10%;
+}
