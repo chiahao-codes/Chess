@@ -173,4 +173,9 @@ button {
     margin-top: 8%;
     background-size: max-content;
     border: none;
+    background-color: #F9FCFF;
+}
+
+button > img {
+    background-size: 50%;
 }
