@@ -43,7 +43,8 @@ html {
     top: 50%;
     transform: translateY(-50%);
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: fit-content;
+    grid-template-rows: fit-content;
     justify-content: center;
     align-content: center;
 }
@@ -171,6 +172,6 @@ button {
     background-image: url("./assets/images/resetBtn1600px.png");
     background-repeat: no-repeat;
     margin-top: 8%;
-    background-size:calc(1000px + 5vw);
+    background-size:calc(100%);
     border: none;
 }
