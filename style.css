@@ -23,6 +23,11 @@ html {
         font-size: 0.27em;
     }
 
+        button>img {
+            background-size: calc(20% + 1vw);
+            background-repeat: no-repeat;
+        }
+
 }
 
 @media screen and (min-width:728px) {
@@ -177,6 +182,10 @@ button {
 }
 
 button > img {
-    background-size: 40%;
+    background-size: calc(30% + 1vw);
     background-repeat: no-repeat;
+}
+
+button > img :hover{
+    cursor: pointer;
 }
