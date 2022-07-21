@@ -28,7 +28,7 @@ padding:5vmax;
 
         button>img {
             background-image: url("assets/images/resetBtn100px.png");
-            background-size: calc(.80% + .5vw);
+            background-size: calc(10% + 1vw);
             background-repeat: no-repeat;
         }
 
@@ -46,7 +46,7 @@ padding:5vmax;
         }
                 button>img {
                     background-image: url("assets/images/resetBtn100px.png");
-                    background-size: calc(7% + .70vw);
+                    background-size: calc(35% + 3vw);
                     background-repeat: no-repeat;
                 }
 }
@@ -68,8 +68,6 @@ max-height: fit-content;
 width: fit-content;
 margin-top:5%;
 }
-
-
 
 .squareB:nth-child(odd){
 background-color: #6c7482;
@@ -185,10 +183,8 @@ button {
     margin-bottom: 10%;
     border: none;
     background-color: #F9FCFF;
-    width: 100%;
+    width: fit-content;
 }
-
-
 
 button :hover{
     cursor: pointer;
