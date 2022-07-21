@@ -27,8 +27,8 @@ padding:5vmax;
     }
 
         button>img {
-            background-image: url("assets/images/resetBtn100px.png");
-            background-size: calc(10% + 1vw);
+            background-image: url("./assets/images/resetBtn100px.png");
+            background-size: calc(10% + 5vw);
             background-repeat: no-repeat;
         }
 
@@ -45,8 +45,8 @@ padding:5vmax;
     
         }
                 button>img {
-                    background-image: url("assets/images/resetBtn100px.png");
-                    background-size: calc(35% + 3vw);
+                    background-image: url("./assets/images/resetBtn100px.png");
+                    background-size: calc(35% + 10vw);
                     background-repeat: no-repeat;
                 }
 }
