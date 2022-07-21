@@ -167,14 +167,11 @@ color:white;
     cursor: pointer;
 }
 
-#reset {
-    margin:auto;
+#reset > img {
+    
     border: 1px black solid;
     background-color: #F9FCFF;
-    width: fit-content;
-    background-image: url("./resetBtn100px.png");
-    background-size: 20vmax;
-    background-repeat: no-repeat;
+   
 }
 
 
