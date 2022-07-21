@@ -29,8 +29,8 @@ html {
     .rankFile {
             display: grid;
             width: fit-content;
-            grid-template-columns: repeat(8, calc(3.9em + 4vw));
-            grid-template-rows: calc(3.9em + 4vw);
+            grid-template-columns: repeat(8, calc(3.9em + 3.7vw));
+            grid-template-rows: calc(3.9em + 3.7vw);
             font-weight: bold;
             font-size:.80em;
     
