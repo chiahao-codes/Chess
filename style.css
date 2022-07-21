@@ -173,10 +173,10 @@ button {
     margin-bottom: 10%;
     border: none;
     background-color: #F9FCFF;
-    width: fit-content;
+    width: 100%;
 }
 
 button > img {
-    background-size: 50%;
+    background-size: 40%;
     background-repeat: no-repeat;
 }
