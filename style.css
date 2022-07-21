@@ -168,7 +168,7 @@ color:white;
 }
 
 
-button{
+.container > button{
     width:fit-content;
     top: 5%;
     margin-left: auto;
@@ -176,6 +176,10 @@ button{
     background-color: #F9FCFF;
 }
 
-button:hover{
+.container > button > img{
+    width: calc(2em + 2vw);
+}
+
+.container > button:hover{
     cursor: pointer;
 }
