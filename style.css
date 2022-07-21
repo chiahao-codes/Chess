@@ -28,7 +28,7 @@ body{
     }
 
         button>img {
-            background-size: calc(10% + .5vw);
+            background-size: calc(2% + .5vw);
             background-repeat: no-repeat;
         }
 
@@ -44,6 +44,10 @@ body{
             font-size:.80em;
     
         }
+                button>img {
+                    background-size: calc(10% + .75vw);
+                    background-repeat: no-repeat;
+                }
 }
 
 .container {
@@ -183,10 +187,7 @@ button {
     width: 100%;
 }
 
-button > img {
-    background-size: calc(30% + 1vw);
-    background-repeat: no-repeat;
-}
+
 
 button > img :hover{
     cursor: pointer;
