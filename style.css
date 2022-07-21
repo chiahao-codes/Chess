@@ -53,6 +53,7 @@ background-color:#ffffff;
 border:.65vmin solid black;
 max-height: fit-content;
 width: fit-content;
+margin-top:5%;
 }
 
 
@@ -167,9 +168,9 @@ color:white;
 }
 
 button {
-    background-image: url("./assets/images/resetBtn100px.png");
+    background-image: url("./assets/images/kisspng-reset-button-icon-restart-png-free-download-5a75888d8ebb29.6889129515176521095846.png");
     background-repeat: no-repeat;
-    background-size: calc(2em + 5vw) calc(2em + 5vw);
+    background-size: 60%;
     margin-top: 8%;
     width: fit-content;
 }
