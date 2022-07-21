@@ -56,7 +56,6 @@ background-color:#ffffff;
 border:.65vmin solid black;
 max-height: fit-content;
 width: fit-content;
-margin-top:5%;
 }
 
 .squareB:nth-child(odd){
@@ -176,7 +175,7 @@ color:white;
     border: none;
     background-color: #F9FCFF;
     width: fit-content;
-    background-image: url("./assets/images/resetBtn100px.png");
+    background-image: url("");
     background-size: 20vmax;
     background-repeat: no-repeat;
 }
