@@ -169,9 +169,8 @@ color:white;
 }
 
 button {
-    background-image: url("./assets/images/resetBtn1600px.png");
     background-repeat: no-repeat;
     margin-top: 8%;
-    background-size:calc(100%);
+    background-size: max-content;
     border: none;
 }
