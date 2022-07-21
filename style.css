@@ -8,7 +8,7 @@ body, html{
         width: 100vw;
         margin: 0%;
         font-family: "Varela Round", sans-serif;
-    
+        position: relative;
     }
 
     @media screen and (max-width:727px){
@@ -25,7 +25,9 @@ body, html{
     
     .container {
         width: 100%;
-        margin:0%;
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
         display: grid;
             grid-template-columns: auto;
             justify-content: center;
