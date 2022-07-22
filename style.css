@@ -58,7 +58,7 @@ body {
     width:100%;
     text-align: center;
     height: fit-content;
-    font-family: "Valera Round", sans-serif;
+    font-family: "Fira Mono", sans-serif;
     color:black;
     animation-name: message;
     animation-timing-function: linear;
