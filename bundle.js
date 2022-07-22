@@ -36,7 +36,7 @@ function myChessFile() {
     setTimeout(() => {
       resetButton.classList.remove("resetClick");
       window.location.reload();
-    }, 3000);
+    }, 1100);
  })
 
   function updateChessEngine() {

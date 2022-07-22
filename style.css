@@ -190,8 +190,8 @@ color:white;
 .resetClick {
     transform: rotate(180deg);
     animation-name: rotate;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
+    animation-duration: 1.1s;
+    animation-timing-function:linear;
 }
 
 @keyframes rotate{
