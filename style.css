@@ -189,7 +189,7 @@ color:white;
 
 .resetClick {
     animation-name: rotate;
-    animation-duration: 1s;
+    animation-duration: 1.2s;
 }
 
 @keyframes rotate {

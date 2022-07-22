@@ -33,16 +33,7 @@ function myChessFile() {
     resetButton.classList.add("resetClick");
     chessGame.clear();
     localStorage.clear();
-    removeValidAndCurrentMoves(allSquares);
-
-    turn = chessGame.turn();
-    localStorage.setItem("playerTurn", turn);
-    populateLocalStoragePieces(allSquares);
-    updateDomId(allSquares);
-    for (let squares of allSquares) {
-      squares.addEventListener("click", getValidMoves);
-    }
-    
+    window.location.reload(); 
  })
 
   function updateChessEngine() {
