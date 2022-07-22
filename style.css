@@ -10,20 +10,21 @@ html {
     margin: 0%;
 }
 
-body{
-padding:5vmax;
+body {
+    padding: 5vmax;
 }
 
 
 
 @media screen and (max-width:727px) {
     .chessboard {
-            background-color: #ffffff;
-            border: .65vmin solid black;
-            max-height: fit-content;
-            width: fit-content;
-            margin:auto;
-        }
+        background-color: #ffffff;
+        border: .65vmin solid black;
+        max-height: fit-content;
+        width: fit-content;
+        margin: auto;
+    }
+
     .rankFile {
         display: grid;
         width: fit-content;
@@ -32,10 +33,11 @@ padding:5vmax;
         font-weight: bold;
         font-size: calc(.27em + .22vmin);
     }
-        .container>button>img {
-            width: calc(1em + .4vw);
-            border: none;
-        }
+
+    .container>button>img {
+        width: calc(1em + .4vw);
+        border: none;
+    }
 
 }
 
