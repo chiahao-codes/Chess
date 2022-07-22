@@ -23,10 +23,10 @@ padding:5vmax;
         grid-template-columns: repeat(8, calc(3.8em + 4.3vw));
         grid-template-rows: calc(3.8em + 4.3vw);
         font-weight: bold;
-        font-size: 0.27em;
+        font-size: calc(.27em + .25vmin);
     }
         .container>button>img {
-            width: calc(1em + .5vw);
+            width: calc(1em + .4vw);
             border: none;
         }
 
