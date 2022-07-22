@@ -17,11 +17,16 @@ padding:5vmax;
 
 
 @media screen and (max-width:727px) {
+    .chessboard {
+            background-color: #ffffff;
+            border: .65vmin solid black;
+            max-height: fit-content;
+            width: fit-content;
+            margin:auto;
+        }
     .rankFile {
         display: grid;
         width: fit-content;
-        margin-left: 2%;
-        margin-right:2%;
         grid-template-columns: repeat(8, calc(3.8em + 4.0vw));
         grid-template-rows: calc(3.8em + 4.0vw);
         font-weight: bold;
@@ -35,7 +40,7 @@ padding:5vmax;
 }
 
 .container {
-    width: fit-content;
+    width: 100%;
     margin:auto;
     display: grid;
     grid-template-columns: fit-content;
