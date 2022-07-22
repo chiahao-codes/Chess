@@ -17,6 +17,9 @@ body {
 
 
 @media screen and (max-width:727px) {
+    body {
+            padding:2vmax, 1vmax;
+        }
     .chessboard {
         background-color: #ffffff;
         border: .65vmin solid black;
@@ -200,7 +203,7 @@ color:white;
 .resetClick {
     transform: rotate(180deg);
     animation-name: rotate;
-    animation-duration: .5s;
+    animation-duration: .75s;
     animation-timing-function:linear;
 }
 
