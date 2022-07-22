@@ -32,7 +32,10 @@ function myChessFile() {
     resetButton.classList.add("resetClick");
     chessGame.clear();
     localStorage.clear();
-    window.location.reload(); 
+    setTimeout(() => {
+      resetButton.classList.remove("resetClick");
+      window.location.reload();
+    }, 3000);
  })
 
   function updateChessEngine() {

@@ -188,15 +188,17 @@ color:white;
 }
 
 .resetClick {
+    transform: rotate(180deg);
     animation-name: rotate;
-    animation-duration: 1.2s;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
 }
 
-@keyframes rotate {
-    from{
-        rotate: 0deg;
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
     }
-    to{
-        rotate: 180deg;
+    100%{
+        transform: rotate(180);
     }
 }
