@@ -20,8 +20,10 @@ padding:5vmax;
     .rankFile {
         display: grid;
         width: fit-content;
-        grid-template-columns: repeat(8, calc(3.8em + 4.3vw));
-        grid-template-rows: calc(3.8em + 4.3vw);
+        margin-left: 2%;
+        margin-right:2%;
+        grid-template-columns: repeat(8, calc(3.8em + 4.0vw));
+        grid-template-rows: calc(3.8em + 4.0vw);
         font-weight: bold;
         font-size: calc(.27em + .25vmin);
     }
