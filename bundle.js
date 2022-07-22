@@ -4,15 +4,16 @@ function myChessFile() {
   const chessGame = new Chess();
 
   let allSquares = document.querySelectorAll(".rankFile > div");
+  let resetButton = document.querySelector("button > img");
   let moves,
     storedValidMoves,
-    storedCurrentMoveSquare,
+    storedCurrentMoveSquare, turn
     gameStatus = localStorage.getItem("gameStatus");
 
   if (!gameStatus) {
     //populate local storage
     //update dom;
-    let turn = chessGame.turn();
+    turn = chessGame.turn();
     localStorage.setItem("playerTurn", turn);
     populateLocalStoragePieces(allSquares);
     updateDomId(allSquares);
@@ -27,6 +28,22 @@ function myChessFile() {
       squares.addEventListener("click", getValidMoves);
     }
   }
+
+  resetButton.addEventListener("click", () => {
+    resetButton.classList.add("resetClick");
+    chessGame.clear();
+    localStorage.clear();
+    removeValidAndCurrentMoves(allSquares);
+
+    turn = chessGame.turn();
+    localStorage.setItem("playerTurn", turn);
+    populateLocalStoragePieces(allSquares);
+    updateDomId(allSquares);
+    for (let squares of allSquares) {
+      squares.addEventListener("click", getValidMoves);
+    }
+    
+ })
 
   function updateChessEngine() {
     let historicMoveCount = 1;

@@ -3,7 +3,7 @@ function myChessFile() {
   const chessGame = new Chess();
 
   let allSquares = document.querySelectorAll(".rankFile > div");
-  let resetButton = document.getElementById("reset");
+  let resetButton = document.querySelector("button > img");
   let moves,
     storedValidMoves,
     storedCurrentMoveSquare, turn
