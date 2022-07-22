@@ -188,5 +188,15 @@ color:white;
 }
 
 .resetClick {
-    transform: rotate(180deg) rotate(-180deg);
+    animation-name: rotate;
+    animation-duration: 1s;
+}
+
+@keyframes rotate {
+    from{
+        rotate: 0deg;
+    }
+    to{
+        rotate: 180deg;
+    }
 }
