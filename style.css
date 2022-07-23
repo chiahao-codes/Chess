@@ -86,9 +86,8 @@ body {
 .messages:before,
 .messages:after {
     content: "testing...";
-    margin:auto;
-    text-align: center;
-    z-index: -1;
+    position: absolute;
+    
 }
 
 .messages:before {
