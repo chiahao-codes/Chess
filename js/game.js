@@ -3,7 +3,7 @@ function myChessFile() {
   const chessGame = new Chess();
 
   let allSquares = document.querySelectorAll(".rankFile > div");
-  let messages = document.querySelector(".container> .messages");
+  let messages = document.querySelector(".container> .parentMessage > h1");
   let resetButton = document.querySelector("button > img");
   let moves,
     storedValidMoves,
@@ -20,6 +20,7 @@ function myChessFile() {
     for (let squares of allSquares) {
       squares.addEventListener("click", getValidMoves);
     }
+  
   } else {
     //update dom via local storage, chessengine;
     updateDomId(allSquares);
@@ -29,10 +30,22 @@ function myChessFile() {
     }
   }
 
+  function messageBox(heading, text) {
+    clearMessageBox(heading);
+    heading.classList.add("messages");
+    heading.innerText = text;
+  }
+
+  function clearMessageBox(heading) {
+    heading.classList.remove("messages");
+    heading.innerText = "";
+  }
+
   resetButton.addEventListener("click", () => {
     resetButton.classList.add("resetClick");
     chessGame.clear();
     localStorage.clear();
+    clearMessageBox(messages);
     setTimeout(() => {
       resetButton.classList.remove("resetClick");
       window.location.reload();
@@ -203,6 +216,8 @@ function myChessFile() {
   function makeMoves(e) {
     let currentMoveObj, storedValidSquare;
 
+    clearMessageBox(messages);
+
     if (storedCurrentMoveSquare.length > 2) {
       storedCurrentMoveSquare = storedCurrentMoveSquare.slice(0, 2);
     }
@@ -298,40 +313,51 @@ function myChessFile() {
       console.log("Black's turn.");
       if (inCheck) {
         console.log("Black in check.");
+        messageBox(messages, "Black in check.");
       }
 
       if (checkMate) {
         console.log("Black is checkmated.");
+        messageBox(messages, "Black is checkmated.");
       } else if (draw) {
         console.log("It's a draw.");
+        messageBox(messages, "It's a draw.");
       } else if (staleMate) {
         console.log("Black has been stalemated.");
+        messageBox(messages, "Black has been stalemated.");
       }
       if (insufficient) {
         console.log("Insufficient material.");
+        messageBox(messages, "Insufficient material.");
       }
-
       if (gameOver) {
         console.log("Game has ended. Black loses.");
+        setTimeout(messageBox(messages, "Game over. Black loses."), 5500);
       }
     } else {
       console.log("White's turn.");
       if (inCheck) {
         console.log("White in check.");
+        messageBox(messages, "White in check.");
       }
 
       if (checkMate) {
         console.log("White is checkmated.");
+         messageBox(messages, "White is checkmated.");
       } else if (draw) {
         console.log("It's a draw.");
+        messageBox(messages, "It's a draw.");
       } else if (staleMate) {
         console.log("White has been stalemated.");
+        messageBox(messages, "White has been stalemated.");
       }
       if (insufficient) {
         console.log("Insufficient material.");
+        messageBox(messages, "Insufficient material.");
       }
       if (gameOver) {
         console.log("Game has ended. White loses.");
+        setTimeout(messageBox(messages, "Game over. White loses."), 5500);
       }
     }
   }
