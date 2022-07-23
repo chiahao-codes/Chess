@@ -36,7 +36,7 @@ function myChessFile() {
     heading.innerText = text;
     let styleSheet = document.styleSheets[0], psuedoRule;
     for (let i = 0; i < styleSheet.length; i++){
-      if (styleSheet.cssRules[i].selectorText === ".messages:before,.messages:after") {
+      if (styleSheet.cssRules[i].selectorText === ".messages:before") {
         psuedoRule = styleSheet.cssRules[i];
         psuedoRule.style.setProperty("content", text);
       }
