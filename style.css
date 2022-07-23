@@ -90,6 +90,7 @@ body {
 
 .messages:before,
 .messages:after {
+    content: attr(name);
     position: absolute;
     left:0%;
 }

@@ -34,30 +34,14 @@ function myChessFile() {
   function messageBox(heading, text) {
     clearMessageBox(heading);
     heading.classList.add("messages");
+    heading.setAttribute("name", text);
     heading.innerText = text;
-    let styleSheet = document.styleSheets[0], psuedoRule;
-    for (let i = 0; i < styleSheet.length; i++){
-      if (styleSheet.cssRules[i].selectorText === ".messages:before") {
-        psuedoRule = styleSheet.cssRules[i];
-        psuedoRule.style.setProperty("content", text);
-      }
-    }
   }
 
   function clearMessageBox(heading) {
     heading.classList.remove("messages");
+    heading.removeAttribute("name");
     heading.innerText = "";
-    let styleSheet = document.styleSheets[0],
-      psuedoRule;
-    for (let i = 0; i < styleSheet.length; i++) {
-      if (
-        styleSheet.cssRules[i].selectorText ===
-        ".messages:before,.messages:after"
-      ) {
-        psuedoRule = styleSheet.cssRules[i];
-        psuedoRule.style.removeProperty("content");
-      }
-    }
 
   }
 
