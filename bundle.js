@@ -316,23 +316,22 @@ function myChessFile() {
     if (turn === "b") {
       console.log("Black's turn.");
       if (inCheck) {
-        
-        messageBox(messages, "Black in check.");
+        messageBox(messages, "Black in check");
       }
 
       if (checkMate) {
-        console.log("Black is checkmated.");
-        messageBox(messages, "Black is checkmated.");
+        console.log("Black is checkmated");
+        messageBox(messages, "Black is checkmated");
       } else if (draw) {
-        console.log("It's a draw.");
-        messageBox(messages, "It's a draw.");
+        console.log("It's a draw");
+        messageBox(messages, "It's a draw");
       } else if (staleMate) {
         console.log("Black has been stalemated.");
-        messageBox(messages, "Black has been stalemated.");
+        messageBox(messages, "Black has been stalemated");
       }
       if (insufficient) {
      
-        messageBox(messages, "Insufficient material.");
+        messageBox(messages, "Insufficient material");
       }
       if (gameOver) {
    
@@ -342,22 +341,22 @@ function myChessFile() {
    
       if (inCheck) {
        
-        messageBox(messages, "White in check.");
+        messageBox(messages, "White in check");
       }
 
       if (checkMate) {
        
-         messageBox(messages, "White is checkmated.");
+         messageBox(messages, "White is checkmated");
       } else if (draw) {
         
-        messageBox(messages, "It's a draw.");
+        messageBox(messages, "It's a draw");
       } else if (staleMate) {
        
         messageBox(messages, "White has been stalemated.");
       }
       if (insufficient) {
         
-        messageBox(messages, "Insufficient material.");
+        messageBox(messages, "Insufficient material");
       }
       if (gameOver) {
   
