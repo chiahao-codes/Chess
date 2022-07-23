@@ -90,7 +90,7 @@ body {
 
 .messages:before,
 .messages:after {
-    content: "testing...";
+    content: "";
     position: absolute;
     left:0%;
     
