@@ -90,10 +90,8 @@ body {
 
 .messages:before,
 .messages:after {
-    content: "";
     position: absolute;
     left:0%;
-    
 }
 
 .messages:before {

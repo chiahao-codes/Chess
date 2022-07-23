@@ -34,10 +34,9 @@ function myChessFile() {
     clearMessageBox(heading);
     heading.classList.add("messages");
     heading.innerText = text;
-    let before = getComputedStyle(heading, ":before");
-    let after = getComputedStyle(heading, ":after");
-    before.content = text;
-    after.content = text;
+    document.styleSheets[0].insertRule(`.messages:before,.messages:after{
+      content:${text};
+    }`, 11);
   }
 
   function clearMessageBox(heading) {
