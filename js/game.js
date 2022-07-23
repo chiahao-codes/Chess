@@ -34,14 +34,30 @@ function myChessFile() {
     clearMessageBox(heading);
     heading.classList.add("messages");
     heading.innerText = text;
-    document.styleSheets[0].insertRule(`.messages:before,.messages:after{
-      content:${text};
-    }`, 11);
+    let styleSheet = document.styleSheets[0], psuedoRule;
+    for (let i = 0; i < styleSheet.length; i++){
+      if (styleSheet.cssRules[i].selectorText === ".messages:before,.messages:after") {
+        psuedoRule = styleSheet.cssRules[i];
+        psuedoRule.style.setProperty("content", text);
+      }
+    }
   }
 
   function clearMessageBox(heading) {
     heading.classList.remove("messages");
     heading.innerText = "";
+    let styleSheet = document.styleSheets[0],
+      psuedoRule;
+    for (let i = 0; i < styleSheet.length; i++) {
+      if (
+        styleSheet.cssRules[i].selectorText ===
+        ".messages:before,.messages:after"
+      ) {
+        psuedoRule = styleSheet.cssRules[i];
+        psuedoRule.style.removeProperty("content");
+      }
+    }
+
   }
 
   resetButton.addEventListener("click", () => {
@@ -315,7 +331,7 @@ function myChessFile() {
     if (turn === "b") {
       console.log("Black's turn.");
       if (inCheck) {
-        console.log("Black in check.");
+        
         messageBox(messages, "Black in check.");
       }
 
