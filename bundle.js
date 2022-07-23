@@ -35,6 +35,9 @@ function myChessFile() {
     clearMessageBox(heading);
     heading.classList.add("messages");
     heading.innerText = text;
+    document.styleSheets[0].insertRule(`.messages:before,.messages:after{
+      content:${text};
+    }`, 11);
   }
 
   function clearMessageBox(heading) {
@@ -328,36 +331,36 @@ function myChessFile() {
         messageBox(messages, "Black has been stalemated.");
       }
       if (insufficient) {
-        console.log("Insufficient material.");
+     
         messageBox(messages, "Insufficient material.");
       }
       if (gameOver) {
-        console.log("Game has ended. Black loses.");
+   
         setTimeout(messageBox(messages, "Game over. Black loses."), 5500);
       }
     } else {
-      console.log("White's turn.");
+   
       if (inCheck) {
-        console.log("White in check.");
+       
         messageBox(messages, "White in check.");
       }
 
       if (checkMate) {
-        console.log("White is checkmated.");
+       
          messageBox(messages, "White is checkmated.");
       } else if (draw) {
-        console.log("It's a draw.");
+        
         messageBox(messages, "It's a draw.");
       } else if (staleMate) {
-        console.log("White has been stalemated.");
+       
         messageBox(messages, "White has been stalemated.");
       }
       if (insufficient) {
-        console.log("Insufficient material.");
+        
         messageBox(messages, "Insufficient material.");
       }
       if (gameOver) {
-        console.log("Game has ended. White loses.");
+  
         setTimeout(messageBox(messages, "Game over. White loses."), 5500);
       }
     }
