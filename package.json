@@ -5,7 +5,7 @@
   "main": "game.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bro":"browserify ./js/game.js > bundle.js"
+    "bro": "browserify ./js/game.js > bundle.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
     "jest": "^27.3.1",
     "js-chess-engine": "^1.0.2",
     "jsdom": "^16.7.0",
-    "mongoose": "^6.0.12"
+    "mongoose": "^6.0.12",
+    "npx": "^10.2.2"
   }
 }
