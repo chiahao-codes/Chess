@@ -7,11 +7,11 @@
 </p>
 
 
-<picture><img align = "center" alt="chess_screenshot" src= "./assets/images/game_main_screenshot.png"></picture>
+<picture><img alt="chess_screenshot" src= "./assets/images/game_main_screenshot.png"></picture>
 
 
 ## Description
-> Made using vanilla JS, HTML, and CSS. Chess engine for the browser. User vs. User.
+> 
 
 
 ## Reason For Making
@@ -20,6 +20,22 @@
 ## Author
 
 👤 **Chiahao Chou**
+
+
+## Built With
+* HTML5
+* CSS3
+* Javascript
+* Browserify
+* Chess.js
+
+
+## Features
+<picture><img alt="chess reset button screenshot" src="./assets/images/game_screenshot.png"></picture>
+
+<p><p>
+
+## Social Media
 
 
 ## Show your support
