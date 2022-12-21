@@ -15,6 +15,11 @@
 
 
 ## Reason For Making
+> 
+
+
+## How To Use
+![Click Here!](https://chiahao-codes.github.io/chess/)
 
 
 ## Author
@@ -34,6 +39,7 @@
 <picture><img alt="chess reset button screenshot" src="./assets/images/game_screenshot.png"></picture>
 
 <p><p>
+
 
 ## Social Media
 
