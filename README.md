@@ -7,7 +7,7 @@
 </p>
 
 
-<picture align = "center"><img alt="chess_screenshot" src= "./assets/images/game_main_screenshot.png"></picture>
+<picture><img align = "center" alt="chess_screenshot" src= "./assets/images/game_main_screenshot.png"></picture>
 
 
 ## Description
