@@ -7,7 +7,7 @@
 </p>
 
 
-<picture><img alt="chess_screenshot" src= "./assets/images/chess_pic1.jpg"></picture>
+<picture><img alt="chess_screenshot" src= "./assets/images/chess_pic1.png"></picture>
 
 
 ## Description
@@ -36,7 +36,7 @@
 
 
 ## Features
-<picture><img alt="chess reset button screenshot" src="./assets/images/game_screenshot.png"></picture>
+<picture><img alt="chess reset button screenshot" src="./assets/images/chess_pic2.png"></picture>
 
 <p><p>
 
