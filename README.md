@@ -36,14 +36,18 @@
 
 
 ## Features
-<p>The Reset Button on the bottom will reset all the pieces for a new game!<p>
+<p>The Reset Button on the bottom will reset all the pieces for a new game.<p>
 <picture><img alt="chess reset button screenshot" src="./assets/images/chess_pic2.png"></picture>
 
 
 
-<p>Legal moves are highlighted in red!<p>
+<p>Legal moves are highlighted in red.<p>
 <picture><img alt="chess reset button screenshot" src="./assets/images/chess_pic3.png"></picture>
 
+
+
+<p>Message updates for game status at the top.<p>
+<picture><img alt="chess reset button screenshot" src="./assets/images/chess_pic4.png"></picture>
 
 
 ## Social Media
