@@ -7,7 +7,8 @@
 </p>
 
 
-<picture align = "center"><img alt="chess_screenshot" src= "./assets/images/game_screenshot.png"></picture>
+<picture align = "center"><img alt="chess_screenshot" src= "./assets/images/game_main_screenshot.png"></picture>
+
 
 ## Description
 > Made using vanilla JS, HTML, and CSS. Chess engine for the browser. User vs. User.
