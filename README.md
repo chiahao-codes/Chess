@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Chess Game 👋</h1>
+<h1>Chess Game</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
@@ -8,17 +8,6 @@
 
 > Made using vanilla JS, HTML, and CSS. Chess engine for the browser. User vs. User.
 
-## Install
-
-```sh
-npm install
-```
-
-## Run tests
-
-```sh
-npm run test
-```
 
 ## Author
 
