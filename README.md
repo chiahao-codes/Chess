@@ -23,7 +23,6 @@
 
 
 ## Author
-
 👤 **Chiahao Chou**
 
 
@@ -51,10 +50,12 @@
 
 
 ## Social Media
+* Github: (https://github.com/chiahao-codes)
+* IG: (https://instagram.com/chiahaocodes)
+* LinkedIn: (https://www.linkedin.com/in/chiahaocodes/)
 
 
 ## Show your support
-
 Give a ⭐️ if this project helped you!
 
 ***
