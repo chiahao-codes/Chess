@@ -11,11 +11,11 @@
 
 
 ## Description
-> 
+> This is a browser-based chess game application. This is strictly meant to played between two users.
 
 
 ## Reason For Making
-> 
+>  I wanted to build a portfolio project that would allow more room for creativity while challenging my programming aptitude.
 
 
 ## How To Use
