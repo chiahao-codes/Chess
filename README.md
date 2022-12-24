@@ -11,7 +11,7 @@
 
 
 ## Description
-> This is a browser-based chess game application. This is strictly meant to played between two users.
+> This is a browser-based single-user chess game application. This is strictly player vs. player.
 
 
 ## Reason For Making
