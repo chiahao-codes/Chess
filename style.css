@@ -315,6 +315,30 @@ body {
 
 }
 
+@media screen and (min-width:880px) {
+    .container {
+        min-width: 469px;
+    }
 
+    .rankFile {
+        display: grid;
+        width: fit-content;
+        grid-template-columns: repeat(8, 56.84px);
+        grid-template-rows: calc(56.84px);
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .rankFile>.validMove {
+        border: 2px solid crimson;
+    }
+
+    .container>button>img {
+        max-width: 38px;
+        border: none;
+    }
+
+
+}
 
 
