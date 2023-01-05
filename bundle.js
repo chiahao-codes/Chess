@@ -286,12 +286,12 @@ function myChessFile() {
     const staleMate = chessGame.in_stalemate(gameFen);
     const gameOver = chessGame.game_over(gameFen);
 
-    console.log(chessGame.ascii());
+  
     turn = chessGame.turn();
     localStorage.setItem("playerTurn", turn);
 
     let gameHistory = chessGame.history({ verbose: true }); //array of objects;
-    console.log(gameHistory);
+ 
     if (gameHistory.length > 0) {
       for (let i = 0; i < gameHistory.length; i++) {
         let historicMoveCount = i + 1;
@@ -313,20 +313,20 @@ function myChessFile() {
       }
     }
 
-    if (turn === "b") {
-      console.log("Black's turn.");
+    if (turn === "b") { 
+     
       if (inCheck) {
         messageBox(messages, "Black in check");
       }
 
       if (checkMate) {
-        console.log("Black is checkmated");
+      
         messageBox(messages, "Black is checkmated");
       } else if (draw) {
-        console.log("It's a draw");
+      
         messageBox(messages, "It's a draw");
       } else if (staleMate) {
-        console.log("Black has been stalemated.");
+      
         messageBox(messages, "Black has been stalemated");
       }
       if (insufficient) {
