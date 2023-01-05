@@ -319,25 +319,25 @@ body {
 
 @media screen and (min-width:880px) {
     .container {
-        min-width: 469px;
+        min-width: 400px;
         max-height:fit-content;
     }
 
     .rankFile {
         display: grid;
         width: fit-content;
-        grid-template-columns: repeat(8, 56.84px);
-        grid-template-rows: calc(56.84px);
+        grid-template-columns: repeat(8, 45px);
+        grid-template-rows: calc(45px);
         font-weight: bold;
-        font-size: 16px;
+        font-size: 12px;
     }
 
     .rankFile>.validMove {
-        border: 2px solid crimson;
+        border: 1.7px solid crimson;
     }
 
     .container>button>img {
-        max-width: 38px;
+        max-width: 30px;
         border: none;
     }
 

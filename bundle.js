@@ -248,9 +248,6 @@ function myChessFile() {
             if (e.target.hasAttribute("promotion")) {
               e.target.removeAttribute("promotion");
             }
-            console.log(
-              `Chess move: to:${currentMoveObj.to} from:${currentMoveObj.from} promotion:${currentMoveObj.promotion}`
-            );
             localStorage.removeItem("promotion");
           } else {
             currentMoveObj = chessGame.move({
