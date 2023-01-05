@@ -26,6 +26,9 @@ function myChessFile() {
     //update dom via local storage, chessengine;
     updateDomId(allSquares);
     updateChessEngine();
+    //update message box here...with a separate function;
+
+
     for (let squares of allSquares) {
       squares.addEventListener("click", getValidMoves);
     }
@@ -56,6 +59,7 @@ function myChessFile() {
     }, 800);
  })
 
+ 
   function updateChessEngine() {
     let historicMoveCount = 1;
     historicMoveCount = historicMoveCount.toString();
