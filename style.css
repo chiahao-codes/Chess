@@ -20,14 +20,15 @@ body {
 
 @media  screen and (min-width:320px) {
     .container {
-        min-width: 300px;
-        display: grid;
-        grid-template-columns: max-content;
-        grid-template-rows: max-content;
+        min-width: 290px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 8px;
         align-content: center;
+        position: relative;
         }
         .parentMessage {
-            margin:auto;
                 max-width: 90%;
                     display: flex;
                     justify-content: center;
@@ -118,8 +119,6 @@ body {
     border: 2px solid black;
     max-height: fit-content;
     width: fit-content;
-    margin: auto;
-    
 }
 
 .rankFile {
@@ -254,16 +253,12 @@ body {
 
 .container>button {
     width: fit-content;
-    margin-top: 4%;
-    margin-bottom: 1%;
-    margin-left: auto;
-    margin-right: auto;
     background-color: #F9FCFF;
     border: none;
 }
 
 .container>button>img {
-    width: calc(1.5em);
+    min-width: 24px;
     border: none;
 }
 
