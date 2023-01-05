@@ -15,23 +15,25 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 100%;
+  
 }
 
 @media  screen and (min-width:320px) {
     .container {
-        width: 100%;
+        min-width: 300px;
         display: grid;
         grid-template-columns: max-content;
         grid-template-rows: max-content;
         align-content: center;
         }
         .parentMessage {
+                max-width: 90%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                 }
         .messages {
+            width:100%;
             font-family: "Fira Mono", sans-serif;
             color: black;
             animation-name: message;
