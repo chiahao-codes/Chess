@@ -345,3 +345,29 @@ body {
 }
 
 
+@media screen and (min-width:990px) {
+    .container {
+        min-width: 500px;
+        max-height: min-content;
+    }
+
+    .rankFile {
+        display: grid;
+        width: fit-content;
+        grid-template-columns: repeat(8, 48px);
+        grid-template-rows: calc(48px);
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .rankFile>.validMove {
+        border: 1.6px solid crimson;
+    }
+
+    .container>button>img {
+        max-width: 29px;
+        border: none;
+    }
+
+
+}
