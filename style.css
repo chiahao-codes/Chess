@@ -318,7 +318,7 @@ body {
 @media screen and (min-width:880px) {
     .container {
         min-width: 469px;
-        height:fit-content;
+        max-height:fit-content;
         overflow-y: scroll;
     }
 
