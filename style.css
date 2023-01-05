@@ -320,24 +320,24 @@ body {
 @media screen and (min-width:880px) {
     .container {
         min-width: 400px;
-        max-height:fit-content;
+        max-height:min-content;
     }
 
     .rankFile {
         display: grid;
         width: fit-content;
-        grid-template-columns: repeat(8, 45px);
-        grid-template-rows: calc(45px);
+        grid-template-columns: repeat(8, 43px);
+        grid-template-rows: calc(43px);
         font-weight: bold;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .rankFile>.validMove {
-        border: 1.7px solid crimson;
+        border: 1.6px solid crimson;
     }
 
     .container>button>img {
-        max-width: 30px;
+        max-width: 28px;
         border: none;
     }
 
