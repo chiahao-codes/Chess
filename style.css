@@ -258,7 +258,7 @@ body {
 }
 
 .container>button>img {
-    min-width: 24px;
+    max-width: 24px;
     border: none;
 }
 
