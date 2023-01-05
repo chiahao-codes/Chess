@@ -38,6 +38,7 @@ body {
     }
 
     .messages {
+        margin:0;
         width: 100%;
         font-family: "Fira Mono", sans-serif;
         color: black;
