@@ -124,10 +124,10 @@ body {
 .rankFile {
     display: grid;
     width: fit-content;
-    grid-template-columns: repeat(8, calc(2em));
-    grid-template-rows: calc(2em);
+    grid-template-columns: repeat(8, 33px);
+    grid-template-rows: calc(33px);
     font-weight: bold;
-    font-size: .8em;
+    font-size: 9px;
 }
 
 .squareB:nth-child(odd) {
