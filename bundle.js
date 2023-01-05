@@ -4,7 +4,7 @@ function myChessFile() {
   const chessGame = new Chess();
 
   let allSquares = document.querySelectorAll(".rankFile > div");
-  let messages = document.querySelector(".container> .parentMessage > h1");
+  let messages = document.querySelector(".container> .parentMessage > h3");
   let resetButton = document.querySelector("button > img");
   let moves,
     storedValidMoves,

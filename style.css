@@ -274,8 +274,6 @@ color:white;
     }
 }
 
-@media screen and (min-width:320px) {}
-
 @media screen and (max-width:727px) {
     body {
         padding-top: 6vmax, 1vmax, 0%, 1vmax;
