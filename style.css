@@ -11,37 +11,8 @@ html {
 }
 
 body {
+    font-size:100%;
     padding: 3vmax, 1vmax, 0%, 1vmax;
-}
-
-
-
-@media screen and (max-width:727px) {
-    body {
-            padding-top: 6vmax, 1vmax, 0%, 1vmax;
-        }
-    .chessboard {
-        background-color: #ffffff;
-        border: .65vmin solid black;
-        max-height: fit-content;
-        width: fit-content;
-        margin: auto;
-    }
-
-    .rankFile {
-        display: grid;
-        width: fit-content;
-        grid-template-columns: repeat(8, calc(3.8em + 3.5vw));
-        grid-template-rows: calc(3.8em + 3.5vw);
-        font-weight: bold;
-        font-size: calc(.27em + .22vmin);
-    }
-
-    .container>button>img {
-        width: calc(1em + .4vw);
-        border: none;
-    }
-
 }
 
 .container {
@@ -301,4 +272,35 @@ color:white;
     100%{
         transform: rotate(180);
     }
+}
+
+@media screen and (min-width:320px) {}
+
+@media screen and (max-width:727px) {
+    body {
+        padding-top: 6vmax, 1vmax, 0%, 1vmax;
+    }
+
+    .chessboard {
+        background-color: #ffffff;
+        border: .65vmin solid black;
+        max-height: fit-content;
+        width: fit-content;
+        margin: auto;
+    }
+
+    .rankFile {
+        display: grid;
+        width: fit-content;
+        grid-template-columns: repeat(8, calc(3.8em + 3.5vw));
+        grid-template-rows: calc(3.8em + 3.5vw);
+        font-weight: bold;
+        font-size: calc(.27em + .22vmin);
+    }
+
+    .container>button>img {
+        width: calc(1em + .4vw);
+        border: none;
+    }
+
 }
