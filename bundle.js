@@ -224,17 +224,6 @@ function myChessFile() {
 
   function makeMoves(e) {
     let currentMoveObj, storedValidSquare;
-        const gameFen = chessGame.fen();
-        const insufficient = chessGame.insufficient_material(gameFen);
-        const inCheck = chessGame.in_check(gameFen);
-        const checkMate = chessGame.in_checkmate(gameFen);
-        const draw = chessGame.in_draw(gameFen);
-        const staleMate = chessGame.in_stalemate(gameFen);
-        const gameOver = chessGame.game_over(gameFen);
-        let gameHistory = chessGame.history({ verbose: true }); //array of objects;
-        turn = chessGame.turn();
-    localStorage.setItem("playerTurn", turn);
-    
     clearMessageBox(messages);
 
     if (storedCurrentMoveSquare.length > 2) {
@@ -286,6 +275,18 @@ function myChessFile() {
       populateLocalStoragePieces(allSquares);
       updateDomId(allSquares);
     }
+
+    const gameFen = chessGame.fen();
+    const insufficient = chessGame.insufficient_material(gameFen);
+    const inCheck = chessGame.in_check(gameFen);
+    const checkMate = chessGame.in_checkmate(gameFen);
+    const draw = chessGame.in_draw(gameFen);
+    const staleMate = chessGame.in_stalemate(gameFen);
+    const gameOver = chessGame.game_over(gameFen);
+    let gameHistory = chessGame.history({ verbose: true }); //array of objects;
+    
+    turn = chessGame.turn();
+    localStorage.setItem("playerTurn", turn);
 
     if (gameHistory.length > 0) {
       for (let i = 0; i < gameHistory.length; i++) {
