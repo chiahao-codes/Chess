@@ -35,6 +35,7 @@ function myChessFile() {
 
   function messageBox(heading, text) {
     clearMessageBox(heading);
+    localStorage.getItem("messageBox");
     heading.classList.add("messages");
     heading.setAttribute("name", text);
     heading.innerText = text;
@@ -222,7 +223,17 @@ function myChessFile() {
 
   function makeMoves(e) {
     let currentMoveObj, storedValidSquare;
-
+        const gameFen = chessGame.fen();
+        const insufficient = chessGame.insufficient_material(gameFen);
+        const inCheck = chessGame.in_check(gameFen);
+        const checkMate = chessGame.in_checkmate(gameFen);
+        const draw = chessGame.in_draw(gameFen);
+        const staleMate = chessGame.in_stalemate(gameFen);
+        const gameOver = chessGame.game_over(gameFen);
+        let gameHistory = chessGame.history({ verbose: true }); //array of objects;
+        turn = chessGame.turn();
+    localStorage.setItem("playerTurn", turn);
+    
     clearMessageBox(messages);
 
     if (storedCurrentMoveSquare.length > 2) {
@@ -265,7 +276,6 @@ function myChessFile() {
             if (e.target.hasAttribute("captured")) {
               e.target.removeAttribute("captured");
             }
-           
           }
           chessGame.remove(storedCurrentMoveSquare);
           localStorage.removeItem(storedCurrentMoveSquare);
@@ -276,22 +286,6 @@ function myChessFile() {
       updateDomId(allSquares);
     }
 
-    const gameFen = chessGame.fen();
-    const validFen = chessGame.validate_fen(gameFen);
-    if (!validFen) console.log("Invalid Fen", validFen);
-    const insufficient = chessGame.insufficient_material(gameFen);
-    const inCheck = chessGame.in_check(gameFen);
-    const checkMate = chessGame.in_checkmate(gameFen);
-    const draw = chessGame.in_draw(gameFen);
-    const staleMate = chessGame.in_stalemate(gameFen);
-    const gameOver = chessGame.game_over(gameFen);
-
-  
-    turn = chessGame.turn();
-    localStorage.setItem("playerTurn", turn);
-
-    let gameHistory = chessGame.history({ verbose: true }); //array of objects;
- 
     if (gameHistory.length > 0) {
       for (let i = 0; i < gameHistory.length; i++) {
         let historicMoveCount = i + 1;
@@ -313,53 +307,40 @@ function myChessFile() {
       }
     }
 
-    if (turn === "b") { 
-     
+    if (turn === "b") {
       if (inCheck) {
         messageBox(messages, "Black in check");
       }
 
       if (checkMate) {
-      
         messageBox(messages, "Black is checkmated");
       } else if (draw) {
-      
         messageBox(messages, "It's a draw");
       } else if (staleMate) {
-      
         messageBox(messages, "Black has been stalemated");
       }
       if (insufficient) {
-     
         messageBox(messages, "Insufficient material");
       }
       if (gameOver) {
-   
         setTimeout(messageBox(messages, "Game over. Black loses."), 5500);
       }
     } else {
-   
       if (inCheck) {
-       
         messageBox(messages, "White in check");
       }
 
       if (checkMate) {
-       
-         messageBox(messages, "White is checkmated");
+        messageBox(messages, "White is checkmated");
       } else if (draw) {
-        
         messageBox(messages, "It's a draw");
       } else if (staleMate) {
-       
         messageBox(messages, "White has been stalemated.");
       }
       if (insufficient) {
-        
         messageBox(messages, "Insufficient material");
       }
       if (gameOver) {
-  
         setTimeout(messageBox(messages, "Game over. White loses."), 5500);
       }
     }
