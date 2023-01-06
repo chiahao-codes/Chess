@@ -26,8 +26,12 @@ function myChessFile() {
     //update dom via local storage, chessengine;
     updateDomId(allSquares);
     updateChessEngine();
-    //update message box here...with a separate function;
 
+    //update message box;
+    let previousMessage = localStorage.getItem("messageBox");
+    if (previousMessage) {
+      messageBox(messages, previousMessage);
+    }
 
     for (let squares of allSquares) {
       squares.addEventListener("click", getValidMoves);
@@ -36,13 +40,14 @@ function myChessFile() {
 
   function messageBox(heading, text) {
     clearMessageBox(heading);
-    localStorage.getItem("messageBox");
+    localStorage.setItem("messageBox", text);
     heading.classList.add("messages");
     heading.setAttribute("name", text);
     heading.innerText = text;
   }
 
   function clearMessageBox(heading) {
+    localStorage.removeItem("messageBox");
     heading.classList.remove("messages");
     heading.removeAttribute("name");
     heading.innerText = "";
@@ -172,50 +177,55 @@ function myChessFile() {
   }
 
   function getValidMoves(e) {
-    localStorage.setItem("gameStatus", "inProgress");
-    //add currentMove class to square being clicked;
-    const myTarget = e.target;
-    const squareInnertext = myTarget.innerText;
-    let squares;
-    removeValidAndCurrentMoves(allSquares);
+    if (gameStatus === "game over") {
+      return
+    } else {
+      localStorage.setItem("gameStatus", "inProgress");
+      //add currentMove class to square being clicked;
+      const myTarget = e.target;
+      const squareInnertext = myTarget.innerText;
+      let squares;
+      removeValidAndCurrentMoves(allSquares);
+      moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
 
-    moves = chessGame.moves({ square: squareInnertext, verbose: true }); //array;
+      if (
+        moves.length > 0 &&
+        moves[0].color === localStorage.getItem("playerTurn")
+      ) {
+        let currentMovePiece = moves[0].piece;
+        if (moves[0].color === "w") {
+          currentMovePiece = currentMovePiece.toUpperCase();
+        }
+        let currentMoveSquareAndPiece = moves[0].from + currentMovePiece;
 
-    if (moves.length > 0 && moves[0].color === localStorage.getItem("playerTurn")) {
-      let currentMovePiece = moves[0].piece;
-      if (moves[0].color === "w") {
-        currentMovePiece = currentMovePiece.toUpperCase();
-      }
-      let currentMoveSquareAndPiece = moves[0].from + currentMovePiece;
+        localStorage.setItem("currentMove", currentMoveSquareAndPiece);
+        storedCurrentMoveSquare = localStorage.getItem("currentMove");
+        myTarget.classList.add("currentMove");
 
-      localStorage.setItem("currentMove", currentMoveSquareAndPiece);
-      storedCurrentMoveSquare = localStorage.getItem("currentMove");
-      myTarget.classList.add("currentMove");
+        //add valid moves, capture, promotion to localStorage and DOM;
+        let validMoves = "",
+          captured = "",
+          promotion = "";
 
-      //add valid moves, capture, promotion to localStorage and DOM;
-      let validMoves = "",
-        captured = "",
-        promotion = "";
-      
-      
-      for (squares of allSquares) {
-        for (let moveTo of moves) {
-          if (squares.innerText === moveTo.to) {
-            validMoves += moveTo.to;
-            squares.classList.add("validMove");
-            localStorage.setItem("validMoves", validMoves);
-            if (moveTo.captured) {
-              captured += moveTo.to;
-              squares.setAttribute("captured", "");
-              localStorage.setItem("captured", captured);
+        for (squares of allSquares) {
+          for (let moveTo of moves) {
+            if (squares.innerText === moveTo.to) {
+              validMoves += moveTo.to;
+              squares.classList.add("validMove");
+              localStorage.setItem("validMoves", validMoves);
+              if (moveTo.captured) {
+                captured += moveTo.to;
+                squares.setAttribute("captured", "");
+                localStorage.setItem("captured", captured);
+              }
+              if (moveTo.promotion) {
+                promotion += "q";
+                squares.setAttribute("promotion", "");
+                localStorage.setItem("promotion", promotion);
+              }
+              storedValidMoves = localStorage.getItem("validMoves");
+              squares.addEventListener("click", makeMoves);
             }
-            if (moveTo.promotion) {
-              promotion += "q";
-              squares.setAttribute("promotion", "");
-              localStorage.setItem("promotion", promotion);
-            }
-            storedValidMoves = localStorage.getItem("validMoves");
-            squares.addEventListener("click", makeMoves);
           }
         }
       }
@@ -284,7 +294,7 @@ function myChessFile() {
     const staleMate = chessGame.in_stalemate(gameFen);
     const gameOver = chessGame.game_over(gameFen);
     let gameHistory = chessGame.history({ verbose: true }); //array of objects;
-    
+
     turn = chessGame.turn();
     localStorage.setItem("playerTurn", turn);
 
@@ -325,6 +335,7 @@ function myChessFile() {
         messageBox(messages, "Insufficient material");
       }
       if (gameOver) {
+        localStorage.setItem("gameStatus", "game over");
         setTimeout(messageBox(messages, "Game over. Black loses."), 5500);
       }
     } else {
@@ -343,6 +354,7 @@ function myChessFile() {
         messageBox(messages, "Insufficient material");
       }
       if (gameOver) {
+        localStorage.setItem("gameStatus", "game over");
         setTimeout(messageBox(messages, "Game over. White loses."), 5500);
       }
     }
